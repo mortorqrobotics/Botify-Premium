@@ -13,7 +13,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 public class Turret {
     private CANSparkMax m_turret;
     private SparkMaxPIDController m_pidController;
-    private Joystick m_joystick = OI.m_joystick;
+    private Joystick m_joystick = OI.mainStick;
 
     // private final double kP = 0.1; 
     // private final double kI = 1e-4;
