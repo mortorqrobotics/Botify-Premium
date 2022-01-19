@@ -4,6 +4,7 @@
 
 package org.team1515.botifypremium;
 
+import org.team1515.botifypremium.Subsystems.Shooter;
 import org.team1515.botifypremium.Subsystems.Turret;
 
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -21,10 +22,12 @@ public class Robot extends TimedRobot {
    */
 
   private Turret turret;
+  public static Shooter shooter;
 
   @Override
   public void robotInit() {
     turret = new Turret();
+    shooter = new Shooter();
   }
 
   @Override
