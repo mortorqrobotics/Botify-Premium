@@ -33,6 +33,10 @@ public class Climber {
         m_climber.set(-c_speed);
     }
 
+    public void stop(){
+        m_climber.set(0);
+    }
+
     public void latch() {
         latcher.setAngle(closePos);
     }
