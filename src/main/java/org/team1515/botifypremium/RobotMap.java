@@ -5,4 +5,8 @@ public class RobotMap {
     // Shooter
     public final static int TURRET_ID = 0;
     public final static int SHOOTER_ID = 1;
+
+    //Climber
+    public final static int CLIMBER_ID = 2;
+    
 }
