@@ -10,7 +10,7 @@ public class OI {
         mainStick = new Joystick(0);
 
         Controls.SHOOT.whenPressed(
-            new InstantCommand(() -> Robot.shooter.shoot(200))
+            new InstantCommand(() -> Robot.shooter.shoot())
         );
 
         Controls.EXTEND.whenHeld(
