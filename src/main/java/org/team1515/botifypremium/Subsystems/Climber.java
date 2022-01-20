@@ -10,18 +10,14 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 public class Climber {
 
     private CANSparkMax m_climber;
-    private static Servo latcher;
 
     private final double c_speed = 0.25;
-    private final double closePos = 90.0; //in degrees
-    private final double startPos = 0.0;
 
     public Climber() {
 
         m_climber = new CANSparkMax(RobotMap.CLIMBER_ID, MotorType.kBrushless);
         m_climber.restoreFactoryDefaults();
 
-        latcher.set(startPos);
     }
 
     public void climb() {
@@ -34,14 +30,6 @@ public class Climber {
 
     public void stop(){
         m_climber.set(0);
-    }
-
-    public void latch() {
-        latcher.setAngle(closePos);
-    }
-
-    public void unlatch() {
-        latcher.setAngle(startPos);
     }
 
 }
