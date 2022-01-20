@@ -22,7 +22,6 @@ public class Climber {
         m_climber.restoreFactoryDefaults();
 
         latcher.set(startPos);
-
     }
 
     public void climb() {

@@ -13,7 +13,7 @@ public class OI {
             new InstantCommand(() -> Robot.shooter.shoot())
         );
 
-        Controls.EXTEND.whenHeld(
+        Controls.EXTEND.whileHeld(
             new InstantCommand(() -> Robot.climber.climb())
         );
 
@@ -21,7 +21,7 @@ public class OI {
             new InstantCommand(() -> Robot.climber.stop())  
         );
 
-        Controls.RETRACT.whenHeld(
+        Controls.RETRACT.whileHeld(
             new InstantCommand(() -> Robot.climber.retract())
         );
 

@@ -11,6 +11,4 @@ public class Controls {
 
     private static final int L_BUTTON = 7;
     public static final JoystickButton RETRACT = new JoystickButton(OI.mainStick, L_BUTTON);
-
-
 }

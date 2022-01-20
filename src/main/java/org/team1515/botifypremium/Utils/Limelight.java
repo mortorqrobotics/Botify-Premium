@@ -16,7 +16,6 @@ public class Limelight {
     private double txOffset = 1;
 
     public Limelight() {
-        
         table = NetworkTableInstance.getDefault().getTable("limelight");
         tx = table.getEntry("tx");
         ty = table.getEntry("ty");
