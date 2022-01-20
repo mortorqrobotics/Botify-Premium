@@ -8,6 +8,7 @@ import org.team1515.botifypremium.Subsystems.Shooter;
 import org.team1515.botifypremium.Subsystems.Turret;
 import org.team1515.botifypremium.Utils.Limelight;
 import org.team1515.botifypremium.Subsystems.Climber;
+import org.team1515.botifypremium.Subsystems.Latcher;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 
@@ -25,6 +26,7 @@ public class Robot extends TimedRobot {
 
   private Turret turret;
   public static Climber climber;
+  public static Latcher latcher;
   public static Shooter shooter;
   public static Limelight limelight;
 
@@ -33,6 +35,7 @@ public class Robot extends TimedRobot {
     turret = new Turret();
     shooter = new Shooter();
     climber = new Climber();
+    latcher = new Latcher();
     limelight = new Limelight();
   }
 

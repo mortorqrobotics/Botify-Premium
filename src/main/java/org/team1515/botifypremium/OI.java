@@ -29,5 +29,13 @@ public class OI {
             new InstantCommand(() -> Robot.climber.stop())  
         );
 
+        Controls.LATCH.whenPressed(
+            new InstantCommand(() -> Robot.latcher.latch())  
+        );
+
+        Controls.UNLATCH.whenPressed(
+            new InstantCommand(() -> Robot.latcher.unlatch())  
+        );
+
     }
 }
