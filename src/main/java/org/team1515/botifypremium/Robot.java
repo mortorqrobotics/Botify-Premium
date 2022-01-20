@@ -6,6 +6,7 @@ package org.team1515.botifypremium;
 
 import org.team1515.botifypremium.Subsystems.Shooter;
 import org.team1515.botifypremium.Subsystems.Turret;
+import org.team1515.botifypremium.Utils.Limelight;
 import org.team1515.botifypremium.Subsystems.Climber;
 
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -25,12 +26,14 @@ public class Robot extends TimedRobot {
   private Turret turret;
   private Climber climber;
   public static Shooter shooter;
+  public static Limelight limelight;
 
   @Override
   public void robotInit() {
     turret = new Turret();
     shooter = new Shooter();
     climber = new Climber();
+    limelight = new Limelight();
   }
 
   @Override
