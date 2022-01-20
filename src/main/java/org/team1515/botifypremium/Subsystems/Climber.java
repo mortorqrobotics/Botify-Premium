@@ -13,7 +13,7 @@ public class Climber {
     private static Servo latcher;
 
     private final double c_speed = 0.25;
-    private final double closePos = 0.5;
+    private final double closePos = 90.0; //in degrees
     private final double startPos = 0.0;
 
     public Climber() {
@@ -34,11 +34,11 @@ public class Climber {
     }
 
     public void latch() {
-        latcher.set(closePos);
+        latcher.setAngle(closePos);
     }
 
     public void unlatch() {
-        latcher.set(startPos);
+        latcher.setAngle(startPos);
     }
 
 }
