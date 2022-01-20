@@ -12,5 +12,22 @@ public class OI {
         Controls.SHOOT.whenPressed(
             new InstantCommand(() -> Robot.shooter.shoot(200))
         );
+
+        Controls.EXTEND.whenHeld(
+            new InstantCommand(() -> Robot.climber.climb())
+        );
+
+        Controls.EXTEND.whenReleased(
+            new InstantCommand(() -> Robot.climber.stop())  
+        );
+
+        Controls.RETRACT.whenHeld(
+            new InstantCommand(() -> Robot.climber.retract())
+        );
+
+        Controls.RETRACT.whenReleased(
+            new InstantCommand(() -> Robot.climber.stop())  
+        );
+
     }
 }
