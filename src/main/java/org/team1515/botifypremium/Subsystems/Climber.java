@@ -16,7 +16,6 @@ public class Climber {
     public Climber() {
         m_climber = new CANSparkMax(RobotMap.CLIMBER_ID, MotorType.kBrushless);
         m_climber.restoreFactoryDefaults();
-
     }
 
     public void climb() {
@@ -27,7 +26,7 @@ public class Climber {
         m_climber.set(-c_speed);
     }
 
-    public void stop(){
+    public void stop() {
         m_climber.set(0);
     }
 
