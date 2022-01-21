@@ -8,5 +8,6 @@ public class RobotMap {
 
     //Climber
     public final static int CLIMBER_ID = 2;
+    public final static int LATCHER_ID = 3;
     
 }
