@@ -6,6 +6,7 @@ import java.util.TreeMap;
 public class ShooterDist {
     public static NavigableMap<Integer, Double> map = new TreeMap<Integer, Double>();
 
+    // Runs on import
     static {
         map.put(0, 200.0); // Between 0-2
         map.put(3, 400.0); // Between 3-4
