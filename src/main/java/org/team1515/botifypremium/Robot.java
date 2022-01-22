@@ -10,6 +10,7 @@ import org.team1515.botifypremium.Subsystems.Climber;
 import org.team1515.botifypremium.Subsystems.Latcher;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
 /**
@@ -30,6 +31,8 @@ public class Robot extends TimedRobot {
   public static Limelight limelight;
   public static OI oi;
 
+  public Command autoCommand;
+
   @Override
   public void robotInit() {
     oi = new OI();
@@ -46,13 +49,19 @@ public class Robot extends TimedRobot {
   }
 
   @Override
-  public void autonomousInit() {}
+  public void autonomousInit() {
+    autoCommand = oi.getAutoCommand();
+
+    autoCommand.schedule();
+  }
 
   @Override
   public void autonomousPeriodic() {}
 
   @Override
-  public void teleopInit() {}
+  public void teleopInit() {
+    autoCommand.cancel();
+  }
 
   @Override
   public void teleopPeriodic() {
