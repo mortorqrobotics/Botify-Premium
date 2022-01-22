@@ -22,7 +22,6 @@
 | Climb | Y |
 | Rotate turret left| LB |
 | Rotate turret right| RB |
-| Rotate turret left| LB |
 | Intake | LT |
 | Outtake | RT |
 | Reset gyro | Back |
