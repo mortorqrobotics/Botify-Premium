@@ -26,7 +26,7 @@ public class Climber {
         m_climber.set(-c_speed);
     }
 
-    public void stop() {
+    public void end() {
         m_climber.set(0);
     }
 

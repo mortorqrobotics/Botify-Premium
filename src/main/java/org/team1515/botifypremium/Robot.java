@@ -4,13 +4,13 @@
 
 package org.team1515.botifypremium;
 
-import org.team1515.botifypremium.Subsystems.Shooter;
 import org.team1515.botifypremium.Subsystems.Turret;
 import org.team1515.botifypremium.Utils.Limelight;
 import org.team1515.botifypremium.Subsystems.Climber;
 import org.team1515.botifypremium.Subsystems.Latcher;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -27,20 +27,23 @@ public class Robot extends TimedRobot {
   private Turret turret;
   public static Climber climber;
   public static Latcher latcher;
-  public static Shooter shooter;
   public static Limelight limelight;
+  public static OI oi;
 
   @Override
   public void robotInit() {
+    oi = new OI();
+
     turret = new Turret();
-    shooter = new Shooter();
     climber = new Climber();
     latcher = new Latcher();
     limelight = new Limelight();
   }
 
   @Override
-  public void robotPeriodic() {}
+  public void robotPeriodic() {
+    CommandScheduler.getInstance().run();
+  }
 
   @Override
   public void autonomousInit() {}
