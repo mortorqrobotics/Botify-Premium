@@ -38,7 +38,6 @@ public class Robot extends TimedRobot {
     oi = new OI();
 
     turret = new Turret();
-    climber = new Climber();
     latcher = new Latcher();
     limelight = new Limelight();
   }
