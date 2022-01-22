@@ -27,7 +27,7 @@
 | Outtake | RT |
 | Reset gyro | Back |
 
-### Setting up module offsets
+## Setting up module offsets
 
 Now that we have code running on the robot, we can set up our module steering offsets. In order to do this we must have
 our encoder values displayed to the dashboard.
