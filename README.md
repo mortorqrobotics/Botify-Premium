@@ -29,13 +29,10 @@
 
 ## Setting up module offsets
 
-Now that we have code running on the robot, we can set up our module steering offsets. In order to do this we must have
-our encoder values displayed to the dashboard.
-
 > Before setting up module offsets ensure each offset is set to `-Math.toRadians(0.0)` and that code is deployed to the
 > robot. This must be done each time offsets are determined.
 
-1. Turn the robot on its side, so it is easy to move each module by hand.
+1. Either turn the robot on its side or put it up on a cart with the wheels exposed.
 
 > By default, module sensor information is displayed in the `Drivetrain` tab on ShuffleBoard.
 
