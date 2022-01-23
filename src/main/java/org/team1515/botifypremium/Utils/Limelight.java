@@ -25,14 +25,26 @@ public class Limelight {
         ycorners = table.getEntry("tcorny");
     }
 
+    
+    /** 
+     * @return double Horizontal Offset From Crosshair To Target (-27 degrees to 27 degrees)
+     */
     public double getTX() {
         return tx.getDouble(0.0) + txOffset;
     }
 
+    
+    /** 
+     * @return double Target Area (0% of image to 100% of image)
+     */
     public double getTA() {
         return ta.getDouble(0.0);
     }
 
+    
+    /** 
+     * @return double Vertical Offset From Crosshair To Target (-20.5 degrees to 20.5 degrees)
+     */
     public double getTY() {
         return ty.getDouble(0.0);
     }
