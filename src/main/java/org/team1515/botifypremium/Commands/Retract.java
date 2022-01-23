@@ -10,6 +10,8 @@ public class Retract extends CommandBase {
 
     public Retract(Climber climber) {
         this.climber = climber;
+
+        addRequirements(climber);
     }
 
     @Override 

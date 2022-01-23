@@ -5,7 +5,9 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import org.team1515.botifypremium.RobotMap;
 
-public class Intaker {
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
+
+public class Intaker extends SubsystemBase {
     private CANSparkMax m_intake;
 
     public static final double speed = 0.5;

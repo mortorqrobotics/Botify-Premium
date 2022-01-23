@@ -9,6 +9,8 @@ public class Outtake extends CommandBase {
 
     public Outtake(Intaker intake) {
         this.intake = intake;
+
+        addRequirements(intake);
     }
 
     @Override 

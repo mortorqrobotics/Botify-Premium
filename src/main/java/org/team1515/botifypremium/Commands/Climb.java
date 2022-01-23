@@ -10,6 +10,8 @@ public class Climb extends CommandBase {
 
     public Climb(Climber climber) {
         this.climber = climber;
+
+        addRequirements(climber);
     }
 
     @Override 

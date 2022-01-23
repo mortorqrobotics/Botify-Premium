@@ -2,10 +2,12 @@ package org.team1515.botifypremium.Subsystems;
 
 import org.team1515.botifypremium.RobotMap;
 
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
+
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
-public class Climber {
+public class Climber extends SubsystemBase {
 
     private CANSparkMax m_climber;
 
