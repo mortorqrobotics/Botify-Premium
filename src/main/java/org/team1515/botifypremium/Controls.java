@@ -18,4 +18,10 @@ public class Controls {
     public static final int X_BUTTON = 3;
     public static final JoystickButton UNLATCH = new JoystickButton(OI.mainStick, X_BUTTON);
 
+    private static final int LT_BUTTON = 10;
+    public static final JoystickButton OUTAKE = new JoystickButton(OI.mainStick, LT_BUTTON);
+    
+    private static final int RT_BUTTON = 11;
+    public static final JoystickButton INTAKE = new JoystickButton(OI.mainStick, RT_BUTTON);
+
 }
