@@ -4,7 +4,6 @@
 
 package org.team1515.botifypremium;
 
-import org.team1515.botifypremium.Subsystems.Turret;
 import org.team1515.botifypremium.Utils.Limelight;
 import org.team1515.botifypremium.Subsystems.Climber;
 import org.team1515.botifypremium.Subsystems.Latcher;
@@ -25,7 +24,6 @@ public class Robot extends TimedRobot {
    * initialization code.
    */
 
-  private Turret turret;
   public static Climber climber;
   public static Latcher latcher;
   public static Limelight limelight;
@@ -37,7 +35,6 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     oi = new OI();
 
-    turret = new Turret();
     latcher = new Latcher();
     limelight = new Limelight();
   }
@@ -63,7 +60,5 @@ public class Robot extends TimedRobot {
   }
 
   @Override
-  public void teleopPeriodic() {
-    turret.turretPeriodic();
-  }
+  public void teleopPeriodic() {}
 }
