@@ -2,8 +2,6 @@ package org.team1515.botifypremium.Subsystems;
 
 import org.team1515.botifypremium.RobotMap;
 
-import edu.wpi.first.wpilibj.Servo;
-
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
