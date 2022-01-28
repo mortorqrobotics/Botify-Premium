@@ -6,7 +6,7 @@ import org.team1515.botifypremium.RobotMap;
 
 public class StringPot {
 
-    private final int inConversion = 144;
+    private final double cenConversion = 56.6929;
 
     AnalogInput stringPot;
 
@@ -15,10 +15,10 @@ public class StringPot {
     }
 
     /**
-     * @return int value of distance in inches
+     * @return int value of distance in centimeters
      */
-    public int getDist(){
-        return stringPot.getValue() / inConversion;
+    public double getDist(){
+        return stringPot.getValue() / cenConversion;
     }
     
 }

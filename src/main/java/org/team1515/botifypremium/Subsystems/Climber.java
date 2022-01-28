@@ -14,7 +14,7 @@ public class Climber extends SubsystemBase {
     private Latcher m_latcher;
     private StringPot stringPot;
 
-    private final int maxDist = 25;
+    private final double maxDist = 68.58; //27 inches, max extension of climber
     private final double c_speed = 0.25;
 
     public Climber() {
