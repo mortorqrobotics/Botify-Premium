@@ -1,6 +1,5 @@
 package org.team1515.botifypremium;
 
-import org.team1515.botifypremium.Commands.Climb;
 import org.team1515.botifypremium.Commands.Intake;
 import org.team1515.botifypremium.Commands.Shoot;
 import org.team1515.botifypremium.Subsystems.Climber;
@@ -32,7 +31,7 @@ public class OI {
 
     private void configureButtons() {
         Controls.SHOOT.whileHeld(new Shoot(shooter));
-        Controls.CLIMB.whenPressed(new Climb(climber));
+        Controls.CLIMB.whenPressed(new InstantCommand(Robot.climber::climb));
         Controls.INTAKE.whileHeld(new Intake(intake));
         Controls.OUTAKE.whileHeld(new Intake(intake));
     }
