@@ -10,24 +10,24 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 public class Climber extends SubsystemBase {
 
     private CANSparkMax m_climber;
+    private Latcher m_latcher;
 
     private final double c_speed = 0.25;
 
     public Climber() {
         m_climber = new CANSparkMax(RobotMap.CLIMBER_ID, MotorType.kBrushless);
         m_climber.restoreFactoryDefaults();
+
+        m_latcher = new Latcher();
     }
 
     public void climb() {
         m_climber.set(c_speed);
     }
 
-    public void retract() {
-        m_climber.set(-c_speed);
-    }
-
     public void end() {
         m_climber.set(0);
+        m_latcher.latch();
     }
 
 }
