@@ -26,12 +26,14 @@ public class Climber extends SubsystemBase {
 
     }
 
-    public void climb() {
-        m_climber.set(c_speed);
-
+    public void climbPeriodic(){
         if (stringPot.getDist() >= maxDist){
             end();
         }
+    }
+
+    public void climb() {
+        m_climber.set(c_speed);
     }
 
     public void end() {
