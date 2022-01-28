@@ -6,7 +6,6 @@ package org.team1515.botifypremium;
 
 import org.team1515.botifypremium.Utils.Limelight;
 import org.team1515.botifypremium.Subsystems.Climber;
-import org.team1515.botifypremium.Subsystems.Latcher;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -25,7 +24,6 @@ public class Robot extends TimedRobot {
    */
 
   public static Climber climber;
-  public static Latcher latcher;
   public static Limelight limelight;
   public static OI oi;
 
@@ -35,7 +33,6 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     oi = new OI();
 
-    latcher = new Latcher();
     limelight = new Limelight();
   }
 
@@ -60,5 +57,7 @@ public class Robot extends TimedRobot {
   }
 
   @Override
-  public void teleopPeriodic() {}
+  public void teleopPeriodic() {
+    climber.climbPeriodic();
+  }
 }

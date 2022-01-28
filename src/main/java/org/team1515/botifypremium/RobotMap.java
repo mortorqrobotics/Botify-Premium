@@ -9,6 +9,7 @@ public class RobotMap {
     // Climber
     public final static int CLIMBER_ID = 2;
     public final static int LATCHER_ID = 3;
+    public final static int STRING_ID = 0;
 
     // Intake
     public final static int INTAKE_ID = 4;

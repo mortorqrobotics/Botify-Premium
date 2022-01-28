@@ -1,8 +1,6 @@
 package org.team1515.botifypremium;
 
-import org.team1515.botifypremium.Commands.Climb;
 import org.team1515.botifypremium.Commands.Intake;
-import org.team1515.botifypremium.Commands.Retract;
 import org.team1515.botifypremium.Commands.Shoot;
 import org.team1515.botifypremium.Subsystems.Climber;
 import org.team1515.botifypremium.Subsystems.Intaker;
@@ -33,10 +31,7 @@ public class OI {
 
     private void configureButtons() {
         Controls.SHOOT.whileHeld(new Shoot(shooter));
-        Controls.EXTEND.whileHeld(new Climb(climber));
-        Controls.RETRACT.whileHeld(new Retract(climber));
-        Controls.LATCH.whenPressed(new InstantCommand(Robot.latcher::latch));
-        Controls.UNLATCH.whenPressed(new InstantCommand(Robot.latcher::unlatch));
+        Controls.CLIMB.whenPressed(new InstantCommand(Robot.climber::climb));
         Controls.INTAKE.whileHeld(new Intake(intake));
         Controls.OUTAKE.whileHeld(new Intake(intake));
     }
