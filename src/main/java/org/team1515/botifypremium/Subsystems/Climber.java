@@ -12,6 +12,7 @@ public class Climber extends SubsystemBase {
     private CANSparkMax m_climber;
     private Latcher m_latcher;
 
+
     private final double c_speed = 0.25;
 
     public Climber() {
@@ -19,6 +20,7 @@ public class Climber extends SubsystemBase {
         m_climber.restoreFactoryDefaults();
 
         m_latcher = new Latcher();
+
     }
 
     public void climb() {
