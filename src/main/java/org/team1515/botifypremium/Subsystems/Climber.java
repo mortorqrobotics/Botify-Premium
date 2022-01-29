@@ -34,14 +34,14 @@ public class Climber extends SubsystemBase {
     public void climbPeriodic(){
         if (stringPot.getDist() >= maxDist){
 
-            end(); latch();
+            end(); latch(); //Climbing
             waitCommand.initialize();
             retract();
-            
-            while (stringPot.getDist() > minDist) retract();
-            end();
-            
+
         }
+
+        if (stringPot.getDist() > minDist) retract(); //Retreacting
+            end();
 
     }
 
