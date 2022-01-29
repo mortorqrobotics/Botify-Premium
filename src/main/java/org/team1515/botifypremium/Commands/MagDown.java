@@ -1,24 +1,26 @@
 package org.team1515.botifypremium.Commands;
 
-import org.team1515.botifypremium.Subsystems.Shooter;
+import org.team1515.botifypremium.Subsystems.Magazine;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
-public class Shoot extends CommandBase {
+public class MagDown extends CommandBase {
 
-    private final Shooter shooter;
+    private final Magazine magazine;
 
-    public Shoot(Shooter shooter) {
-        this.shooter = shooter;
+    public MagDown(Magazine magazine) {
+        this.magazine = magazine;
+
+        addRequirements(magazine);
     }
 
     @Override 
     public void execute() {
-        shooter.shoot();
+        magazine.goDown();
     }
 
     @Override
     public void end(boolean interrupted) {
-        shooter.end();
+        magazine.end();
     }
 }

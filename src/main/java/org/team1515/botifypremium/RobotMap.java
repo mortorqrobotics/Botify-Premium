@@ -13,5 +13,8 @@ public class RobotMap {
 
     // Intake
     public final static int INTAKE_ID = 4;
+
+    //Mag
+    public static final int MAG_ID = 5;
     
 }
