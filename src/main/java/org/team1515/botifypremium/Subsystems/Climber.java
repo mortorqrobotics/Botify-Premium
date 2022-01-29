@@ -19,7 +19,8 @@ public class Climber extends SubsystemBase {
     private final double maxDist = 68.58; //27 inches, max extension of climber
     public final double minDist = 5.00;
     private final double c_speed = 0.25;
-    public final int SECONDS = 3;
+    private final int SECONDS = 3;
+    private boolean isRetracting = false;
 
     public Climber() {
         m_climber = new CANSparkMax(RobotMap.CLIMBER_ID, MotorType.kBrushless);
@@ -35,13 +36,15 @@ public class Climber extends SubsystemBase {
         if (stringPot.getDist() >= maxDist){
 
             end(); latch(); //Climbing
-            waitCommand.initialize();
+            waitCommand.initialize();  //  Warning - could sleep the robot
             retract();
-
+            
         }
 
-        if (stringPot.getDist() > minDist) retract(); //Retreacting
+        if (stringPot.getDist() <= minDist &&  isRetracting == true){
+            isRetracting = false;
             end();
+        } 
 
     }
 
@@ -51,6 +54,7 @@ public class Climber extends SubsystemBase {
 
     public void retract(){
        m_climber.set(-c_speed); 
+       isRetracting = true;
     }
 
     public void end() {
