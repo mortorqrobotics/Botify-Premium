@@ -28,9 +28,9 @@ public class OI {
 
         drivetrain.setDefaultCommand(new DefaultDriveCommand(
             drivetrain,
-            () -> -modifyAxis(mainStick.getY()) * Drivetrain.MAX_VELOCITY_METERS_PER_SECOND,
-            () -> -modifyAxis(mainStick.getX()) * Drivetrain.MAX_VELOCITY_METERS_PER_SECOND,
-            () -> -modifyAxis(mainStick.getX()) * Drivetrain.MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND
+            () -> -modifyAxis(mainStick.getRawAxis(1)) * Drivetrain.MAX_VELOCITY_METERS_PER_SECOND,
+            () -> -modifyAxis(mainStick.getRawAxis(0)) * Drivetrain.MAX_VELOCITY_METERS_PER_SECOND,
+            () -> -modifyAxis(mainStick.getRawAxis(4)) * Drivetrain.MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND
     ));
 
         configureButtons();
