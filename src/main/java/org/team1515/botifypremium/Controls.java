@@ -20,6 +20,6 @@ public class Controls {
     public static final JoystickButton UNLATCH = new JoystickButton(OI.mainStick, X_BUTTON);
 
     public static final int START_BUTTON = 9;
-    public static final JoystickButton RESETGYRO = new  JoystickButton(OI.mainStick, START_BUTTON);
+    public static final JoystickButton RESETGYRO = new JoystickButton(OI.mainStick, START_BUTTON);
 
 }
