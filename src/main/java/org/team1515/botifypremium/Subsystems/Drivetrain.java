@@ -1,3 +1,4 @@
+
 // Copyright (c) FIRST and other WPILib contributors.
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
@@ -9,16 +10,21 @@ import com.kauailabs.navx.frc.AHRS;
 import com.swervedrivespecialties.swervelib.Mk4SwerveModuleHelper;
 import com.swervedrivespecialties.swervelib.SdsModuleConfigurations;
 import com.swervedrivespecialties.swervelib.SwerveModule;
+
+import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
+import edu.wpi.first.math.kinematics.SwerveDriveOdometry;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.wpilibj.shuffleboard.BuiltInLayouts;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import org.team1515.botifypremium.RobotMap;
+import org.team1515.botifypremium.Utils.Field;
+
 import edu.wpi.first.wpilibj.SPI;
 
 public class Drivetrain extends SubsystemBase {
@@ -74,6 +80,12 @@ public class Drivetrain extends SubsystemBase {
   private final SwerveModule m_backRightModule;
 
   private ChassisSpeeds m_chassisSpeeds = new ChassisSpeeds(0.0, 0.0, 0.0);
+
+  private SwerveDriveOdometry m_odometry;
+  public static Pose2d m_pose; 
+  public static double initalX = 0.0;
+  public static double initalY = 0.0;
+  public static Rotation2d initalRot = new Rotation2d();
 
   public Drivetrain() {
     ShuffleboardTab tab = Shuffleboard.getTab("Drivetrain");
@@ -133,6 +145,8 @@ public class Drivetrain extends SubsystemBase {
             RobotMap.BACK_RIGHT_MODULE_STEER_ENCODER,
             RobotMap.BACK_RIGHT_MODULE_STEER_OFFSET
     );
+
+    m_odometry = new SwerveDriveOdometry(m_kinematics, getGyroscopeRotation(), new Pose2d(initalX, initalY, initalRot));
   }
 
   /**
@@ -143,8 +157,7 @@ public class Drivetrain extends SubsystemBase {
     m_navx.zeroYaw();
   }
 
-  public Rotation2d getGyroscopeRotation() {
-    
+  public Rotation2d getGyroscopeRotation() {  
    if (m_navx.isMagnetometerCalibrated()) {
       // We will only get valid fused headings if the magnetometer is calibrated
      return Rotation2d.fromDegrees(m_navx.getFusedHeading());
@@ -154,8 +167,23 @@ public class Drivetrain extends SubsystemBase {
    return Rotation2d.fromDegrees(360.0 - m_navx.getYaw());
   }
 
+  public Rotation2d angleToTarget() {
+    double deltaX = Math.abs(m_pose.getX() - Field.HUB_POSE.getX());
+    double deltaY = Math.abs(m_pose.getY() - Field.HUB_POSE.getY());
+
+    return new Rotation2d(Math.atan(deltaY / deltaX));
+  }
+
   public void drive(ChassisSpeeds chassisSpeeds) {
     m_chassisSpeeds = chassisSpeeds;
+  }
+
+  public SwerveModuleState getState(SwerveModule module) {
+    return new SwerveModuleState(module.getDriveVelocity(), new Rotation2d(module.getSteerAngle()));
+  }
+
+  public void configureOdometry() {
+    m_pose = m_odometry.update(getGyroscopeRotation(), getState(m_frontLeftModule), getState(m_frontRightModule), getState(m_backLeftModule), getState(m_backRightModule));
   }
 
   @Override
@@ -167,5 +195,7 @@ public class Drivetrain extends SubsystemBase {
     m_frontRightModule.set(states[1].speedMetersPerSecond / MAX_VELOCITY_METERS_PER_SECOND * MAX_VOLTAGE, states[1].angle.getRadians());
     m_backLeftModule.set(states[2].speedMetersPerSecond / MAX_VELOCITY_METERS_PER_SECOND * MAX_VOLTAGE, states[2].angle.getRadians());
     m_backRightModule.set(states[3].speedMetersPerSecond / MAX_VELOCITY_METERS_PER_SECOND * MAX_VOLTAGE, states[3].angle.getRadians());
+
+    configureOdometry();
   }
 }
