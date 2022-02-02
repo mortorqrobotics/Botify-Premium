@@ -5,6 +5,7 @@ import org.team1515.botifypremium.Utils.Utilities;
 import org.team1515.botifypremium.OI;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.XboxController;
 
 import com.revrobotics.SparkMaxPIDController;
 import com.revrobotics.CANSparkMax;
@@ -13,7 +14,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 public class Turret {
     private CANSparkMax m_turret;
     private SparkMaxPIDController m_pidController;
-    private Joystick m_joystick = OI.mainStick;
+    private XboxController m_joystick = OI.mainStick;
 
     // private final double kP = 0.1; 
     // private final double kI = 1e-4;

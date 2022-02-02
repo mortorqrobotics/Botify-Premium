@@ -167,7 +167,7 @@ public class Drivetrain extends SubsystemBase {
    return Rotation2d.fromDegrees(360.0 - m_navx.getYaw());
   }
 
-  public Rotation2d angleToTarget() {
+  public Rotation2d angleToHub() {
     double deltaX = Math.abs(m_pose.getX() - Field.HUB_POSE.getX());
     double deltaY = Math.abs(m_pose.getY() - Field.HUB_POSE.getY());
 
