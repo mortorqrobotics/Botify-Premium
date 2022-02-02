@@ -4,24 +4,35 @@ import org.team1515.botifypremium.Commands.Intake;
 import org.team1515.botifypremium.Commands.Shoot;
 import org.team1515.botifypremium.Subsystems.Climber;
 import org.team1515.botifypremium.Subsystems.Intaker;
+import org.team1515.botifypremium.Commands.DefaultDriveCommand;
+import org.team1515.botifypremium.Subsystems.Drivetrain;
 import org.team1515.botifypremium.Subsystems.Shooter;
 
-import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 
 public class OI {
-    public static Joystick mainStick;
+    public static XboxController mainStick;
     public static Shooter shooter;
     public static Climber climber;
     public static Intaker intake;
+    private final Drivetrain drivetrain;
 
     public OI() {
-        mainStick = new Joystick(0);
+        mainStick = new XboxController(0);
         shooter = new Shooter();
         climber = new Climber();
         intake = new Intaker();
+        drivetrain = new Drivetrain();
         
+        drivetrain.setDefaultCommand(new DefaultDriveCommand(
+            drivetrain,
+            () -> -modifyAxis(mainStick.getLeftY()) * Drivetrain.MAX_VELOCITY_METERS_PER_SECOND,
+            () -> -modifyAxis(mainStick.getLeftX()) * Drivetrain.MAX_VELOCITY_METERS_PER_SECOND,
+            () -> -modifyAxis(mainStick.getRightX()) * Drivetrain.MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND
+    ));
+
         configureButtons();
     }
 
@@ -34,5 +45,31 @@ public class OI {
         Controls.CLIMB.whenPressed(new InstantCommand(Robot.climber::climb));
         Controls.INTAKE.whileHeld(new Intake(intake));
         Controls.OUTAKE.whileHeld(new Intake(intake));
+        
+        // Back button zeros the gyroscope
+        Controls.RESETGYRO.whenPressed(drivetrain::zeroGyroscope); // No requirements because we don't need to interrupt anything
+            
     }
+
+    private static double deadband(double value, double deadband) {
+        if (Math.abs(value) > deadband) {
+          if (value > 0.0) {
+            return (value - deadband) / (1.0 - deadband);
+          } else {
+            return (value + deadband) / (1.0 - deadband);
+          }
+        } else {
+          return 0.0;
+        }
+      }
+    
+      private static double modifyAxis(double value) {
+        // Deadband
+        value = deadband(value, 0.05);
+    
+        // Square the axis
+        value = Math.copySign(value * value, value);
+    
+        return value;
+      }
 }
