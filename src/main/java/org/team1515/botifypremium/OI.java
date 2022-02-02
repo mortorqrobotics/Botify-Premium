@@ -7,6 +7,7 @@ import org.team1515.botifypremium.Subsystems.Intaker;
 import org.team1515.botifypremium.Commands.DefaultDriveCommand;
 import org.team1515.botifypremium.Subsystems.Drivetrain;
 import org.team1515.botifypremium.Subsystems.Shooter;
+import org.team1515.botifypremium.Utils.Gyroscope;
 
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -17,6 +18,7 @@ public class OI {
     public static Shooter shooter;
     public static Climber climber;
     public static Intaker intake;
+    public static Gyroscope gyro;
     private final Drivetrain drivetrain;
 
     public OI() {
@@ -24,6 +26,7 @@ public class OI {
         shooter = new Shooter();
         climber = new Climber();
         intake = new Intaker();
+        gyro = new Gyroscope();
         drivetrain = new Drivetrain();
         
         drivetrain.setDefaultCommand(new DefaultDriveCommand(

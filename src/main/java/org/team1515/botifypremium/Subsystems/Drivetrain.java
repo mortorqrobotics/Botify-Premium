@@ -22,6 +22,8 @@ import edu.wpi.first.wpilibj.shuffleboard.BuiltInLayouts;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+
+import org.team1515.botifypremium.OI;
 import org.team1515.botifypremium.RobotMap;
 import org.team1515.botifypremium.Utils.Field;
 
@@ -68,11 +70,6 @@ public class Drivetrain extends SubsystemBase {
           new Translation2d(-RobotMap.DRIVETRAIN_TRACKWIDTH_METERS / 2.0, -RobotMap.DRIVETRAIN_WHEELBASE_METERS / 2.0)
   );
 
-  
-  // The important thing about how you configure your gyroscope is that rotating the robot counter-clockwise should
-  // cause the angle reading to increase until it wraps back over to zero.
-  private final AHRS m_navx = new AHRS(SPI.Port.kMXP, (byte) 200); // NavX connected over MXP
-
   // These are our modules. We initialize them in the constructor.
   private final SwerveModule m_frontLeftModule;
   private final SwerveModule m_frontRightModule;
@@ -81,11 +78,7 @@ public class Drivetrain extends SubsystemBase {
 
   private ChassisSpeeds m_chassisSpeeds = new ChassisSpeeds(0.0, 0.0, 0.0);
 
-  private SwerveDriveOdometry m_odometry;
-  public static Pose2d m_pose; 
-  public static double initalX = 0.0;
-  public static double initalY = 0.0;
-  public static Rotation2d initalRot = new Rotation2d();
+  public static Odometry m_odometry;
 
   public Drivetrain() {
     ShuffleboardTab tab = Shuffleboard.getTab("Drivetrain");
@@ -145,8 +138,6 @@ public class Drivetrain extends SubsystemBase {
             RobotMap.BACK_RIGHT_MODULE_STEER_ENCODER,
             RobotMap.BACK_RIGHT_MODULE_STEER_OFFSET
     );
-
-    m_odometry = new SwerveDriveOdometry(m_kinematics, getGyroscopeRotation(), new Pose2d(initalX, initalY, initalRot));
   }
 
   /**
@@ -154,24 +145,7 @@ public class Drivetrain extends SubsystemBase {
    * 'forwards' direction.
    */
   public void zeroGyroscope() {
-    m_navx.zeroYaw();
-  }
-
-  public Rotation2d getGyroscopeRotation() {  
-   if (m_navx.isMagnetometerCalibrated()) {
-      // We will only get valid fused headings if the magnetometer is calibrated
-     return Rotation2d.fromDegrees(m_navx.getFusedHeading());
-   }
-
-    // We have to invert the angle of the NavX so that rotating the robot counter-clockwise makes the angle increase.
-   return Rotation2d.fromDegrees(360.0 - m_navx.getYaw());
-  }
-
-  public Rotation2d angleToHub() {
-    double deltaX = Math.abs(m_pose.getX() - Field.HUB_POSE.getX());
-    double deltaY = Math.abs(m_pose.getY() - Field.HUB_POSE.getY());
-
-    return new Rotation2d(Math.atan(deltaY / deltaX));
+    OI.gyro.m_navx.zeroYaw();
   }
 
   public void drive(ChassisSpeeds chassisSpeeds) {
@@ -183,7 +157,7 @@ public class Drivetrain extends SubsystemBase {
   }
 
   public void configureOdometry() {
-    m_pose = m_odometry.update(getGyroscopeRotation(), getState(m_frontLeftModule), getState(m_frontRightModule), getState(m_backLeftModule), getState(m_backRightModule));
+    m_odometry.update(OI.gyro.getGyroscopeRotation(), getState(m_frontLeftModule), getState(m_frontRightModule), getState(m_backLeftModule), getState(m_backRightModule));
   }
 
   @Override

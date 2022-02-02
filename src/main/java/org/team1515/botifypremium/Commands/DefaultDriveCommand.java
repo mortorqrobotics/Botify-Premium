@@ -3,6 +3,7 @@ package org.team1515.botifypremium.Commands;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
+import org.team1515.botifypremium.OI;
 import org.team1515.botifypremium.Subsystems.Drivetrain;
 
 import java.util.function.DoubleSupplier;
@@ -34,7 +35,7 @@ public class DefaultDriveCommand extends CommandBase {
                         m_translationXSupplier.getAsDouble(),
                         m_translationYSupplier.getAsDouble(),
                         m_rotationSupplier.getAsDouble(),
-                        m_drivetrainSubsystem.getGyroscopeRotation()
+                        OI.gyro.getGyroscopeRotation()
                 )
         );
     }
