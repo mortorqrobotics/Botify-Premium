@@ -32,5 +32,12 @@ public class Odometry {
         double deltaY = Math.abs(m_pose.getY() - objectPose.getY());
     
         return new Rotation2d(Math.atan(deltaY / deltaX));
-     }
+    }
+
+    public double distanceToObject(Pose2d objectPose) {
+        double deltaX = Math.abs(m_pose.getX() - objectPose.getX());
+        double deltaY = Math.abs(m_pose.getY() - objectPose.getY());
+
+        return Math.hypot(deltaX, deltaY);
+    }
 }
