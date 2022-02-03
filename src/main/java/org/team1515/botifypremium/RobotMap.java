@@ -14,6 +14,8 @@ public class RobotMap {
     // Intake
     public final static int INTAKE_ID = 4;
     
+    //Magazine
+    public final static int MAG_ID = 5;
 
     //Drivetrain
    public static final double DRIVETRAIN_TRACKWIDTH_METERS = 1.0; // FIXME Measure and set trackwidth
