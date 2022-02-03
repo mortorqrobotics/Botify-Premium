@@ -35,6 +35,7 @@ public class RotateToPoint extends CommandBase {
 
     @Override
     public boolean isFinished() {
-        return Utilities.deadband(odometry.faceAngleToObject(targetPose).getRadians(), deadband) == 0.0; 
+        double error = odometry.angleToObject(targetPose) - odometry.getPose().getRotation();
+        return Utilities.deadband(error, deadband) == 0.0; 
     }
 }
