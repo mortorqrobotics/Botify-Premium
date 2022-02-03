@@ -28,10 +28,42 @@ public class Odometry {
     }
 
     public Rotation2d angleToObject(Pose2d objectPose) {
-        double deltaX = Math.abs(m_pose.getX() - objectPose.getX());
-        double deltaY = Math.abs(m_pose.getY() - objectPose.getY());
+        double deltaX = m_pose.getX() - objectPose.getX();
+        double deltaY = m_pose.getY() - objectPose.getY();
     
-        return new Rotation2d(Math.atan(deltaY / deltaX));
+        return new Rotation2d(calcAngle(deltaX, deltaY));
+    }
+
+    private double calcAngle(double deltaX, double deltaY) {
+        if(deltaX == 0 && deltaY == 0) {
+            return 0.0;
+        }
+        else if(deltaX == 0) {
+            if(isPositive(deltaY)) return Math.PI / 2;
+            return 3*Math.PI / 2;
+        }
+        else {
+            if(isPositive(deltaX)) return 0.0;
+            return Math.PI;
+        }
+
+        double angle = Math.atan(deltaY / deltaX);
+        if(isPositive(deltaX) && isPositive(deltaY)) {
+            return angle;
+        }
+        else if(!isPositive(deltaX) && isPositive(deltaY)) {
+            return Math.PI - angle;
+        }
+        else if(isPositive(deltaX) && !isPositive(deltaY)) {
+            return 2*Math.PI - angle;
+        }
+        else {
+            return angle + Math.PI;
+        }
+    }
+
+    private boolean isPositive(double num) {
+        return Math.signum(num) == 1;
     }
 
     /**
