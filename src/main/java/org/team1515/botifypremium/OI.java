@@ -1,6 +1,7 @@
 package org.team1515.botifypremium;
 
 import org.team1515.botifypremium.Commands.Intake;
+import org.team1515.botifypremium.Commands.Outtake;
 import org.team1515.botifypremium.Commands.Shoot;
 import org.team1515.botifypremium.Commands.Climber.Climb;
 import org.team1515.botifypremium.Subsystems.Climber;
@@ -52,7 +53,7 @@ public class OI {
         Controls.SHOOT.whileHeld(new Shoot(shooter));
         Controls.CLIMB.whenPressed(new Climb(climber, latcher));
         Controls.INTAKE.whileHeld(new Intake(intake));
-        Controls.OUTAKE.whileHeld(new Intake(intake));
+        Controls.OUTAKE.whileHeld(new Outtake(intake));
         
         // Back button zeros the gyroscope
         Controls.RESETGYRO.whenPressed(drivetrain::zeroGyroscope); // No requirements because we don't need to interrupt anything
