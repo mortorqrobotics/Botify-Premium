@@ -27,7 +27,7 @@ public class RotateToPoint extends CommandBase {
 
     @Override
     public void execute() {
-        Rotation2d angleOffset = odometry.faceAngleToObject(targetPose);
+        Rotation2d angleOffset = odometry.angleToObject(targetPose).minus(odometry.getPose().getRotation());
         double angleSpeed = angleOffset.getRadians() * kP;
         ChassisSpeeds speeds = new ChassisSpeeds(0.0, 0.0, angleSpeed);
         drivetrain.drive(speeds);
