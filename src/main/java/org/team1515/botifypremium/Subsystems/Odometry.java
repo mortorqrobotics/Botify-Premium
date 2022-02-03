@@ -46,6 +46,8 @@ public class Odometry {
     }
 
     public Rotation2d faceAngleToObject(Pose2d objectPose) {
-        return new Rotation2d(m_pose.getRotation().minus(objectPose.getRotation()).getRadians() % (2 * Math.PI));
+        double angle = m_pose.getRotation().minus(objectPose.getRotation()).getRadians();
+        angle = Math.copySign(angle % (2 * Math.PI), angle);
+        return new Rotation2d(angle);
     }
 }
