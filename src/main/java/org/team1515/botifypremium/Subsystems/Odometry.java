@@ -47,7 +47,7 @@ public class Odometry {
             return Math.PI;
         }
 
-        double angle = Math.atan(deltaY / deltaX);
+        double angle = Math.atan(Math.abs(deltaY / deltaX));
         if(isPositive(deltaX) && isPositive(deltaY)) {
             return angle;
         }
