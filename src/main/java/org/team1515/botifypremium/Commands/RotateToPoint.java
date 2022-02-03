@@ -30,7 +30,7 @@ public class RotateToPoint extends CommandBase {
         Rotation2d angleOffset = odometry.angleToObject(targetPose).minus(odometry.getPose().getRotation());
         double angleSpeed = angleOffset.getRadians() * kP;
         angleSpeed = Math.min(angleSpeed, Drivetrain.MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND);
-        
+
         ChassisSpeeds speeds = new ChassisSpeeds(0.0, 0.0, angleSpeed);
         drivetrain.drive(speeds);
     }
@@ -38,6 +38,6 @@ public class RotateToPoint extends CommandBase {
     @Override
     public boolean isFinished() {
         double error = odometry.angleToObject(targetPose).minus(odometry.getPose().getRotation()).getRadians();
-        return Utilities.deadband(error, deadband) == 0.0; 
+        return Utilities.deadband(error, deadband) == 0.0; // Stops when the error (difference between ideal and current angle) is around 0
     }
 }

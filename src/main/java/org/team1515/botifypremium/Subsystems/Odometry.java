@@ -23,10 +23,17 @@ public class Odometry {
         m_pose = m_odometry.update(gyroRotation, frontLeftModule, frontRightModule, backLeftModule, backRightModule);
     }
 
+    /**
+     * @return pose of the robot (includes x y position and rotation)
+     */
     public Pose2d getPose() {
         return m_pose;
     }
 
+    /**
+     * @param objectPose location of the target objcet
+     * @return angle to object from robot position
+     */
     public Rotation2d angleToObject(Pose2d objectPose) {
         double deltaX = m_pose.getX() - objectPose.getX();
         double deltaY = m_pose.getY() - objectPose.getY();
@@ -34,6 +41,11 @@ public class Odometry {
         return new Rotation2d(getRadians(deltaX, deltaY));
     }
 
+    /**
+     * @param x coordinate
+     * @param y coordinate
+     * @return returns angle to coordinate pair between 0 and 2 pi
+     */
     private double getRadians(double x, double y) {
         return (Math.atan2(y, x) + 2*Math.PI) % (2*Math.PI);
     }

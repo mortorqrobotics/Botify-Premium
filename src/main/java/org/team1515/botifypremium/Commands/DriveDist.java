@@ -52,9 +52,6 @@ public class DriveDist extends CommandBase {
 
     @Override
     public boolean isFinished() {
-        if(distTraveled >= targetDist) {
-            return true;
-        }
-        return false;
+        return distTraveled >= targetDist;
     }
 }

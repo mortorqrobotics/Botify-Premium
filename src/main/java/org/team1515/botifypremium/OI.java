@@ -53,6 +53,9 @@ public class OI {
         return new InstantCommand();
     }
 
+    /**
+     * Binds the controller buttons to commands
+     */
     private void configureButtons() {
         Controls.SHOOT.whileHeld(new Shoot(shooter));
         Controls.CLIMB.whenPressed(new Climb(climber, latcher));

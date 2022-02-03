@@ -21,6 +21,11 @@ public class RobotMap {
     public final static int MAG_ID = 5;
 
     //Drivetrain
+
+    /**
+     * The left-to-right distance between the drivetrain wheels
+     * Should be measured from center to center.
+     */
     public static final double DRIVETRAIN_TRACKWIDTH_METERS = 21.5 * INCHES_TO_METERS;
     /**
     * The front-to-back distance between the drivetrain wheels.
@@ -28,6 +33,7 @@ public class RobotMap {
     */
     public static final double DRIVETRAIN_WHEELBASE_METERS = 21.5 * INCHES_TO_METERS;
 
+    // Get the IDs from Phoenix Tuner
     public static final int FRONT_LEFT_MODULE_DRIVE_MOTOR = 0; // FIXME Set front left module drive motor ID
     public static final int FRONT_LEFT_MODULE_STEER_MOTOR = 0; // FIXME Set front left module steer motor ID
     public static final int FRONT_LEFT_MODULE_STEER_ENCODER = 0; // FIXME Set front left steer encoder ID
