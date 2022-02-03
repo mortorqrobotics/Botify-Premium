@@ -20,6 +20,7 @@ public class Latch extends CommandBase {
 
     @Override
     public boolean isFinished() {
+        // Stops when the servo angle reaches the closed position 
         return latcher.getAngle() == Latcher.closePos;
     }
 }

@@ -5,7 +5,11 @@ import org.team1515.botifypremium.Subsystems.Latcher;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 
-public class Climb extends SequentialCommandGroup  {
+public class Climb extends SequentialCommandGroup {
+
+    /**
+     * Runs each climber command one after another
+     */
     public Climb(Climber climber, Latcher latcher) {
         addCommands(
             new Extend(climber),
