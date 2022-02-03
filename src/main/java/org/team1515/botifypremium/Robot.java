@@ -57,7 +57,5 @@ public class Robot extends TimedRobot {
   }
 
   @Override
-  public void teleopPeriodic() {
-    climber.climbPeriodic();
-  }
+  public void teleopPeriodic() {}
 }

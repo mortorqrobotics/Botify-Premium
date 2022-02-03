@@ -2,8 +2,10 @@ package org.team1515.botifypremium;
 
 import org.team1515.botifypremium.Commands.Intake;
 import org.team1515.botifypremium.Commands.Shoot;
+import org.team1515.botifypremium.Commands.Climber.Climb;
 import org.team1515.botifypremium.Subsystems.Climber;
 import org.team1515.botifypremium.Subsystems.Intaker;
+import org.team1515.botifypremium.Subsystems.Latcher;
 import org.team1515.botifypremium.Commands.DefaultDriveCommand;
 import org.team1515.botifypremium.Subsystems.Drivetrain;
 import org.team1515.botifypremium.Subsystems.Shooter;
@@ -18,6 +20,7 @@ public class OI {
     public static Shooter shooter;
     public static Climber climber;
     public static Intaker intake;
+    public static Latcher latcher;
     public static Gyroscope gyro;
     private final Drivetrain drivetrain;
 
@@ -25,6 +28,7 @@ public class OI {
         mainStick = new XboxController(0);
         shooter = new Shooter();
         climber = new Climber();
+        latcher = new Latcher();
         intake = new Intaker();
         gyro = new Gyroscope();
         drivetrain = new Drivetrain();
@@ -45,7 +49,7 @@ public class OI {
 
     private void configureButtons() {
         Controls.SHOOT.whileHeld(new Shoot(shooter));
-        Controls.CLIMB.whenPressed(new InstantCommand(Robot.climber::climb));
+        Controls.CLIMB.whenPressed(new Climb(climber, latcher));
         Controls.INTAKE.whileHeld(new Intake(intake));
         Controls.OUTAKE.whileHeld(new Intake(intake));
         
