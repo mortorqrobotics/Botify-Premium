@@ -28,12 +28,20 @@ public class Odometry {
     }
 
     public Rotation2d angleToObject(Pose2d objectPose) {
-        double deltaX = Math.abs(m_pose.getX() - objectPose.getX());
-        double deltaY = Math.abs(m_pose.getY() - objectPose.getY());
+        double deltaX = m_pose.getX() - objectPose.getX();
+        double deltaY = m_pose.getY() - objectPose.getY();
     
-        return new Rotation2d(Math.atan(deltaY / deltaX));
+        return new Rotation2d(getRadians(deltaX, deltaY));
     }
 
+    private double getRadians(double x, double y) {
+        return (Math.atan2(y, x) + 2*Math.PI) % (2*Math.PI);
+    }
+
+    /**
+     * @param objectPose pose of the target object
+     * @return double distance to the target object in <b>meters</b>
+     */
     public double distanceToObject(Pose2d objectPose) {
         double deltaX = Math.abs(m_pose.getX() - objectPose.getX());
         double deltaY = Math.abs(m_pose.getY() - objectPose.getY());

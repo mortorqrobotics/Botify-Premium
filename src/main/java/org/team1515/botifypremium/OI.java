@@ -14,6 +14,7 @@ import org.team1515.botifypremium.Commands.DefaultDriveCommand;
 import org.team1515.botifypremium.Subsystems.Drivetrain;
 import org.team1515.botifypremium.Subsystems.Shooter;
 import org.team1515.botifypremium.Utils.Gyroscope;
+import org.team1515.botifypremium.Utils.Utilities;
 
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -43,7 +44,7 @@ public class OI {
             () -> -modifyAxis(mainStick.getLeftY()) * Drivetrain.MAX_VELOCITY_METERS_PER_SECOND,
             () -> -modifyAxis(mainStick.getLeftX()) * Drivetrain.MAX_VELOCITY_METERS_PER_SECOND,
             () -> -modifyAxis(mainStick.getRightX()) * Drivetrain.MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND
-    ));
+        ));
 
         configureButtons();
     }
@@ -65,25 +66,12 @@ public class OI {
             
     }
 
-    private static double deadband(double value, double deadband) {
-        if (Math.abs(value) > deadband) {
-          if (value > 0.0) {
-            return (value - deadband) / (1.0 - deadband);
-          } else {
-            return (value + deadband) / (1.0 - deadband);
-          }
-        } else {
-          return 0.0;
-        }
-      }
-    
-      private static double modifyAxis(double value) {
-        // Deadband
-        value = deadband(value, 0.05);
-    
+    private static double modifyAxis(double value) {
+        value = Utilities.deadband(value, 0.05);
+
         // Square the axis
         value = Math.copySign(value * value, value);
-    
+
         return value;
-      }
+    }
 }

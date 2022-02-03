@@ -9,15 +9,15 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class DriveDist extends CommandBase {
     private Drivetrain m_drivetrainSubsystem;
-    private double distance;
+    private double targetDist;
     private double angle;
     private double lastTime;
 
     private double distTraveled = 0.0;
 
-    public DriveDist(Drivetrain drivetrainSubsystem, double distance, double angle) {
+    public DriveDist(Drivetrain drivetrainSubsystem, double targetDist, double angle) {
         this.m_drivetrainSubsystem = drivetrainSubsystem;
-        this.distance = distance;
+        this.targetDist = targetDist;
         this.angle = angle;
 
         addRequirements(drivetrainSubsystem);
@@ -41,6 +41,9 @@ public class DriveDist extends CommandBase {
         m_drivetrainSubsystem.drive(chassisSpeeds);
     }
 
+    /**
+     * Gets the distance traveled by multiplying rate (drive velocity) and time (milliseconds)
+     */
     public void distanceTraveled() {
         double deltaTime = System.currentTimeMillis() - lastTime;
         distTraveled += m_drivetrainSubsystem.m_frontLeftModule.getDriveVelocity() * (1/1000) * deltaTime;
@@ -49,7 +52,7 @@ public class DriveDist extends CommandBase {
 
     @Override
     public boolean isFinished() {
-        if(distTraveled >= distance) {
+        if(distTraveled >= targetDist) {
             return true;
         }
         return false;
