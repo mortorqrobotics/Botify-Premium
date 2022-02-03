@@ -44,4 +44,8 @@ public class Odometry {
 
         return Math.hypot(deltaX, deltaY);
     }
+
+    public Rotation2d faceAngleToObject(Pose2d objectPose) {
+        return new Rotation2d(m_pose.getRotation().minus(objectPose.getRotation()).getRadians() % (2 * Math.PI));
+    }
 }

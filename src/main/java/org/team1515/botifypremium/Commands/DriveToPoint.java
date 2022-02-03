@@ -32,6 +32,7 @@ public class DriveToPoint extends CommandBase {
         Rotation2d angleToTarget = odometry.angleToObject(pointPose);
 
         double speed = distanceToTarget * kP;
+        speed = Math.min(speed, Drivetrain.MAX_VELOCITY_METERS_PER_SECOND);
         SwerveModuleState frontLeftState = new SwerveModuleState(speed, angleToTarget);
         SwerveModuleState frontRightState = new SwerveModuleState(speed, angleToTarget);
         SwerveModuleState backLeftState = new SwerveModuleState(speed, angleToTarget);
