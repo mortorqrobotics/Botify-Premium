@@ -31,7 +31,7 @@ public class Odometry {
     }
 
     /**
-     * @param objectPose location of the target objcet
+     * @param objectPose location of the target object
      * @return angle to object from robot position
      */
     public Rotation2d angleToObject(Pose2d objectPose) {
