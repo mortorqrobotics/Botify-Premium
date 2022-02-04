@@ -21,9 +21,6 @@ public class Retract extends CommandBase {
     @Override
     public boolean isFinished() {
         // Stops when the climber reaches the minimum distance
-        if(climber.stringPot.getDist() <= climber.minDist) {
-            return true;
-        }
-        return false;
+        return climber.stringPot.getDist() <= climber.minDist;
     }
 }
