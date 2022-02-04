@@ -14,7 +14,7 @@ public class RotateToPoint extends CommandBase {
     private Pose2d targetPose;
     private Odometry odometry;
 
-    private static double kP = 0.0;
+    private static double kP = 0.5;
     private static double deadband = 0.002;
 
     public RotateToPoint(Drivetrain drivetrain, Pose2d targetPose) {
