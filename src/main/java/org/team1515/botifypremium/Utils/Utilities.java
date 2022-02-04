@@ -4,6 +4,7 @@ public class Utilities {
 
     /**
      * @param value input value
+     * @param deadband amount of deadband
      * @return double value accounted for base error
      */
     public static double deadband(double value, double deadband) {
