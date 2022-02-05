@@ -5,7 +5,6 @@
 package org.team1515.botifypremium;
 
 import org.team1515.botifypremium.Utils.Limelight;
-import org.team1515.botifypremium.Subsystems.Climber;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -23,7 +22,6 @@ public class Robot extends TimedRobot {
    * initialization code.
    */
 
-  public static Climber climber;
   public static Limelight limelight;
   public static OI oi;
 
