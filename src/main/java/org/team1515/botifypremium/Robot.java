@@ -26,6 +26,7 @@ public class Robot extends TimedRobot {
   public static OI oi;
 
   public Command autoCommand;
+  public Command teleCommand;
 
   @Override
   public void robotInit() {
@@ -51,9 +52,13 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
-    autoCommand.cancel();
+    if (autoCommand != null) {
+      autoCommand.cancel();
+    }
   }
+  
 
   @Override
-  public void teleopPeriodic() {}
+  public void teleopPeriodic() {
+  }
 }
