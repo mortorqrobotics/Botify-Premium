@@ -150,9 +150,9 @@ public class Drivetrain extends SubsystemBase {
     return new SwerveModuleState(module.getDriveVelocity(), new Rotation2d(module.getSteerAngle()));
   }
 
-  public void configureOdometry() {
-    m_odometry.update(OI.gyro.getGyroscopeRotation(), getState(m_frontLeftModule), getState(m_frontRightModule), getState(m_backLeftModule), getState(m_backRightModule));
-  }
+//   public void configureOdometry() {
+//     m_odometry.update(OI.gyro.getGyroscopeRotation(), getState(m_frontLeftModule), getState(m_frontRightModule), getState(m_backLeftModule), getState(m_backRightModule));
+//   }
 
   @Override
   public void periodic() {
@@ -164,6 +164,6 @@ public class Drivetrain extends SubsystemBase {
     m_backLeftModule.set(states[2].speedMetersPerSecond / MAX_VELOCITY_METERS_PER_SECOND * MAX_VOLTAGE, states[2].angle.getRadians());
     m_backRightModule.set(states[3].speedMetersPerSecond / MAX_VELOCITY_METERS_PER_SECOND * MAX_VOLTAGE, states[3].angle.getRadians());
 
-    configureOdometry();
+//     configureOdometry();
   }
 }
