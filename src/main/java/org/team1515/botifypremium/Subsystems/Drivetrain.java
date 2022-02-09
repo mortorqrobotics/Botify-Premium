@@ -132,6 +132,9 @@ public class Drivetrain extends SubsystemBase {
             RobotMap.BACK_RIGHT_MODULE_STEER_ENCODER,
             RobotMap.BACK_RIGHT_MODULE_STEER_OFFSET
     );
+
+    m_odometry = new Odometry(m_kinematics);
+    Odometry.odometryInstance = m_odometry;
   }
 
   /**
@@ -140,6 +143,7 @@ public class Drivetrain extends SubsystemBase {
    */
   public void zeroGyroscope() {
     OI.gyro.m_navx.zeroYaw();
+    m_odometry.resetPose(OI.gyro.getGyroscopeRotation());
   }
 
   public void drive(ChassisSpeeds chassisSpeeds) {
@@ -150,9 +154,11 @@ public class Drivetrain extends SubsystemBase {
     return new SwerveModuleState(module.getDriveVelocity(), new Rotation2d(module.getSteerAngle()));
   }
 
-//   public void configureOdometry() {
-//     m_odometry.update(OI.gyro.getGyroscopeRotation(), getState(m_frontLeftModule), getState(m_frontRightModule), getState(m_backLeftModule), getState(m_backRightModule));
-//   }
+  public void configureOdometry() {
+    if(m_odometry != null) {
+        m_odometry.update(OI.gyro.getGyroscopeRotation(), getState(m_frontLeftModule), getState(m_frontRightModule), getState(m_backLeftModule), getState(m_backRightModule));
+    }
+  }
 
   @Override
   public void periodic() {
@@ -164,6 +170,6 @@ public class Drivetrain extends SubsystemBase {
     m_backLeftModule.set(states[2].speedMetersPerSecond / MAX_VELOCITY_METERS_PER_SECOND * MAX_VOLTAGE, states[2].angle.getRadians());
     m_backRightModule.set(states[3].speedMetersPerSecond / MAX_VELOCITY_METERS_PER_SECOND * MAX_VOLTAGE, states[3].angle.getRadians());
 
-//     configureOdometry();
+    configureOdometry();
   }
 }

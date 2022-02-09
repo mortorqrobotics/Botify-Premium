@@ -7,28 +7,30 @@ import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.kinematics.SwerveDriveOdometry;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
-import edu.wpi.first.wpilibj.smartdashboard.Field2d;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Odometry {
-    private SwerveDriveOdometry m_odometry;
+    public SwerveDriveOdometry m_odometry;
     private Pose2d m_pose;
     public static double initalX = 0.0;
     public static double initalY = 0.0;
     public static Rotation2d initalRot = new Rotation2d();
 
-    private final Field2d m_field = new Field2d();
+    public static Odometry odometryInstance;
 
     public Odometry(SwerveDriveKinematics kinematics) {
         m_odometry = new SwerveDriveOdometry(kinematics, OI.gyro.getGyroscopeRotation(), new Pose2d(initalX, initalY, initalRot));
+    }
 
-        SmartDashboard.putData("Field", m_field);
+    public static Odometry getInstance() {
+        return odometryInstance; 
     }
 
     public void update(Rotation2d gyroRotation, SwerveModuleState frontLeftModule, SwerveModuleState frontRightModule, SwerveModuleState backLeftModule, SwerveModuleState backRightModule) {
         m_pose = m_odometry.update(gyroRotation, frontLeftModule, frontRightModule, backLeftModule, backRightModule);
+    }
 
-        m_field.setRobotPose(m_pose);
+    public void resetPose(Rotation2d gyroAngle) {
+        m_odometry.resetPosition(m_pose, gyroAngle);
     }
 
     /**
