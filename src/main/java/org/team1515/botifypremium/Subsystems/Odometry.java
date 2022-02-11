@@ -23,6 +23,10 @@ public class Odometry {
         m_pose = m_odometry.update(gyroRotation, frontLeftModule, frontRightModule, backLeftModule, backRightModule);
     }
 
+    public void resetPosition(Pose2d robotPose, Rotation2d gyroRotation) {
+        m_odometry.resetPosition(robotPose, gyroRotation);
+    }
+
     /**
      * @return pose of the robot (includes x y position and rotation)
      */
