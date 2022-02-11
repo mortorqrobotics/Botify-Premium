@@ -20,6 +20,7 @@ public class RobotMap {
     
     //Magazine
     public final static int MAG_ID = 5;
+    public final static int ULTRA_ID = 3;
 
     //Drivetrain
 
