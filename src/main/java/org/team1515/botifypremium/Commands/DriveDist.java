@@ -46,7 +46,7 @@ public class DriveDist extends CommandBase {
      */
     public void distanceTraveled() {
         double deltaTime = System.currentTimeMillis() - lastTime;
-        distTraveled += m_drivetrainSubsystem.m_frontLeftModule.getDriveVelocity() * (1/1000) * deltaTime;
+        distTraveled += m_drivetrainSubsystem.m_frontLeftModule.getDriveVelocity() * (1.0/1000) * deltaTime;
         lastTime = System.currentTimeMillis();
     }
 

@@ -132,6 +132,9 @@ public class Drivetrain extends SubsystemBase {
             RobotMap.BACK_RIGHT_MODULE_STEER_ENCODER,
             RobotMap.BACK_RIGHT_MODULE_STEER_OFFSET
     );
+
+    m_odometry = new Odometry(m_kinematics);
+    Odometry.odometryInstance = m_odometry;
   }
 
   /**
@@ -140,6 +143,7 @@ public class Drivetrain extends SubsystemBase {
    */
   public void zeroGyroscope() {
     OI.gyro.m_navx.zeroYaw();
+    m_odometry.resetPose(OI.gyro.getGyroscopeRotation());
   }
 
   public void drive(ChassisSpeeds chassisSpeeds) {
@@ -151,7 +155,9 @@ public class Drivetrain extends SubsystemBase {
   }
 
   public void configureOdometry() {
-    m_odometry.update(OI.gyro.getGyroscopeRotation(), getState(m_frontLeftModule), getState(m_frontRightModule), getState(m_backLeftModule), getState(m_backRightModule));
+    if(m_odometry != null) {
+        m_odometry.update(OI.gyro.getGyroscopeRotation(), getState(m_frontLeftModule), getState(m_frontRightModule), getState(m_backLeftModule), getState(m_backRightModule));
+    }
   }
 
   @Override

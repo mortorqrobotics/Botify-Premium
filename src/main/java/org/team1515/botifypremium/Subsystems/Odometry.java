@@ -9,18 +9,28 @@ import edu.wpi.first.math.kinematics.SwerveDriveOdometry;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 
 public class Odometry {
-    private SwerveDriveOdometry m_odometry;
+    public SwerveDriveOdometry m_odometry;
     private Pose2d m_pose;
     public static double initalX = 0.0;
     public static double initalY = 0.0;
     public static Rotation2d initalRot = new Rotation2d();
 
+    public static Odometry odometryInstance;
+
     public Odometry(SwerveDriveKinematics kinematics) {
         m_odometry = new SwerveDriveOdometry(kinematics, OI.gyro.getGyroscopeRotation(), new Pose2d(initalX, initalY, initalRot));
     }
 
+    public static Odometry getInstance() {
+        return odometryInstance; 
+    }
+
     public void update(Rotation2d gyroRotation, SwerveModuleState frontLeftModule, SwerveModuleState frontRightModule, SwerveModuleState backLeftModule, SwerveModuleState backRightModule) {
         m_pose = m_odometry.update(gyroRotation, frontLeftModule, frontRightModule, backLeftModule, backRightModule);
+    }
+
+    public void resetPose(Rotation2d gyroAngle) {
+        m_odometry.resetPosition(m_pose, gyroAngle);
     }
 
     /**

@@ -5,7 +5,6 @@
 package org.team1515.botifypremium;
 
 import org.team1515.botifypremium.Utils.Limelight;
-import org.team1515.botifypremium.Subsystems.Climber;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -23,11 +22,11 @@ public class Robot extends TimedRobot {
    * initialization code.
    */
 
-  public static Climber climber;
   public static Limelight limelight;
   public static OI oi;
 
   public Command autoCommand;
+  public Command teleCommand;
 
   @Override
   public void robotInit() {
@@ -53,9 +52,13 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
-    autoCommand.cancel();
+    if (autoCommand != null) {
+      autoCommand.cancel();
+    }
   }
+  
 
   @Override
-  public void teleopPeriodic() {}
+  public void teleopPeriodic() {
+  }
 }
