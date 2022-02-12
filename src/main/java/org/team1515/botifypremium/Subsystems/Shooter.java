@@ -35,7 +35,7 @@ public class Shooter {
         double speed = calcSpeed(distance);
 
         // u_speed converts from RPM to raw falcon sensor units
-        double u_speed = speed * (4096.0 / 600.0);
+        double u_speed = speed * (RobotMap.FALCON_SENSOR_UNITS / 600.0);
         m_shoot.set(ControlMode.Velocity, u_speed);
     }
 

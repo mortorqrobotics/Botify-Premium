@@ -20,6 +20,7 @@ public class Extend extends CommandBase {
 
     @Override
     public boolean isFinished() {
+        // Stops when the climber reaches the maximum distance
         if(climber.stringPot.getDist() >= climber.maxDist) {
             return true;
         }

@@ -1,7 +1,8 @@
 package org.team1515.botifypremium.Subsystems;
  
 import org.team1515.botifypremium.RobotMap;
- 
+import org.team1515.botifypremium.Utils.UltraSensor;
+
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
  
 import com.revrobotics.CANSparkMax;
@@ -10,14 +11,18 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 public class Magazine extends SubsystemBase{
     private CANSparkMax m_mag;
     private final double speed = 0.5;
+    private UltraSensor ultraSensor;
  
     public Magazine() {
         m_mag = new CANSparkMax(RobotMap.MAG_ID, MotorType.kBrushless);
         m_mag.restoreFactoryDefaults();
+
+        ultraSensor = new UltraSensor();
     }
- 
+
     public void goUp() {
-        m_mag.set(speed);
+        if (ultraSensor.itemDetected()) 
+            m_mag.set(speed);
     }
  
     public void goDown() {

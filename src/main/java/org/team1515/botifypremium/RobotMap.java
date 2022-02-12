@@ -1,6 +1,10 @@
 package org.team1515.botifypremium;
 
 public class RobotMap {
+
+    // Conversion factors
+    public final static double INCHES_TO_METERS = 0.0254;
+    public final static double FALCON_SENSOR_UNITS = 4096.0;
     
     // Shooter
     public final static int TURRET_ID = 0;
@@ -16,33 +20,39 @@ public class RobotMap {
     
     //Magazine
     public final static int MAG_ID = 5;
+    public final static int ULTRA_ID = 3;
 
     //Drivetrain
-   public static final double DRIVETRAIN_TRACKWIDTH_METERS = 1.0; // FIXME Measure and set trackwidth
-   /**
+
+    /**
+     * The left-to-right distance between the drivetrain wheels
+     * Should be measured from center to center.
+     */
+    public static final double DRIVETRAIN_TRACKWIDTH_METERS = 21.5 * INCHES_TO_METERS;
+    /**
     * The front-to-back distance between the drivetrain wheels.
-    *
     * Should be measured from center to center.
     */
-   public static final double DRIVETRAIN_WHEELBASE_METERS = 1.0; // FIXME Measure and set wheelbase
+    public static final double DRIVETRAIN_WHEELBASE_METERS = 21.5 * INCHES_TO_METERS;
 
-   public static final int FRONT_LEFT_MODULE_DRIVE_MOTOR = 0; // FIXME Set front left module drive motor ID
-   public static final int FRONT_LEFT_MODULE_STEER_MOTOR = 0; // FIXME Set front left module steer motor ID
-   public static final int FRONT_LEFT_MODULE_STEER_ENCODER = 0; // FIXME Set front left steer encoder ID
-   public static final double FRONT_LEFT_MODULE_STEER_OFFSET = -Math.toRadians(0.0); // FIXME Measure and set front left steer offset
+    // Get the IDs from Phoenix Tuner
+    public static final int FRONT_LEFT_MODULE_DRIVE_MOTOR = 15; 
+    public static final int FRONT_LEFT_MODULE_STEER_MOTOR = 16; 
+    public static final int FRONT_LEFT_MODULE_STEER_ENCODER = 21; // FIXME Set front left steer encoder ID
+    public static final double FRONT_LEFT_MODULE_STEER_OFFSET = -Math.toRadians(-68.0); // FIXME Measure and set front left steer offset
 
-   public static final int FRONT_RIGHT_MODULE_DRIVE_MOTOR = 0; // FIXME Set front right drive motor ID
-   public static final int FRONT_RIGHT_MODULE_STEER_MOTOR = 0; // FIXME Set front right steer motor ID
-   public static final int FRONT_RIGHT_MODULE_STEER_ENCODER = 0; // FIXME Set front right steer encoder ID
-   public static final double FRONT_RIGHT_MODULE_STEER_OFFSET = -Math.toRadians(0.0); // FIXME Measure and set front right steer offset
+    public static final int FRONT_RIGHT_MODULE_DRIVE_MOTOR = 17; 
+    public static final int FRONT_RIGHT_MODULE_STEER_MOTOR = 18; 
+    public static final int FRONT_RIGHT_MODULE_STEER_ENCODER = 22; // FIXME Set front right steer encoder ID
+    public static final double FRONT_RIGHT_MODULE_STEER_OFFSET = -Math.toRadians(-63.0); // FIXME Measure and set front right steer offset
 
-   public static final int BACK_LEFT_MODULE_DRIVE_MOTOR = 0; // FIXME Set back left drive motor ID
-   public static final int BACK_LEFT_MODULE_STEER_MOTOR = 0; // FIXME Set back left steer motor ID
-   public static final int BACK_LEFT_MODULE_STEER_ENCODER = 0; // FIXME Set back left steer encoder ID
-   public static final double BACK_LEFT_MODULE_STEER_OFFSET = -Math.toRadians(0.0); // FIXME Measure and set back left steer offset
+    public static final int BACK_LEFT_MODULE_DRIVE_MOTOR = 13;
+    public static final int BACK_LEFT_MODULE_STEER_MOTOR = 14; 
+    public static final int BACK_LEFT_MODULE_STEER_ENCODER = 22; // FIXME Set back left steer encoder ID
+    public static final double BACK_LEFT_MODULE_STEER_OFFSET = -Math.toRadians(53.0); // FIXME Measure and set back left steer offset
 
-   public static final int BACK_RIGHT_MODULE_DRIVE_MOTOR = 0; // FIXME Set back right drive motor ID
-   public static final int BACK_RIGHT_MODULE_STEER_MOTOR = 0; // FIXME Set back right steer motor ID
-   public static final int BACK_RIGHT_MODULE_STEER_ENCODER = 0; // FIXME Set back right steer encoder ID
-   public static final double BACK_RIGHT_MODULE_STEER_OFFSET = -Math.toRadians(0.0); // FIXME Measure and set back right steer offset    
+    public static final int BACK_RIGHT_MODULE_DRIVE_MOTOR = 11;
+    public static final int BACK_RIGHT_MODULE_STEER_MOTOR = 12; 
+    public static final int BACK_RIGHT_MODULE_STEER_ENCODER = 19; // FIXME Set back right steer encoder ID
+    public static final double BACK_RIGHT_MODULE_STEER_OFFSET = -Math.toRadians(-12.0); // FIXME Measure and set back right steer offset    
 }
