@@ -11,18 +11,14 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 public class Magazine extends SubsystemBase{
     private CANSparkMax m_mag;
     private final double speed = 0.5;
-    private UltraSensor ultraSensor;
  
     public Magazine() {
         m_mag = new CANSparkMax(RobotMap.MAG_ID, MotorType.kBrushless);
         m_mag.restoreFactoryDefaults();
-
-        ultraSensor = new UltraSensor();
     }
 
     public void goUp() {
-        if (ultraSensor.itemDetected()) 
-            m_mag.set(speed);
+        m_mag.set(speed);
     }
  
     public void goDown() {
