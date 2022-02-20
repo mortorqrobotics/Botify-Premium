@@ -28,7 +28,7 @@ public class Robot extends TimedRobot {
   public static Climber climber;
   public static Limelight limelight;
   public static OI oi;
-  public static Magazine magazine;
+  // public static Magazine magazine;
 
   private UltraSensor ultraSensor;
 
@@ -37,7 +37,7 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     oi = new OI();
-    magazine = new Magazine();
+    // magazine = new Magazine();
 
     limelight = new Limelight();
     ultraSensor = new UltraSensor();
@@ -54,9 +54,11 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousInit() {
-    // autoCommand = oi.getAutoCommand();
+     autoCommand = oi.getAutoCommand();
 
-    // autoCommand.schedule();
+     if (autoCommand != null) {
+      autoCommand.schedule();
+    }  
   }
 
   @Override
@@ -64,7 +66,9 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
-    // autoCommand.cancel();
+    if (autoCommand != null) {
+      autoCommand.cancel();
+    }
   }
 
   @Override

@@ -31,9 +31,9 @@ public class OI {
     public OI() {
         mainStick = new XboxController(0);
         shooter = new Shooter();
-        climber = new Climber();
-        intake = new Intaker();
-        magazine = new Magazine();
+        // climber = new Climber();
+        // intake = new Intaker();
+        // magazine = new Magazine();
         gyro = new Gyroscope();
         drivetrain = new Drivetrain();
         drivetrain.setDefaultCommand(new DefaultDriveCommand(
@@ -55,11 +55,11 @@ public class OI {
      */
     private void configureButtons() {
         Controls.SHOOT.whileHeld(new Shoot(shooter));
-        Controls.CLIMB.whenHeld(new Climb(climber));
-        Controls.INTAKE.whileHeld(new Intake(intake));
-        Controls.OUTAKE.whileHeld(new Outtake(intake));
-        Controls.MAGUP.whileHeld(new MagUp(magazine));
-        Controls.MAGDOWN.whileHeld(new MagDown(magazine));
+        // Controls.CLIMB.whenHeld(new Climb(climber));
+        // Controls.INTAKE.whileHeld(new Intake(intake));
+        // Controls.OUTAKE.whileHeld(new Outtake(intake));
+        // Controls.MAGUP.whileHeld(new MagUp(magazine));
+        // Controls.MAGDOWN.whileHeld(new MagDown(magazine));
         
         // Back button zeros the gyroscope
         Controls.RESETGYRO.whenPressed(drivetrain::zeroGyroscope); // No requirements because we don't need to interrupt anything
