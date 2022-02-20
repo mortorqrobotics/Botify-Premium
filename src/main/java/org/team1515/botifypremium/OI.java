@@ -55,7 +55,7 @@ public class OI {
      */
     private void configureButtons() {
         Controls.SHOOT.whileHeld(new Shoot(shooter));
-        Controls.CLIMB.whenPressed(new Climb(climber));
+        Controls.CLIMB.whenHeld(new Climb(climber));
         Controls.INTAKE.whileHeld(new Intake(intake));
         Controls.OUTAKE.whileHeld(new Outtake(intake));
         Controls.MAGUP.whileHeld(new MagUp(magazine));

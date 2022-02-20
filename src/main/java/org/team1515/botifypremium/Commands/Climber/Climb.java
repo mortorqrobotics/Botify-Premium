@@ -1,20 +1,37 @@
 package org.team1515.botifypremium.Commands.Climber;
 
 import org.team1515.botifypremium.Subsystems.Climber;
-import org.team1515.botifypremium.Subsystems.Latcher;
 
+import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 
-public class Climb extends SequentialCommandGroup {
+public class Climb extends CommandBase{ //extends SequentialCommandGroup
 
     /**
      * Runs each climber command one after another
      */
-    public Climb(Climber climber, Latcher latcher) {
-        addCommands(
-            new Extend(climber),
-            new Latch(latcher),
-            new Retract(climber)
-        );
+
+    private final Climber climb;
+
+    public Climb(Climber climb) {
+        this.climb = climb;
+
+        addRequirements(climb);
     }
+
+    @Override 
+    public void execute() {
+        climb.climb();
+    }
+
+    @Override
+    public void end(boolean interrupted) {
+        climb.end();
+    }
+    // public Climb(Climber climber) {
+        // addCommands(
+        //     new Extend(climber),
+        //     new Retract(climber)
+        // );
+    // }
 }

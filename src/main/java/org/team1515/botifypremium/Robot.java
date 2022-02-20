@@ -47,16 +47,16 @@ public class Robot extends TimedRobot {
   public void robotPeriodic() {
     CommandScheduler.getInstance().run();
 
-    if (ultraSensor.itemDetected()){
-      magazine.end();
-    }
+    // if (ultraSensor.itemDetected()){
+    //   magazine.end();
+    // }
   }
 
   @Override
   public void autonomousInit() {
-    autoCommand = oi.getAutoCommand();
+    // autoCommand = oi.getAutoCommand();
 
-    autoCommand.schedule();
+    // autoCommand.schedule();
   }
 
   @Override
@@ -64,7 +64,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
-    autoCommand.cancel();
+    // autoCommand.cancel();
   }
 
   @Override
