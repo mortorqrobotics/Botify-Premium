@@ -13,7 +13,7 @@ public class Intaker extends SubsystemBase {
     public static final double speed = 0.5;
 
     public Intaker() {
-        m_intake = new CANSparkMax(RobotMap.INTAKE_ID, MotorType.kBrushless);
+        m_intake = new CANSparkMax(RobotMap.INTAKE_ID, MotorType.kBrushed);
         m_intake.restoreFactoryDefaults();
     }
 

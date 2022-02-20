@@ -10,7 +10,8 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 public class Climber extends SubsystemBase {
 
-    private CANSparkMax m_climber;
+    private CANSparkMax m_climberR;
+    private CANSparkMax m_climberL;
     public StringPot stringPot;
 
     public final double maxDist = 68.58; //27 inches, max extension of climber
@@ -18,21 +19,24 @@ public class Climber extends SubsystemBase {
     private final double c_speed = 0.25;
 
     public Climber() {
-        m_climber = new CANSparkMax(RobotMap.CLIMBER_ID, MotorType.kBrushless);
-        m_climber.restoreFactoryDefaults();
+        m_climberR = new CANSparkMax(RobotMap.RIGHTCLIMBER_ID, MotorType.kBrushless);
+        m_climberR.restoreFactoryDefaults();
+        m_climberL = new CANSparkMax(RobotMap.LEFTCLIMBER_ID, MotorType.kBrushless);
+        m_climberL.restoreFactoryDefaults();
 
         stringPot = new StringPot();
     }
 
     public void climb() {
-        m_climber.set(c_speed);
+        m_climberR.set(c_speed);
+        m_climberL.set(c_speed);
     }
 
     public void retract(){
-       m_climber.set(-c_speed);
-    }
+        m_climberR.set(-c_speed);
+        m_climberL.set(-c_speed);    }
 
     public void end() {
-        m_climber.set(0);
-    }
+        m_climberR.set(0);
+        m_climberL.set(0);    }
 }
