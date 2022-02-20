@@ -6,6 +6,7 @@ import org.team1515.botifypremium.Commands.MagUp;
 import org.team1515.botifypremium.Commands.Outtake;
 import org.team1515.botifypremium.Commands.Shoot;
 import org.team1515.botifypremium.Commands.Climber.Climb;
+import org.team1515.botifypremium.Commands.Climber.Retract;
 import org.team1515.botifypremium.Subsystems.Climber;
 import org.team1515.botifypremium.Subsystems.Intaker;
 import org.team1515.botifypremium.Subsystems.Magazine;
@@ -59,6 +60,7 @@ public class OI {
     private void configureButtons() {
         Controls.SHOOT.whileHeld(new Shoot(shooter));
         Controls.CLIMB.whenHeld(new Climb(climber));
+        Controls.RETRACT.whenHeld(new Retract(climber));
         Controls.INTAKE.whileHeld(new Intake(intake));
         Controls.OUTAKE.whileHeld(new Outtake(intake));
         Controls.MAGUP.whileHeld(new MagUp(magazine));
