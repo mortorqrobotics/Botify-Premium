@@ -7,7 +7,6 @@ package org.team1515.botifypremium;
 import org.team1515.botifypremium.Utils.Limelight;
 import org.team1515.botifypremium.Utils.UltraSensor;
 import org.team1515.botifypremium.Subsystems.Climber;
-import org.team1515.botifypremium.Subsystems.Magazine;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -28,7 +27,6 @@ public class Robot extends TimedRobot {
   public static Climber climber;
   public static Limelight limelight;
   public static OI oi;
-  // public static Magazine magazine;
 
   private UltraSensor ultraSensor;
 
@@ -37,7 +35,6 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     oi = new OI();
-    // magazine = new Magazine();
 
     limelight = new Limelight();
     ultraSensor = new UltraSensor();
@@ -48,7 +45,7 @@ public class Robot extends TimedRobot {
     CommandScheduler.getInstance().run();
 
     // if (ultraSensor.itemDetected()){
-    //   magazine.end();
+    //   oi.magazine.end();
     // }
   }
 
