@@ -35,7 +35,7 @@ public class OI {
     public OI() {
         mainStick = new XboxController(0);
         shooter = new Shooter();
-        climber = new Climber();
+        // climber = new Climber();
         intake = new Intaker();
         magazine = new Magazine();
         gyro = new Gyroscope();
@@ -59,8 +59,8 @@ public class OI {
      */
     private void configureButtons() {
         Controls.SHOOT.whileHeld(new Shoot(shooter));
-        Controls.CLIMB.whenHeld(new Climb(climber));
-        Controls.RETRACT.whenHeld(new Retract(climber));
+        // Controls.CLIMB.whenHeld(new Climb(climber));
+        // Controls.RETRACT.whenHeld(new Retract(climber));
         Controls.INTAKE.whileHeld(new Intake(intake));
         Controls.OUTAKE.whileHeld(new Outtake(intake));
         Controls.MAGUP.whileHeld(new MagUp(magazine));
@@ -72,7 +72,7 @@ public class OI {
     }
 
     private static double modifyAxis(double value) {
-        value = Utilities.deadband(value, 0.05);
+        value = Utilities.deadband(value, 0.08);
 
         // Square the axis
         value = Math.copySign(value * value, value);

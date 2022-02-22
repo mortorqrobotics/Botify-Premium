@@ -14,29 +14,30 @@ public class Shooter {
     public Shooter() {
         m_shoot = new TalonFX(RobotMap.SHOOTER_ID);
         m_shoot.configFactoryDefault();
-        m_shoot.configNeutralDeadband(0.001);
-        m_shoot.configSelectedFeedbackSensor(TalonFXFeedbackDevice.IntegratedSensor,
-                PIDMap.kPIDLoopIdx,
-                PIDMap.kTimeoutMs);
+        // m_shoot.configNeutralDeadband(0.001);
+        // m_shoot.configSelectedFeedbackSensor(TalonFXFeedbackDevice.IntegratedSensor,
+        //         PIDMap.kPIDLoopIdx,
+        //         PIDMap.kTimeoutMs);
 
-        m_shoot.configNominalOutputForward(0, PIDMap.kTimeoutMs);
-        m_shoot.configNominalOutputReverse(0, PIDMap.kTimeoutMs);
-        m_shoot.configPeakOutputForward(1, PIDMap.kTimeoutMs);
-        m_shoot.configPeakOutputReverse(-1, PIDMap.kTimeoutMs);
+        // m_shoot.configNominalOutputForward(0, PIDMap.kTimeoutMs);
+        // m_shoot.configNominalOutputReverse(0, PIDMap.kTimeoutMs);
+        // m_shoot.configPeakOutputForward(1, PIDMap.kTimeoutMs);
+        // m_shoot.configPeakOutputReverse(-1, PIDMap.kTimeoutMs);
 
-        m_shoot.config_kF(PIDMap.kPIDLoopIdx, PIDMap.kF, PIDMap.kTimeoutMs);
-        m_shoot.config_kP(PIDMap.kPIDLoopIdx, PIDMap.kP, PIDMap.kTimeoutMs);
-        m_shoot.config_kI(PIDMap.kPIDLoopIdx, PIDMap.kI, PIDMap.kTimeoutMs);
-        m_shoot.config_kD(PIDMap.kPIDLoopIdx, PIDMap.kD, PIDMap.kTimeoutMs);
+        // m_shoot.config_kF(PIDMap.kPIDLoopIdx, PIDMap.kF, PIDMap.kTimeoutMs);
+        // m_shoot.config_kP(PIDMap.kPIDLoopIdx, PIDMap.kP, PIDMap.kTimeoutMs);
+        // m_shoot.config_kI(PIDMap.kPIDLoopIdx, PIDMap.kI, PIDMap.kTimeoutMs);
+        // m_shoot.config_kD(PIDMap.kPIDLoopIdx, PIDMap.kD, PIDMap.kTimeoutMs);
     }
 
     public void shoot() {
-        double distance = Robot.limelight.getDistance();
-        double speed = calcSpeed(distance);
+        // double distance = Robot.limelight.getDistance();
+        // double speed = calcSpeed(distance);
 
-        // u_speed converts from RPM to raw falcon sensor units
-        double u_speed = speed * (RobotMap.FALCON_SENSOR_UNITS / 600.0);
-        m_shoot.set(ControlMode.Velocity, u_speed);
+        // // u_speed converts from RPM to raw falcon sensor units
+        // double u_speed = speed * (RobotMap.FALCON_SENSOR_UNITS / 600.0);
+        // m_shoot.set(ControlMode.Velocity, u_speed);
+        m_shoot.set(ControlMode.PercentOutput, 0.525);
     }
 
     /**
