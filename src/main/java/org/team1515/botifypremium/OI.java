@@ -25,6 +25,7 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 
 public class OI {
     public static XboxController mainStick;
+    public static XboxController secondStick;
     public static Shooter shooter;
     public static Climber climber;
     public static Intaker intake;
@@ -34,6 +35,7 @@ public class OI {
 
     public OI() {
         mainStick = new XboxController(0);
+        secondStick = new XboxController(1);
         shooter = new Shooter();
         climber = new Climber();
         intake = new Intaker();
