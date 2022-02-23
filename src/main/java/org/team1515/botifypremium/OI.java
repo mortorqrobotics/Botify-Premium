@@ -35,16 +35,16 @@ public class OI {
     public OI() {
         mainStick = new XboxController(0);
         shooter = new Shooter();
-        // climber = new Climber();
+        climber = new Climber();
         intake = new Intaker();
         magazine = new Magazine();
         gyro = new Gyroscope();
         drivetrain = new Drivetrain();
         drivetrain.setDefaultCommand(new DefaultDriveCommand(
             drivetrain,
-            () -> -modifyAxis(mainStick.getLeftY()) * Drivetrain.MAX_VELOCITY_METERS_PER_SECOND,
-            () -> -modifyAxis(mainStick.getLeftX()) * Drivetrain.MAX_VELOCITY_METERS_PER_SECOND,
-            () -> -modifyAxis(mainStick.getRightX()) * Drivetrain.MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND
+            () -> -modifyAxis(mainStick.getLeftY() * .7) * Drivetrain.MAX_VELOCITY_METERS_PER_SECOND,
+            () -> -modifyAxis(mainStick.getLeftX() * .7) * Drivetrain.MAX_VELOCITY_METERS_PER_SECOND,
+            () -> -modifyAxis(mainStick.getRightX() * .7) * Drivetrain.MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND
         ));
 
         configureButtons();
@@ -59,8 +59,8 @@ public class OI {
      */
     private void configureButtons() {
         Controls.SHOOT.whileHeld(new Shoot(shooter));
-        // Controls.CLIMB.whenHeld(new Climb(climber));
-        // Controls.RETRACT.whenHeld(new Retract(climber));
+        Controls.CLIMB.whenHeld(new Climb(climber));
+        Controls.RETRACT.whenHeld(new Retract(climber));
         Controls.INTAKE.whileHeld(new Intake(intake));
         Controls.OUTAKE.whileHeld(new Outtake(intake));
         Controls.MAGUP.whileHeld(new MagUp(magazine));
