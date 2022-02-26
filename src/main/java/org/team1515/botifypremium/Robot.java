@@ -8,7 +8,9 @@ import org.team1515.botifypremium.Utils.Limelight;
 import org.team1515.botifypremium.Utils.UltraSensor;
 import org.team1515.botifypremium.Subsystems.Climber;
 
+import edu.wpi.first.wpilibj.PowerDistribution;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.PowerDistribution.ModuleType;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
@@ -27,6 +29,7 @@ public class Robot extends TimedRobot {
   public static Climber climber;
   public static Limelight limelight;
   public static OI oi;
+  public static PowerDistribution PDH;
 
   private UltraSensor ultraSensor;
 
@@ -38,6 +41,9 @@ public class Robot extends TimedRobot {
 
     limelight = new Limelight();
     ultraSensor = new UltraSensor();
+    PDH = new PowerDistribution(1, ModuleType.kRev);
+
+    PDH.clearStickyFaults();
   }
 
   @Override
