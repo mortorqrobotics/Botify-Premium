@@ -37,7 +37,7 @@ public class Shooter {
         // // u_speed converts from RPM to raw falcon sensor units
         // double u_speed = speed * (RobotMap.FALCON_SENSOR_UNITS / 600.0);
         // m_shoot.set(ControlMode.Velocity, u_speed);
-        m_shoot.set(ControlMode.PercentOutput, 0.525);
+        m_shoot.set(ControlMode.PercentOutput, 0.55);
     }
 
     /**

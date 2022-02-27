@@ -10,9 +10,13 @@ public class RobotMap {
     public final static int SHOOTER_ID = 27;
 
     // Climber
-    public final static int RIGHTCLIMBER_ID = 33;
-    public final static int LEFTCLIMBER_ID = 31;
-    //public final static int STRING_ID = 0;
+    public final static int RIGHTCLIMBER_ID = 31;
+    public final static int LEFTCLIMBER_ID = 33;
+    //public final static int STRING_ID1 = 0;
+    //public final static int STRING_ID2 = 0;
+    //public final static int STRING_ID3 = 0;
+    //public final static int STRING_ID4 = 0;
+
 
     // Intake
     public final static int INTAKE_ID = 25;
@@ -48,15 +52,15 @@ public class RobotMap {
     public static final int FRONT_RIGHT_MODULE_DRIVE_MOTOR = 17; 
     public static final int FRONT_RIGHT_MODULE_STEER_MOTOR = 18; 
     public static final int FRONT_RIGHT_MODULE_STEER_ENCODER = 22; 
-    public static final double FRONT_RIGHT_MODULE_STEER_OFFSET = -Math.toRadians(113.81);
+    public static final double FRONT_RIGHT_MODULE_STEER_OFFSET = -Math.toRadians(118.7);
 
     public static final int BACK_LEFT_MODULE_DRIVE_MOTOR = 13;
     public static final int BACK_LEFT_MODULE_STEER_MOTOR = 14; 
-    public static final int BACK_LEFT_MODULE_STEER_ENCODER = 22; 
-    public static final double BACK_LEFT_MODULE_STEER_OFFSET = -Math.toRadians(113.81);
+    public static final int BACK_LEFT_MODULE_STEER_ENCODER = 20; 
+    public static final double BACK_LEFT_MODULE_STEER_OFFSET = -Math.toRadians(232.5);
 
     public static final int BACK_RIGHT_MODULE_DRIVE_MOTOR = 11;
     public static final int BACK_RIGHT_MODULE_STEER_MOTOR = 12; 
     public static final int BACK_RIGHT_MODULE_STEER_ENCODER = 19;
-    public static final double BACK_RIGHT_MODULE_STEER_OFFSET = -Math.toRadians(341);   
+    public static final double BACK_RIGHT_MODULE_STEER_OFFSET = -Math.toRadians(345.2);   
 }

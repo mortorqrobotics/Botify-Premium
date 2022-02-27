@@ -25,8 +25,10 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 
 public class OI {
     public static XboxController mainStick;
+    public static XboxController secondStick;
     public static Shooter shooter;
-    public static Climber climber;
+    public static Climber climberR;
+    public static Climber climberL;
     public static Intaker intake;
     public static Magazine magazine;
     public static Gyroscope gyro;
@@ -34,17 +36,19 @@ public class OI {
 
     public OI() {
         mainStick = new XboxController(0);
+        secondStick = new XboxController(1);
         shooter = new Shooter();
-        // climber = new Climber();
+        climberR = new Climber(RobotMap.RIGHTCLIMBER_ID);
+        climberL = new Climber(RobotMap.LEFTCLIMBER_ID);
         intake = new Intaker();
         magazine = new Magazine();
         gyro = new Gyroscope();
         drivetrain = new Drivetrain();
         drivetrain.setDefaultCommand(new DefaultDriveCommand(
             drivetrain,
-            () -> -modifyAxis(mainStick.getLeftY()) * Drivetrain.MAX_VELOCITY_METERS_PER_SECOND,
-            () -> -modifyAxis(mainStick.getLeftX()) * Drivetrain.MAX_VELOCITY_METERS_PER_SECOND,
-            () -> -modifyAxis(mainStick.getRightX()) * Drivetrain.MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND
+            () -> -modifyAxis(mainStick.getLeftY() * .7) * Drivetrain.MAX_VELOCITY_METERS_PER_SECOND,
+            () -> -modifyAxis(mainStick.getLeftX() * .7) * Drivetrain.MAX_VELOCITY_METERS_PER_SECOND,
+            () -> -modifyAxis(mainStick.getRightX() * .7) * Drivetrain.MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND
         ));
 
         configureButtons();
@@ -59,8 +63,10 @@ public class OI {
      */
     private void configureButtons() {
         Controls.SHOOT.whileHeld(new Shoot(shooter));
-        // Controls.CLIMB.whenHeld(new Climb(climber));
-        // Controls.RETRACT.whenHeld(new Retract(climber));
+        Controls.CLIMBR.whenHeld(new Climb(climberR));
+        Controls.RETRACTR.whenHeld(new Retract(climberR));
+        Controls.RETRACTL.whenHeld(new Climb(climberL));
+        Controls.CLIMBL.whenHeld(new Retract(climberL));
         Controls.INTAKE.whileHeld(new Intake(intake));
         Controls.OUTAKE.whileHeld(new Outtake(intake));
         Controls.MAGUP.whileHeld(new MagUp(magazine));
