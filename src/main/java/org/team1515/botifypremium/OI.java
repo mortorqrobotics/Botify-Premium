@@ -11,8 +11,6 @@ import org.team1515.botifypremium.Subsystems.Climber;
 import org.team1515.botifypremium.Subsystems.Intaker;
 import org.team1515.botifypremium.Subsystems.Magazine;
 
-import java.util.function.BooleanSupplier;
-
 import org.team1515.botifypremium.Commands.AutoAlign;
 import org.team1515.botifypremium.Commands.DefaultDriveCommand;
 import org.team1515.botifypremium.Subsystems.Drivetrain;

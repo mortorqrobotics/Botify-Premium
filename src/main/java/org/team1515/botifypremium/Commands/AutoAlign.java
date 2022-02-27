@@ -20,7 +20,7 @@ public class AutoAlign extends CommandBase {
 
         angleController = new PIDController(0.05, 0, 0);
         angleController.setTolerance(0.05);
-        angleController.enableContinuousInput(-Math.PI, Math.PI);
+        angleController.enableContinuousInput(0, 2.0 * Math.PI);
 
         addRequirements(m_drivetrainSubsystem);
     }
