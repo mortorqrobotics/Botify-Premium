@@ -13,6 +13,7 @@ import org.team1515.botifypremium.Subsystems.Magazine;
 
 import java.util.function.BooleanSupplier;
 
+import org.team1515.botifypremium.Commands.AutoAlign;
 import org.team1515.botifypremium.Commands.DefaultDriveCommand;
 import org.team1515.botifypremium.Subsystems.Drivetrain;
 import org.team1515.botifypremium.Subsystems.Shooter;
@@ -63,14 +64,16 @@ public class OI {
      */
     private void configureButtons() {
         Controls.SHOOT.whileHeld(new Shoot(shooter));
-        Controls.CLIMBR.whenHeld(new Climb(climberR));
-        Controls.RETRACTR.whenHeld(new Retract(climberR));
-        Controls.RETRACTL.whenHeld(new Climb(climberL));
-        Controls.CLIMBL.whenHeld(new Retract(climberL));
+        Controls.CLIMBR.whileHeld(new Climb(climberR));
+        Controls.RETRACTR.whileHeld(new Retract(climberR));
+        Controls.RETRACTL.whileHeld(new Climb(climberL));
+        Controls.CLIMBL.whileHeld(new Retract(climberL));
         Controls.INTAKE.whileHeld(new Intake(intake));
         Controls.OUTAKE.whileHeld(new Outtake(intake));
         Controls.MAGUP.whileHeld(new MagUp(magazine));
         Controls.MAGDOWN.whileHeld(new MagDown(magazine));
+
+        Controls.ROBOT_ALIGN.whenPressed(new AutoAlign(drivetrain, Robot.limelight));
         
         // Back button zeros the gyroscope
         Controls.RESETGYRO.whenPressed(drivetrain::zeroGyroscope); // No requirements because we don't need to interrupt anything
