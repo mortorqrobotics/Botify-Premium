@@ -1,5 +1,7 @@
 package org.team1515.botifypremium.Utils;
 
+import org.team1515.botifypremium.RobotMap;
+
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
@@ -14,7 +16,7 @@ public class Limelight {
 
     NetworkTableEntry xcorners, ycorners;
 
-    private double txOffset = 1;
+    private double txOffset = 0;
 
     public Limelight() {
         table = NetworkTableInstance.getDefault().getTable("limelight");
@@ -48,8 +50,12 @@ public class Limelight {
         return ty.getDouble(0.0);
     }
 
+    /**
+     * @return double Get distance in meters
+     */
     public double getDistance() {
-        return 0.0;
+        double deltaHeight = RobotMap.HEIGHT_OF_TARGET - RobotMap.HEIGHT_OF_LIMELIGHT;
+        return deltaHeight / Math.tan(Math.toRadians(getTY() + RobotMap.ANGLE_OF_LIMELIGHT));
     }
 
     public void setPipeline(int pipeline) {

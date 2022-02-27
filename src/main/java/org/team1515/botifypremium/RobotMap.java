@@ -17,9 +17,14 @@ public class RobotMap {
     // Intake
     public final static int INTAKE_ID = 25;
     
-    //Magazine
+    // Magazine
     public final static int MAG_ID = 26;
     //public final static int ULTRA_ID = 0;
+
+    // Limelight
+    public final static double HEIGHT_OF_LIMELIGHT = 26 * INCHES_TO_METERS;
+    public final static double ANGLE_OF_LIMELIGHT = 45;
+    public final static double HEIGHT_OF_TARGET = 104 * INCHES_TO_METERS;
 
     //Drivetrain
 

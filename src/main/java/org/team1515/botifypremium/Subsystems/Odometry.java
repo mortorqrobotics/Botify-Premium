@@ -16,7 +16,7 @@ public class Odometry {
     public static double initalX = 0.0;
     public static double initalY = 0.0;
     private final Field2d m_field = new Field2d();
-    public static Rotation2d initalRot = new Rotation2d();
+    public static Rotation2d initalRot = new Rotation2d(Math.PI / 2);
 
     public Odometry(SwerveDriveKinematics kinematics) {
         m_odometry = new SwerveDriveOdometry(kinematics, OI.gyro.getGyroscopeRotation(), new Pose2d(initalX, initalY, initalRot));
