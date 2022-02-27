@@ -8,7 +8,7 @@ public class UltraSensor {
 
     // AnalogInput ultraSensor;
 
-    // private final double detectDist = 4.0;
+    // private final double detectDist = 200.0;
 
     // public UltraSensor(){
     //     ultraSensor = new AnalogInput(RobotMap.ULTRA_ID);

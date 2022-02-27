@@ -18,6 +18,11 @@ public class Retract extends CommandBase {
         climber.retract();
     }
 
+    @Override
+    public void end(boolean interrupted) {
+        climber.end();
+    }
+
     // @Override
     // public boolean isFinished() {
     //     // Stops when the climber reaches the minimum distance

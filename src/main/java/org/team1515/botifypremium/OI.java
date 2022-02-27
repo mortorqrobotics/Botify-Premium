@@ -27,7 +27,8 @@ public class OI {
     public static XboxController mainStick;
     public static XboxController secondStick;
     public static Shooter shooter;
-    public static Climber climber;
+    public static Climber climberR;
+    public static Climber climberL;
     public static Intaker intake;
     public static Magazine magazine;
     public static Gyroscope gyro;
@@ -37,7 +38,8 @@ public class OI {
         mainStick = new XboxController(0);
         secondStick = new XboxController(1);
         shooter = new Shooter();
-        climber = new Climber();
+        climberR = new Climber(RobotMap.RIGHTCLIMBER_ID);
+        climberL = new Climber(RobotMap.LEFTCLIMBER_ID);
         intake = new Intaker();
         magazine = new Magazine();
         gyro = new Gyroscope();
@@ -61,8 +63,10 @@ public class OI {
      */
     private void configureButtons() {
         Controls.SHOOT.whileHeld(new Shoot(shooter));
-        Controls.CLIMB.whenHeld(new Climb(climber));
-        Controls.RETRACT.whenHeld(new Retract(climber));
+        Controls.CLIMBR.whenHeld(new Climb(climberR));
+        Controls.RETRACTR.whenHeld(new Retract(climberR));
+        Controls.RETRACTL.whenHeld(new Climb(climberL));
+        Controls.CLIMBL.whenHeld(new Retract(climberL));
         Controls.INTAKE.whileHeld(new Intake(intake));
         Controls.OUTAKE.whileHeld(new Outtake(intake));
         Controls.MAGUP.whileHeld(new MagUp(magazine));
