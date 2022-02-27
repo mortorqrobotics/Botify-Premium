@@ -14,6 +14,7 @@ public class Controls {
 
     public static final Button CLIMBR = new Button(OI.mainStick::getRightBumper);
     public static final Button CLIMBL = new Button(OI.mainStick::getLeftBumper);
+    public static final Button ROBOT_ALIGN = new Button(OI.mainStick::getStartButton);
     public static final Button RETRACTR = new Button(Controls::getRightTrigger);
     public static final Button RETRACTL = new Button(Controls::getLeftTrigger);
 
