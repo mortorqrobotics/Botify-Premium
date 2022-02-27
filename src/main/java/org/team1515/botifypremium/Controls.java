@@ -17,11 +17,11 @@ public class Controls {
     public static final Button RETRACTR = new Button(Controls::getRightTrigger);
     public static final Button RETRACTL = new Button(Controls::getLeftTrigger);
 
-    public static boolean getRightTrigger(){
+    public static boolean getRightTrigger() {
         return OI.mainStick.getRightTriggerAxis() >= 0.50;
     }
 
-    public static boolean getLeftTrigger(){
+    public static boolean getLeftTrigger() {
         return OI.mainStick.getLeftTriggerAxis() >= 0.50;
     }
 }

@@ -9,12 +9,12 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 public class Limelight {
 
     private NetworkTable table;
-    NetworkTableEntry tx;
-    NetworkTableEntry ty;
-    NetworkTableEntry ta;
-    NetworkTableEntry pipeline;
+    private NetworkTableEntry tx;
+    private NetworkTableEntry ty;
+    private NetworkTableEntry ta;
+    private NetworkTableEntry pipeline;
 
-    NetworkTableEntry xcorners, ycorners;
+    private NetworkTableEntry xcorners, ycorners;
 
     private double txOffset = 0;
 
