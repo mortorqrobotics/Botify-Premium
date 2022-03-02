@@ -5,25 +5,34 @@ import org.team1515.botifypremium.Subsystems.Climber;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class Extend extends CommandBase {
-    // Climber climber;
+    Climber climberL;
+    Climber climberR;
 
-    // public Extend(Climber climber) {
-    //     this.climber = climber;
+    public Extend(Climber climberL, Climber climberR) {
+        this.climberL = climberL;
+        this.climberR = climberR;
 
-    //     addRequirements(climber);
-    // }
+        addRequirements(climberL);
+        addRequirements(climberR);
+    }
 
-    // @Override
-    // public void execute() {
-    //     climber.climb();
-    // }
+    @Override
+    public void execute() {
+        climberL.climb();
+        climberR.climb();
+    }
 
-    // @Override
-    // public boolean isFinished() {
-    //     // Stops when the climber reaches the maximum distance
-    //     if(climber.stringPot.getDist() >= climber.maxDist) {
-    //         return true;
-    //     }
-    //     return false;
-    // }
+    @Override
+    public void end(boolean interrupted) {
+        climberL.end();
+        climberR.end();
+    }
+
+    @Override
+    public boolean isFinished() {
+        if(climberL.stringPot.getDist() >= climberL.maxDist && climberR.stringPot.getDist() >= climberR.maxDist) {
+            return true;
+        }
+        return false;
+    }
 }

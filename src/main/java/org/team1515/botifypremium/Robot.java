@@ -32,7 +32,7 @@ public class Robot extends TimedRobot {
   public static OI oi;
   public static PowerDistribution PDH;
 
-  private UltraSensor ultraSensor;
+  //private UltraSensor ultraSensor;
 
   public Command autoCommand;
 
@@ -41,10 +41,10 @@ public class Robot extends TimedRobot {
     oi = new OI();
 
     limelight = new Limelight();
-    ultraSensor = new UltraSensor();
-    PDH = new PowerDistribution(1, ModuleType.kRev);
+    //ultraSensor = new UltraSensor();
+    //PDH = new PowerDistribution(1, ModuleType.kRev);
 
-    PDH.clearStickyFaults();
+    //PDH.clearStickyFaults();
   }
 
   @Override

@@ -20,7 +20,7 @@ public class Climber extends SubsystemBase {
     public final double minDist = 5.00;
     private final double c_speed = 0.25;
 
-    public Climber(int climberID) {
+    public Climber(int climberID, int stringID) {
         this.climberID = climberID;
 
         m_climber = new CANSparkMax(climberID, MotorType.kBrushless);
@@ -28,7 +28,7 @@ public class Climber extends SubsystemBase {
 
         m_climber.setIdleMode(IdleMode.kBrake);
    
-        stringPot = new StringPot();
+        stringPot = new StringPot(stringID);
     }
 
     public void climb() {
