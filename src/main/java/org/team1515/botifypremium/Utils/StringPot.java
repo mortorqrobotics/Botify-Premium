@@ -6,19 +6,19 @@ import org.team1515.botifypremium.RobotMap;
 
 public class StringPot {
 
-    // private final double cenConversion = 56.6929;
+    private final double cenConversion = 56.6929;
 
-    // AnalogInput stringPot;
+    AnalogInput stringPot;
 
-    // public StringPot(){
-    //     stringPot = new AnalogInput(RobotMap.STRING_ID);
-    // }
+    public StringPot(int stringID){
+        stringPot = new AnalogInput(stringID);
+    }
 
-    // /**
-    //  * @return int value of distance in centimeters
-    //  */
-    // public double getDist(){
-    //     return stringPot.getValue() / cenConversion;
-    // }
+    /**
+     * @return int value of distance in centimeters
+     */
+    public double getDist(){
+        return stringPot.getValue() / cenConversion;
+    }
     
 }

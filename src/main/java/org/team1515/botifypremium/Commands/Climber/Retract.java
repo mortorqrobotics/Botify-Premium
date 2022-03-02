@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 public class Retract extends CommandBase {
     Climber climber;
 
-    public Retract(Climber climber) {
+    public Retract(Climber climber1, Climber climber2) {
         this.climber = climber;
 
         addRequirements(climber);

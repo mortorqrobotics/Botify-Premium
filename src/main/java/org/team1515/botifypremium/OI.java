@@ -6,6 +6,7 @@ import org.team1515.botifypremium.Commands.MagUp;
 import org.team1515.botifypremium.Commands.Outtake;
 import org.team1515.botifypremium.Commands.Shoot;
 import org.team1515.botifypremium.Commands.Climber.Climb;
+import org.team1515.botifypremium.Commands.Climber.Expand;
 import org.team1515.botifypremium.Commands.Climber.Retract;
 import org.team1515.botifypremium.Subsystems.Climber;
 import org.team1515.botifypremium.Subsystems.Intaker;
@@ -28,8 +29,10 @@ public class OI {
     public static XboxController mainStick;
     public static XboxController secondStick;
     public static Shooter shooter;
-    public static Climber climberR;
-    public static Climber climberL;
+    public static Climber climberRV;
+    public static Climber climberLV;
+    public static Climber climberRD;
+    public static Climber climberLD;
     public static Intaker intake;
     public static Magazine magazine;
     public static Gyroscope gyro;
@@ -39,8 +42,12 @@ public class OI {
         mainStick = new XboxController(0);
         secondStick = new XboxController(1);
         shooter = new Shooter();
-        climberR = new Climber(RobotMap.RIGHTCLIMBER_ID);
-        climberL = new Climber(RobotMap.LEFTCLIMBER_ID);
+        climberRV = new Climber(RobotMap.RIGHT_VERTICAL_CLIMBER_ID, RobotMap.STRING_RV);
+        climberLV = new Climber(RobotMap.LEFT_VERTICAL_CLIMBER_ID, RobotMap.STRING_LV);
+        climberRD = new Climber(RobotMap.RIGHT_DIAGONAL_CLIMBER_ID, RobotMap.STRING_RD);
+        climberLD = new Climber(RobotMap.LEFT_DIAGONAL_CLIMBER_ID, RobotMap.STRING_LD);
+
+
         intake = new Intaker();
         magazine = new Magazine();
         gyro = new Gyroscope();
@@ -59,15 +66,12 @@ public class OI {
         return new InstantCommand();
     }
 
-    /**
-     * Binds the controller buttons to commands
-     */
     private void configureButtons() {
         Controls.SHOOT.whileHeld(new Shoot(shooter));
-        Controls.CLIMBR.whileHeld(new Climb(climberR));
-        Controls.RETRACTR.whileHeld(new Retract(climberR));
-        Controls.RETRACTL.whileHeld(new Climb(climberL));
-        Controls.CLIMBL.whileHeld(new Retract(climberL));
+        Controls.EXPANDV.whileHeld(new Expand(climberRV, climberLV));
+        Controls.RETRACTV.whileHeld(new Retract(climberRV, climberLV));
+        Controls.EXPANDD.whileHeld(new Expand(climberLD, climberRD));
+        Controls.RETRACTD.whileHeld(new Retract(climberLD, climberRD));
         Controls.INTAKE.whileHeld(new Intake(intake));
         Controls.OUTAKE.whileHeld(new Outtake(intake));
         Controls.MAGUP.whileHeld(new MagUp(magazine));
