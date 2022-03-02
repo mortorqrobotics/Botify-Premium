@@ -4,10 +4,10 @@ import org.team1515.botifypremium.Subsystems.Climber;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
-public class Retract extends CommandBase {
+public class Step3 extends CommandBase {
     Climber climber;
 
-    public Retract(Climber climber) {
+    public Step3(Climber climber) {
         this.climber = climber;
 
         addRequirements(climber);
@@ -15,7 +15,7 @@ public class Retract extends CommandBase {
 
     @Override
     public void execute() {
-        climber.retract();
+        climber.climb();
     }
 
     @Override
@@ -23,9 +23,11 @@ public class Retract extends CommandBase {
         climber.end();
     }
 
-    // @Override
-    // public boolean isFinished() {
-    //     // Stops when the climber reaches the minimum distance
-    //     return climber.stringPot.getDist() <= climber.minDist;
-    // }
+    @Override
+    public boolean isFinished() {
+        if(climber.stringPot.getDist() >= climber.maxDist) {
+            return true;
+        }
+        return false;
+    }
 }
