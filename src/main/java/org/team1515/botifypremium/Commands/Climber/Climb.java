@@ -10,16 +10,36 @@ public class Climb extends SequentialCommandGroup {
      * Runs each climber command one after another
      */
 
-    public Climb(Climber climber) {
+    public Climb(Climber climberL, Climber climberLD, Climber climberR, Climber climberRD) {
         addCommands(
-            new Step1(climber),
-            new Step2(climber),
-            new Step3(climber),
-            new Step4(climber),
-            new Step5(climber),
-            new Step6(climber),
-            new Step7(climber),
-            new Step8(climber)
+            new Extend(climberL, climberR), //Step 1
+            new Retract(climberL, climberR), //Step 2
+            new Extend(climberLD, climberRD), //Step 3
+            new Retract(climberLD, climberRD), //Step 4
+            new Extend(climberL, climberR), //Step 5
+            new Retract(climberL, climberR), //Step 6
+            new Extend(climberLD, climberRD), //Step 7
+            new Extend(climberL, climberR) //Step 8
         );
     }
 }
+
+/*
+Step 1: Both verticals go up
+
+Step 2: Borth verticals down
+
+Step 3: Both diagonals go up
+
+Step 4: Both diagonals down
+
+Step 5: Both verticals go up
+
+Step 6: Both verticals down
+
+Step 7: Both diagonals go up
+
+Step 8: Both verticals go up
+
+(Optional) Step 9: Both diagonals down
+*/

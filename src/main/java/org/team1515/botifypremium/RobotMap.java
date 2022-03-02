@@ -10,12 +10,14 @@ public class RobotMap {
     public final static int SHOOTER_ID = 27;
 
     // Climber
-    public final static int RIGHTCLIMBER_ID = 31;
-    public final static int LEFTCLIMBER_ID = 33;
-    //public final static int STRING_ID1 = 0;
-    //public final static int STRING_ID2 = 0;
-    //public final static int STRING_ID3 = 0;
-    //public final static int STRING_ID4 = 0;
+    public final static int LEFTCLIMBER_ID = 31;
+    public final static int DLEFTCLIMBER_ID = 32;
+    public final static int RIGHTCLIMBER_ID = 33;
+    public final static int DRIGHTCLIMBER_ID = 34;
+    public final static int STRING_ID1 = 0;
+    public final static int STRING_ID2 = 1;
+    public final static int STRING_ID3 = 2;
+    public final static int STRING_ID4 = 3;
 
 
     // Intake
