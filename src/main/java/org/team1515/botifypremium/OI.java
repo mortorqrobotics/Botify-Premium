@@ -5,7 +5,6 @@ import org.team1515.botifypremium.Commands.MagDown;
 import org.team1515.botifypremium.Commands.MagUp;
 import org.team1515.botifypremium.Commands.Outtake;
 import org.team1515.botifypremium.Commands.Shoot;
-import org.team1515.botifypremium.Commands.Climber.Climb;
 import org.team1515.botifypremium.Commands.Climber.Expand;
 import org.team1515.botifypremium.Commands.Climber.Retract;
 import org.team1515.botifypremium.Subsystems.Climber;
