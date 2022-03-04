@@ -20,7 +20,7 @@ public class DriveDist extends CommandBase {
     public DriveDist(Drivetrain drivetrainSubsystem, double targetDist, double angle) {
         this.m_drivetrainSubsystem = drivetrainSubsystem;
         this.targetDist = targetDist;
-        this.angle = angle;
+        this.angle = Math.toRadians(angle);
 
         addRequirements(drivetrainSubsystem);
     }
@@ -37,22 +37,21 @@ public class DriveDist extends CommandBase {
         double xSpeed = Math.cos(angle) * maxSpeed;
 
         distanceTraveled();
-        ChassisSpeeds speeds =
-            ChassisSpeeds.fromFieldRelativeSpeeds(
-                    ySpeed,
-                    xSpeed,
-                    0.0,
-                    OI.gyro.getGyroscopeRotation()
-            );
+        ChassisSpeeds speeds = ChassisSpeeds.fromFieldRelativeSpeeds(
+                ySpeed,
+                xSpeed,
+                0.0,
+                OI.gyro.getGyroscopeRotation());
         m_drivetrainSubsystem.drive(speeds);
     }
 
     /**
-     * Gets the distance traveled by multiplying rate (drive velocity) and time (milliseconds)
+     * Gets the distance traveled by multiplying rate (drive velocity) and time
+     * (milliseconds)
      */
     public void distanceTraveled() {
         double deltaTime = System.currentTimeMillis() - lastTime;
-        distTraveled += Math.abs(m_drivetrainSubsystem.m_frontLeftModule.getDriveVelocity()) * (1.0/1000) * deltaTime;
+        distTraveled += Math.abs(m_drivetrainSubsystem.m_frontLeftModule.getDriveVelocity()) * (1.0 / 1000) * deltaTime;
         lastTime = System.currentTimeMillis();
     }
 
