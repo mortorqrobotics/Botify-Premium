@@ -15,6 +15,7 @@ import java.util.function.BooleanSupplier;
 
 import org.team1515.botifypremium.Commands.AutoAlign;
 import org.team1515.botifypremium.Commands.DefaultDriveCommand;
+import org.team1515.botifypremium.Commands.DriveDist;
 import org.team1515.botifypremium.Subsystems.Drivetrain;
 import org.team1515.botifypremium.Subsystems.Shooter;
 import org.team1515.botifypremium.Utils.Gyroscope;
@@ -77,6 +78,7 @@ public class OI {
         Controls.MAGDOWN.whileHeld(new MagDown(magazine));
 
         Controls.ROBOT_ALIGN.whenPressed(new AutoAlign(drivetrain, Robot.limelight));
+        Controls.DRIVE_DIST.whenPressed(new DriveDist(drivetrain, 2.0, 0));
         
         // Back button zeros the gyroscope
         Controls.RESETGYRO.whenPressed(drivetrain::zeroGyroscope); // No requirements because we don't need to interrupt anything

@@ -40,7 +40,7 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     oi = new OI();
 
-    limelight = new Limelight();
+    Robot.limelight = new Limelight();
     ultraSensor = new UltraSensor();
     PDH = new PowerDistribution(1, ModuleType.kRev);
 

@@ -19,6 +19,7 @@ public class Controls {
     public static final Button RETRACTV = new Button(Controls::getRightTrigger);
     public static final Button EXPANDD = new Button(OI.mainStick::getLeftBumper);
     public static final Button RETRACTD = new Button(Controls::getLeftTrigger);
+    public static final Button DRIVE_DIST = new Button(OI.mainStick::getAButton);
 
     public static boolean getRightTrigger() {
         return OI.mainStick.getRightTriggerAxis() >= 0.50;
