@@ -14,9 +14,14 @@ public class AutoMag extends CommandBase {
         this.m_magazine = magazine;
         this.runTime = runTime;
         this.timer = new Timer();
-        this.timer.start();
 
         addRequirements(m_magazine);
+    }
+
+    @Override
+    public void initialize() {
+        this.timer.reset();
+        this.timer.start();
     }
 
     @Override
@@ -26,6 +31,6 @@ public class AutoMag extends CommandBase {
 
     @Override
     public boolean isFinished() {
-        return timer.advanceIfElapsed(runTime);
+        return timer.hasElapsed(runTime);
     }
 }

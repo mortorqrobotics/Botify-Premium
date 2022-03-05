@@ -16,23 +16,28 @@ public class AutoShoot extends CommandBase {
         this.m_shooter = shooter;
         this.m_magazine = magazine;
         this.runTime = runTime;
-        this.timer = new Timer();
-        this.timer.start();
+        this.timer = new Timer();;
 
         addRequirements(m_shooter);
     }
 
     @Override
+    public void initialize() {
+        this.timer.reset();
+        this.timer.start();
+    }
+
+    @Override
     public void execute() { 
         if(timer.hasElapsed(5)) {
-            m_shooter.shoot();
+            m_magazine.goUp();
         }
 
-        m_magazine.goUp();
+        m_shooter.shoot();
     }
 
     @Override
     public boolean isFinished() {
-        return timer.advanceIfElapsed(runTime);
+        return timer.hasElapsed(runTime);
     }
 }

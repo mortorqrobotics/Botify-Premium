@@ -14,9 +14,14 @@ public class AutoIntake extends CommandBase {
         this.m_intake = intake;
         this.runTime = runTime;
         this.timer = new Timer();
-        this.timer.start();
 
         addRequirements(m_intake);
+    }
+
+    @Override
+    public void initialize() {
+        this.timer.reset();
+        this.timer.start();
     }
 
     @Override
@@ -26,6 +31,6 @@ public class AutoIntake extends CommandBase {
 
     @Override
     public boolean isFinished() {
-        return timer.advanceIfElapsed(runTime);
+        return timer.hasElapsed(runTime);
     }
 }

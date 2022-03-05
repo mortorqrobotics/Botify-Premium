@@ -68,7 +68,7 @@ public class OI {
     }
 
     public Command getAutoCommand() {
-        return new InstantCommand();
+        return new AutoCommand(drivetrain, intake, magazine, shooter);
     }
 
     private void configureButtons() {
