@@ -44,8 +44,8 @@ public class Odometry {
      * @return angle to object from robot position
      */
     public Rotation2d angleToObject(Pose2d objectPose) {
-        double deltaX = m_pose.getX() - objectPose.getX();
-        double deltaY = m_pose.getY() - objectPose.getY();
+        double deltaX = objectPose.getX() - m_pose.getX();
+        double deltaY = objectPose.getY() - m_pose.getY();
     
         return new Rotation2d(getRadians(deltaX, deltaY));
     }

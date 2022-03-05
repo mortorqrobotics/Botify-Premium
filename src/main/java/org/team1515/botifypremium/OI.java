@@ -4,6 +4,7 @@ import org.team1515.botifypremium.Commands.Intake;
 import org.team1515.botifypremium.Commands.MagDown;
 import org.team1515.botifypremium.Commands.MagUp;
 import org.team1515.botifypremium.Commands.Outtake;
+import org.team1515.botifypremium.Commands.RotateToPoint;
 import org.team1515.botifypremium.Commands.Shoot;
 import org.team1515.botifypremium.Commands.Climber.Expand;
 import org.team1515.botifypremium.Commands.Climber.Retract;
@@ -16,11 +17,14 @@ import java.util.function.BooleanSupplier;
 import org.team1515.botifypremium.Commands.AutoAlign;
 import org.team1515.botifypremium.Commands.DefaultDriveCommand;
 import org.team1515.botifypremium.Commands.DriveDist;
+import org.team1515.botifypremium.Commands.DriveToPoint;
 import org.team1515.botifypremium.Subsystems.Drivetrain;
 import org.team1515.botifypremium.Subsystems.Shooter;
 import org.team1515.botifypremium.Utils.Gyroscope;
 import org.team1515.botifypremium.Utils.Utilities;
 
+import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
@@ -79,7 +83,9 @@ public class OI {
 
         Controls.ROBOT_ALIGN.whenPressed(new AutoAlign(drivetrain, Robot.limelight));
         Controls.DRIVE_DIST.whenPressed(new DriveDist(drivetrain, 2.0, 0));
-        
+        // Controls.ALIGN_TO_POINT.whenPressed(new RotateToPoint(drivetrain, new Pose2d(1, 1, new Rotation2d(0))));
+        Controls.ALIGN_TO_POINT.whenPressed(new DriveToPoint(drivetrain, new Pose2d(1, 1, new Rotation2d(0))));
+        Controls.GET_ANGLE.whileHeld(new InstantCommand(() -> System.out.println(drivetrain.m_odometry.angleToObject(new Pose2d(1, 1, new Rotation2d(0))))));
         // Back button zeros the gyroscope
         Controls.RESETGYRO.whenPressed(drivetrain::zeroGyroscope); // No requirements because we don't need to interrupt anything
             

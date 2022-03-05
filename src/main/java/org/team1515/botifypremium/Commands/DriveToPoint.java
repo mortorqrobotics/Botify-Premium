@@ -3,6 +3,7 @@ package org.team1515.botifypremium.Commands;
 import org.team1515.botifypremium.OI;
 import org.team1515.botifypremium.Subsystems.Drivetrain;
 import org.team1515.botifypremium.Subsystems.Odometry;
+import org.team1515.botifypremium.Utils.Utilities;
 
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.controller.PIDController;
@@ -14,32 +15,29 @@ public class DriveToPoint extends CommandBase {
     private Drivetrain drivetrain;
     private Odometry odometry;
     private Pose2d pointPose;
-    private PIDController positionController;
 
-    private double maxSpeed = 0.25 * Drivetrain.MAX_VELOCITY_METERS_PER_SECOND;
+    private double maxSpeed = 0.2 * Drivetrain.MAX_VELOCITY_METERS_PER_SECOND;
+    private double deadband = 0.5;
 
     public DriveToPoint(Drivetrain drivetrain, Pose2d pointPose) {
         this.drivetrain = drivetrain;
         this.pointPose = pointPose;
         this.odometry = drivetrain.m_odometry;
 
-        positionController = new PIDController(0.5, 0.1, 0);
-        positionController.setTolerance(0.05);
-        positionController.setSetpoint(0.0);
-
         addRequirements(drivetrain);
     }
 
     @Override
     public void execute() {
-        double distanceToTarget = odometry.distanceToObject(pointPose);
         double angleToTarget = odometry.angleToObject(pointPose).getRadians();
 
-        double speedOffset = positionController.calculate(distanceToTarget, 0.0);
-        speedOffset = MathUtil.clamp(speedOffset, -maxSpeed, maxSpeed);
+        System.out.println(angleToTarget);
 
-        double ySpeed = Math.sin(angleToTarget) * speedOffset;
-        double xSpeed = Math.cos(angleToTarget) * speedOffset;
+        double ySpeed = Math.sin(angleToTarget) * maxSpeed;
+        double xSpeed = Math.cos(angleToTarget) * maxSpeed;
+
+        // System.out.println(Utilities.deadband(odometry.getPose().getX() - pointPose.getX(), deadband));
+        // System.out.println(Utilities.deadband(odometry.getPose().getY() - pointPose.getY(), deadband));
 
         ChassisSpeeds speeds = ChassisSpeeds.fromFieldRelativeSpeeds(
                 ySpeed,
@@ -51,6 +49,7 @@ public class DriveToPoint extends CommandBase {
 
     @Override
     public boolean isFinished() {
-        return positionController.atSetpoint();
+        return Utilities.deadband(odometry.getPose().getX() - pointPose.getX(), deadband) == 0 
+                && Utilities.deadband(odometry.getPose().getY() - pointPose.getY(), deadband) == 0;     
     }
 }
