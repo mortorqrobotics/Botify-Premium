@@ -29,9 +29,9 @@ public class RobotMap {
     //public final static int ULTRA_ID = 0;
 
     // Limelight
-    public final static double HEIGHT_OF_LIMELIGHT = 26 * INCHES_TO_METERS;
-    public final static double ANGLE_OF_LIMELIGHT = 35;
-    public final static double HEIGHT_OF_TARGET = 104 * INCHES_TO_METERS;
+    public final static double HEIGHT_OF_LIMELIGHT = 26;// * INCHES_TO_METERS;
+    public final static double ANGLE_OF_LIMELIGHT = 40;
+    public final static double HEIGHT_OF_TARGET = 104;// * INCHES_TO_METERS;
 
     //Drivetrain
 
