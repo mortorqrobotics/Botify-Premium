@@ -22,5 +22,8 @@
   },
   "NetworkTables Settings": {
     "mode": "Client"
+  },
+  "NetworkTables View": {
+    "visible": false
   }
 }

@@ -4,6 +4,8 @@ import org.team1515.botifypremium.Subsystems.Drivetrain;
 import org.team1515.botifypremium.Subsystems.Odometry;
 import org.team1515.botifypremium.Utils.Utilities;
 
+import edu.wpi.first.math.MathUtil;
+import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
@@ -13,31 +15,34 @@ public class RotateToPoint extends CommandBase {
     private Drivetrain drivetrain;
     private Pose2d targetPose;
     private Odometry odometry;
+    private PIDController angleController;
 
-    private static double kP = 0.5;
-    private static double deadband = 0.002;
+    private double maxSpeed = 0.25 * Drivetrain.MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND;
 
     public RotateToPoint(Drivetrain drivetrain, Pose2d targetPose) {
         this.drivetrain = drivetrain;
         this.targetPose = targetPose;
         this.odometry = drivetrain.m_odometry;
-        
+
+        angleController = new PIDController(3, 5, 0);
+        angleController.setTolerance(0.05);
+        angleController.enableContinuousInput(-Math.PI, Math.PI);
+        angleController.setSetpoint(0.0);
+
         addRequirements(drivetrain);
     }
 
     @Override
     public void execute() {
-        Rotation2d angleOffset = odometry.angleToObject(targetPose).minus(odometry.getPose().getRotation());
-        double angleSpeed = angleOffset.getRadians() * kP;
-        angleSpeed = Math.min(angleSpeed, Drivetrain.MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND);
+        double angleOffset = odometry.angleToObject(targetPose).minus(odometry.getPose().getRotation()).getRadians();
+        double speed = MathUtil.clamp(angleController.calculate(angleOffset, 0.0), -maxSpeed, maxSpeed);
 
-        ChassisSpeeds speeds = new ChassisSpeeds(0.0, 0.0, angleSpeed);
+        ChassisSpeeds speeds = new ChassisSpeeds(0.0, 0.0, speed);
         drivetrain.drive(speeds);
     }
 
     @Override
     public boolean isFinished() {
-        double error = odometry.angleToObject(targetPose).minus(odometry.getPose().getRotation()).getRadians();
-        return Utilities.deadband(error, deadband) == 0.0; // Stops when the error (difference between ideal and current angle) is around 0
+        return angleController.atSetpoint();
     }
 }
