@@ -47,10 +47,10 @@ public class OI {
         mainStick = new XboxController(0);
         secondStick = new XboxController(1);
         shooter = new Shooter();
-        // climberRV = new Climber(RobotMap.RIGHT_VERTICAL_CLIMBER_ID, RobotMap.STRING_RV);
-        // climberLV = new Climber(RobotMap.LEFT_VERTICAL_CLIMBER_ID, RobotMap.STRING_LV);
-        // climberRD = new Climber(RobotMap.RIGHT_DIAGONAL_CLIMBER_ID, RobotMap.STRING_RD);
-        // climberLD = new Climber(RobotMap.LEFT_DIAGONAL_CLIMBER_ID, RobotMap.STRING_LD);
+        climberRV = new Climber(RobotMap.RIGHT_VERTICAL_CLIMBER_ID, RobotMap.STRING_RV, 1);
+        climberLV = new Climber(RobotMap.LEFT_VERTICAL_CLIMBER_ID, RobotMap.STRING_LV, -1);
+        climberRD = new Climber(RobotMap.RIGHT_DIAGONAL_CLIMBER_ID, RobotMap.STRING_RD, 1);
+        climberLD = new Climber(RobotMap.LEFT_DIAGONAL_CLIMBER_ID, RobotMap.STRING_LD, -1);
 
 
         intake = new Intaker();
@@ -73,10 +73,10 @@ public class OI {
 
     private void configureButtons() {
         Controls.SHOOT.whileHeld(new Shoot(shooter));
-        // Controls.EXPANDV.whileHeld(new Expand(climberRV, climberLV));
-        // Controls.RETRACTV.whileHeld(new Retract(climberRV, climberLV));
-        // Controls.EXPANDD.whileHeld(new Expand(climberLD, climberRD));
-        // Controls.RETRACTD.whileHeld(new Retract(climberLD, climberRD));
+        Controls.EXPANDV.whileHeld(new Expand(climberRV, climberLV));
+        Controls.RETRACTV.whileHeld(new Retract(climberRV, climberLV));
+        Controls.EXPANDD.whileHeld(new Expand(climberLD, climberRD));
+        Controls.RETRACTD.whileHeld(new Retract(climberLD, climberRD));
         Controls.INTAKE.whileHeld(new Intake(intake));
         Controls.OUTAKE.whileHeld(new Outtake(intake));
         Controls.MAGUP.whileHeld(new MagUp(magazine));
