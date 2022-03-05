@@ -4,11 +4,13 @@ import org.team1515.botifypremium.Robot;
 import org.team1515.botifypremium.RobotMap;
 import org.team1515.botifypremium.Utils.ShooterDist;
 
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
+
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.TalonFXFeedbackDevice;
 
-public class Shooter {
+public class Shooter extends SubsystemBase {
     private TalonFX m_shoot;
 
     public Shooter() {
