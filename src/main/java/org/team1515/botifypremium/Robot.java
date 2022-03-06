@@ -7,6 +7,7 @@ package org.team1515.botifypremium;
 import org.team1515.botifypremium.Utils.Limelight;
 import org.team1515.botifypremium.Utils.UltraSensor;
 import org.team1515.botifypremium.Subsystems.Climber;
+import org.team1515.botifypremium.Subsystems.Shooter;
 
 import edu.wpi.first.wpilibj.PowerDistribution;
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -32,7 +33,7 @@ public class Robot extends TimedRobot {
   public static OI oi;
   public static PowerDistribution PDH;
 
-  //private UltraSensor ultraSensor;
+  private UltraSensor ultraSensor;
 
   public Command autoCommand;
 
@@ -40,17 +41,19 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     oi = new OI();
 
-    limelight = new Limelight();
-    //ultraSensor = new UltraSensor();
-    //PDH = new PowerDistribution(1, ModuleType.kRev);
+    Robot.limelight = new Limelight();
+    ultraSensor = new UltraSensor();
+    PDH = new PowerDistribution(1, ModuleType.kRev);
 
-    //PDH.clearStickyFaults();
+    PDH.clearStickyFaults();
+    SmartDashboard.putNumber("shooter speed", 0.55);
   }
 
   @Override
   public void robotPeriodic() {
     CommandScheduler.getInstance().run();
-    SmartDashboard.putNumber("distance to target", limelight.getDistance());
+    SmartDashboard.putNumber("distance to target in in", limelight.getDistance());
+    Shooter.speed = SmartDashboard.getNumber("shooter speed", 0.55);
 
     // if (ultraSensor.itemDetected()){
     //   oi.magazine.end();
@@ -77,5 +80,10 @@ public class Robot extends TimedRobot {
   }
 
   @Override
-  public void teleopPeriodic() {}
+  public void teleopPeriodic() {
+    SmartDashboard.putNumber("RV Climber Position", OI.climberRV.getPosition());
+    SmartDashboard.putNumber("LV Climber Position", OI.climberLV.getPosition());
+    SmartDashboard.putNumber("RD Climber Position", OI.climberRD.getPosition());
+    SmartDashboard.putNumber("RL Climber Position", OI.climberLD.getPosition());
+  }
 }

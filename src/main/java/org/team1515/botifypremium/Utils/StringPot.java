@@ -2,6 +2,8 @@ package org.team1515.botifypremium.Utils;
 
 import edu.wpi.first.wpilibj.AnalogInput;
 
+import org.team1515.botifypremium.RobotMap;
+
 public class StringPot {
 
     private final double cenConversion = 56.6929;

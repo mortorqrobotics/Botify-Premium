@@ -4,30 +4,34 @@ import org.team1515.botifypremium.Robot;
 import org.team1515.botifypremium.RobotMap;
 import org.team1515.botifypremium.Utils.ShooterDist;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
+
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.TalonFXFeedbackDevice;
 
-public class Shooter {
+public class Shooter extends SubsystemBase {
     private TalonFX m_shoot;
+    public static double speed = 0.55;
 
     public Shooter() {
         m_shoot = new TalonFX(RobotMap.SHOOTER_ID);
         m_shoot.configFactoryDefault();
-        // m_shoot.configNeutralDeadband(0.001);
-        // m_shoot.configSelectedFeedbackSensor(TalonFXFeedbackDevice.IntegratedSensor,
-        //         PIDMap.kPIDLoopIdx,
-        //         PIDMap.kTimeoutMs);
+        m_shoot.configNeutralDeadband(0.001);
+        m_shoot.configSelectedFeedbackSensor(TalonFXFeedbackDevice.IntegratedSensor,
+                PIDMap.kPIDLoopIdx,
+                PIDMap.kTimeoutMs);
 
-        // m_shoot.configNominalOutputForward(0, PIDMap.kTimeoutMs);
-        // m_shoot.configNominalOutputReverse(0, PIDMap.kTimeoutMs);
-        // m_shoot.configPeakOutputForward(1, PIDMap.kTimeoutMs);
-        // m_shoot.configPeakOutputReverse(-1, PIDMap.kTimeoutMs);
+        m_shoot.configNominalOutputForward(0, PIDMap.kTimeoutMs);
+        m_shoot.configNominalOutputReverse(0, PIDMap.kTimeoutMs);
+        m_shoot.configPeakOutputForward(1, PIDMap.kTimeoutMs);
+        m_shoot.configPeakOutputReverse(-1, PIDMap.kTimeoutMs);
 
-        // m_shoot.config_kF(PIDMap.kPIDLoopIdx, PIDMap.kF, PIDMap.kTimeoutMs);
-        // m_shoot.config_kP(PIDMap.kPIDLoopIdx, PIDMap.kP, PIDMap.kTimeoutMs);
-        // m_shoot.config_kI(PIDMap.kPIDLoopIdx, PIDMap.kI, PIDMap.kTimeoutMs);
-        // m_shoot.config_kD(PIDMap.kPIDLoopIdx, PIDMap.kD, PIDMap.kTimeoutMs);
+        m_shoot.config_kF(PIDMap.kPIDLoopIdx, PIDMap.kF, PIDMap.kTimeoutMs);
+        m_shoot.config_kP(PIDMap.kPIDLoopIdx, PIDMap.kP, PIDMap.kTimeoutMs);
+        m_shoot.config_kI(PIDMap.kPIDLoopIdx, PIDMap.kI, PIDMap.kTimeoutMs);
+        m_shoot.config_kD(PIDMap.kPIDLoopIdx, PIDMap.kD, PIDMap.kTimeoutMs);
     }
 
     public void shoot() {
@@ -37,7 +41,13 @@ public class Shooter {
         // // u_speed converts from RPM to raw falcon sensor units
         // double u_speed = speed * (RobotMap.FALCON_SENSOR_UNITS / 600.0);
         // m_shoot.set(ControlMode.Velocity, u_speed);
-        m_shoot.set(ControlMode.PercentOutput, 0.55);
+        SmartDashboard.putNumber("shooter velocity", m_shoot.getSelectedSensorVelocity());
+        // m_shoot.set(ControlMode.PercentOutput, speed);
+
+        //12ft : 10600
+        //10ft : 
+        //8ft : 
+        m_shoot.set(ControlMode.Velocity, 10600);
     }
 
     /**
@@ -59,11 +69,11 @@ public class Shooter {
 }
 
 class PIDMap {
-    public static double kP = 0.1;
-    public static double kI = 0.001;
-    public static double kD = 5;
-    public static double kF = 1023.0 / 20660.0;
-    public static double iZone = 300;
+    public static double kP = 0.27;
+    public static double kI = 0;
+    public static double kD = 0;
+    public static double kF = 0.0506; // Use exact values later
+    public static double iZone = 0;
     public static double peakOutput = 1.00;
 
     public static final int kPIDLoopIdx = 0;
