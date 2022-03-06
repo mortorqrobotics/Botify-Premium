@@ -57,7 +57,7 @@ public class Climber extends SubsystemBase {
     }
     public void reset(){
         while (stringPot.getDist() > minDist){
-        m_climber.set(-c_speed);
+        m_climber.set(-c_speed * direction);
         }
     }
 
