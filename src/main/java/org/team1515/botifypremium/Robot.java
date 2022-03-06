@@ -77,5 +77,10 @@ public class Robot extends TimedRobot {
   }
 
   @Override
-  public void teleopPeriodic() {}
+  public void teleopPeriodic() {
+    SmartDashboard.putNumber("RV Climber Position", OI.climberRV.getPosition());
+    SmartDashboard.putNumber("LV Climber Position", OI.climberLV.getPosition());
+    SmartDashboard.putNumber("RD Climber Position", OI.climberRD.getPosition());
+    SmartDashboard.putNumber("RL Climber Position", OI.climberLD.getPosition());
+  }
 }

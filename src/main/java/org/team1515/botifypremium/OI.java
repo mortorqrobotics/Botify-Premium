@@ -47,9 +47,9 @@ public class OI {
         mainStick = new XboxController(0);
         secondStick = new XboxController(1);
         shooter = new Shooter();
-        climberRV = new Climber(RobotMap.RIGHT_VERTICAL_CLIMBER_ID, RobotMap.STRING_RV);
+        //climberRV = new Climber(RobotMap.RIGHT_VERTICAL_CLIMBER_ID, RobotMap.STRING_RV);
         climberLV = new Climber(RobotMap.LEFT_VERTICAL_CLIMBER_ID, RobotMap.STRING_LV);
-        climberRD = new Climber(RobotMap.RIGHT_DIAGONAL_CLIMBER_ID, RobotMap.STRING_RD);
+        //climberRD = new Climber(RobotMap.RIGHT_DIAGONAL_CLIMBER_ID, RobotMap.STRING_RD);
         climberLD = new Climber(RobotMap.LEFT_DIAGONAL_CLIMBER_ID, RobotMap.STRING_LD);
 
 
@@ -85,7 +85,7 @@ public class OI {
         Controls.ROBOT_ALIGN.whenPressed(new AutoAlign(drivetrain, Robot.limelight));
         Controls.DRIVE_DIST.whenPressed(new DriveDist(drivetrain, 2.0, 0));
         // Controls.ALIGN_TO_POINT.whenPressed(new RotateToPoint(drivetrain, new Pose2d(1, 1, new Rotation2d(0))));
-        Controls.ALIGN_TO_POINT.whenPressed(new AutoCommand(drivetrain, intake, magazine, shooter));
+        // Controls.ALIGN_TO_POINT.whenPressed(new AutoCommand(drivetrain, intake, magazine, shooter));
         // Back button zeros the gyroscope
         Controls.RESETGYRO.whenPressed(drivetrain::zeroGyroscope); // No requirements because we don't need to interrupt anything
             
