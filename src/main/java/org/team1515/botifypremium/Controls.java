@@ -4,8 +4,8 @@ import edu.wpi.first.wpilibj2.command.button.Button;
 
 public class Controls {
     public static final Button SHOOT = new Button(OI.secondStick::getXButton);
-    // public static final Button CLIMB = new Button(Controls::getRightTrigger);
-    // public static final Button RETRACT = new Button(Controls::getLeftTrigger);
+    public static final Button CLIMB = new Button(Controls::getRightTrigger);
+    public static final Button RETRACT = new Button(Controls::getLeftTrigger);
     public static final Button OUTAKE = new Button(OI.secondStick::getLeftBumper);
     public static final Button INTAKE = new Button(OI.secondStick::getRightBumper);
     public static final Button MAGUP = new Button(OI.secondStick::getAButton);

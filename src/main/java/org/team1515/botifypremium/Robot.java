@@ -7,6 +7,7 @@ package org.team1515.botifypremium;
 import org.team1515.botifypremium.Utils.Limelight;
 import org.team1515.botifypremium.Utils.UltraSensor;
 import org.team1515.botifypremium.Subsystems.Climber;
+import org.team1515.botifypremium.Subsystems.Shooter;
 
 import edu.wpi.first.wpilibj.PowerDistribution;
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -45,12 +46,14 @@ public class Robot extends TimedRobot {
     PDH = new PowerDistribution(1, ModuleType.kRev);
 
     PDH.clearStickyFaults();
+    SmartDashboard.putNumber("shooter speed", 0.55);
   }
 
   @Override
   public void robotPeriodic() {
     CommandScheduler.getInstance().run();
-    SmartDashboard.putNumber("distance to target", limelight.getDistance());
+    SmartDashboard.putNumber("distance to target in in", limelight.getDistance());
+    Shooter.speed = SmartDashboard.getNumber("shooter speed", 0.55);
 
     // if (ultraSensor.itemDetected()){
     //   oi.magazine.end();

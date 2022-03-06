@@ -20,6 +20,7 @@ public class Climber extends SubsystemBase {
 
     private int climberID;
     private int stringPotID;
+    private int direction;
 
     public final double maxDist = 68.58; //27 inches, max extension of climber
     public final double minDist = 5.00;
@@ -27,9 +28,10 @@ public class Climber extends SubsystemBase {
     public double kP, kI, kD, kIz, kFF, kMaxOutput, kMinOutput, allowedErr;
     private double setPoint, processVariable;
 
-    public Climber(int climberID, int stringPotID) {
+    public Climber(int climberID, int stringPotID, int direction) {
         this.climberID = climberID;
         this.stringPotID = stringPotID;
+        this.direction = direction;
 
         m_climber = new CANSparkMax(climberID, MotorType.kBrushless);
         m_climber.restoreFactoryDefaults();
