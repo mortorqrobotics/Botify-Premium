@@ -4,6 +4,7 @@ public class RobotMap {
 
     // Conversion factors
     public final static double INCHES_TO_METERS = 0.0254;
+    public final static double METERS_TO_INCHES = 1.0/0.0254;
     public final static double FALCON_SENSOR_UNITS = 4096.0;
     
     // Shooter

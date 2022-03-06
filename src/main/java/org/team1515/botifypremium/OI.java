@@ -74,10 +74,10 @@ public class OI {
 
     private void configureButtons() {
         Controls.SHOOT.whileHeld(new Shoot(shooter));
-        Controls.EXPANDV.whileHeld(new Expand(climberRV, climberLV));
-        Controls.RETRACTV.whileHeld(new Retract(climberRV, climberLV));
-        Controls.EXPANDD.whileHeld(new Expand(climberLD, climberRD));
-        Controls.RETRACTD.whileHeld(new Retract(climberLD, climberRD));
+        Controls.EXPAND_VERTICAL.whileHeld(new Expand(climberRV, climberLV));
+        Controls.RETRACT_VERTICAL.whileHeld(new Retract(climberRV, climberLV));
+        // Controls.EXPAND_DIAGONAL.whileHeld(new Expand(climberLD, climberRD));
+        // Controls.RETRACT_DIAGONAL.whileHeld(new Retract(climberLD, climberRD));
         Controls.INTAKE.whileHeld(new Intake(intake));
         Controls.OUTAKE.whileHeld(new Outtake(intake));
         Controls.MAGUP.whileHeld(new MagUp(magazine));

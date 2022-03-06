@@ -37,11 +37,16 @@ public class DriveDist extends CommandBase {
         double xSpeed = Math.cos(angle) * maxSpeed;
 
         distanceTraveled();
-        ChassisSpeeds speeds = ChassisSpeeds.fromFieldRelativeSpeeds(
-                ySpeed,
-                xSpeed,
+        // ChassisSpeeds speeds = ChassisSpeeds.fromFieldRelativeSpeeds(
+        //         ySpeed,
+        //         xSpeed,
+        //         0.0,
+        //         OI.gyro.getGyroscopeRotation());
+        ChassisSpeeds speeds = new ChassisSpeeds(
+                -maxSpeed,
                 0.0,
-                OI.gyro.getGyroscopeRotation());
+                0.0
+        );
         m_drivetrainSubsystem.drive(speeds);
     }
 

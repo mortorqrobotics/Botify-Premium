@@ -26,7 +26,8 @@ public class Climber extends SubsystemBase {
     public final double minDist = 5.00;
     private final double c_speed = 0.25;
     public double kP, kI, kD, kIz, kFF, kMaxOutput, kMinOutput, allowedErr;
-    private double setPoint, processVariable;
+    private double setPoint = 0;
+    private double processVariable;
 
     public Climber(int climberID, int stringPotID, int direction) {
         this.climberID = climberID;
@@ -39,9 +40,8 @@ public class Climber extends SubsystemBase {
 
         m_encoder = m_climber.getEncoder();
    
-        stringPot = new StringPot(stringPotID);
-
-        reset();
+        // stringPot = new StringPot(stringPotID);
+        // reset();
 
         m_encoder.setPosition(0);
 
@@ -55,27 +55,33 @@ public class Climber extends SubsystemBase {
 
         setPID();
     }
+
     public void reset(){
         while (stringPot.getDist() > minDist){
-        m_climber.set(-c_speed * direction);
+            m_climber.set(-c_speed * direction);
         }
     }
 
     public void expand() {
-        m_pidController.setReference(setPoint, CANSparkMax.ControlType.kSmartMotion);
+        setPoint += 0.05;
         processVariable = m_encoder.getPosition();    
     }
 
-    public void retract(){
-        m_pidController.setReference(setPoint, CANSparkMax.ControlType.kSmartMotion);
+    public void retract() {
+        setPoint -= 0.05;
         processVariable = m_encoder.getPosition();    
+    }
+
+    public void climberPeriodic() {
+        m_pidController.setReference(setPoint, CANSparkMax.ControlType.kPosition);
+        processVariable = m_encoder.getPosition(); 
     }
 
     public void end() {
         m_climber.set(0);
     }
 
-    public void setPID(){
+    public void setPID() {
         m_pidController.setP(kP);
         m_pidController.setI(kI);
         m_pidController.setD(kD);
@@ -84,7 +90,7 @@ public class Climber extends SubsystemBase {
         m_pidController.setOutputRange(kMinOutput, kMaxOutput);
     }
 
-    public double getPosition(){
+    public double getPosition() {
         return processVariable;
     }
 }

@@ -53,7 +53,6 @@ public class Robot extends TimedRobot {
   public void robotPeriodic() {
     CommandScheduler.getInstance().run();
     SmartDashboard.putNumber("distance to target in in", limelight.getDistance());
-    Shooter.speed = SmartDashboard.getNumber("shooter speed", 0.55);
 
     // if (ultraSensor.itemDetected()){
     //   oi.magazine.end();
@@ -77,6 +76,11 @@ public class Robot extends TimedRobot {
     if (autoCommand != null) {
       autoCommand.cancel();
     }
+
+    OI.climberLV.climberPeriodic();
+    OI.climberRV.climberPeriodic();
+    // OI.climberLD.climberPeriodic();
+    // OI.climberRD.climberPeriodic();
   }
 
   @Override
