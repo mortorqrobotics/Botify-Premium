@@ -45,8 +45,8 @@ public class Climber extends SubsystemBase {
 
         m_encoder.setPosition(0);
 
-        kP = 0; 
-        kI = 0;
+        kP = 0.06; 
+        kI = 0.0003;
         kD = 0; 
         kIz = 0; 
         kFF = 0; 
