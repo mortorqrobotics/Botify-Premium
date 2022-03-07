@@ -36,8 +36,8 @@ public class OI {
     public static Shooter shooter;
     public static Climber climberRV;
     public static Climber climberLV;
-    public static Climber climberRD;
-    public static Climber climberLD;
+    // public static Climber climberRD;
+    // public static Climber climberLD;
     public static Intaker intake;
     public static Magazine magazine;
     public static Gyroscope gyro;
@@ -50,8 +50,8 @@ public class OI {
 
         climberRV = new Climber(RobotMap.RIGHT_VERTICAL_CLIMBER_ID, RobotMap.STRING_RV, 1);
         climberLV = new Climber(RobotMap.LEFT_VERTICAL_CLIMBER_ID, RobotMap.STRING_LV, -1);
-        climberRD = new Climber(RobotMap.RIGHT_DIAGONAL_CLIMBER_ID, RobotMap.STRING_RD, 1);
-        climberLD = new Climber(RobotMap.LEFT_DIAGONAL_CLIMBER_ID, RobotMap.STRING_LD, -1);
+        // climberRD = new Climber(RobotMap.RIGHT_DIAGONAL_CLIMBER_ID, RobotMap.STRING_RD, 1);
+        // climberLD = new Climber(RobotMap.LEFT_DIAGONAL_CLIMBER_ID, RobotMap.STRING_LD, -1);
 
 
         intake = new Intaker();
@@ -84,7 +84,7 @@ public class OI {
         Controls.MAGDOWN.whileHeld(new MagDown(magazine));
 
         Controls.ROBOT_ALIGN.whenPressed(new AutoAlign(drivetrain, Robot.limelight));
-        Controls.DRIVE_DIST.whenPressed(new DriveDist(drivetrain, 2.0, 0));
+        // Controls.DRIVE_DIST.whenPressed(new DriveDist(drivetrain, 2.0, 0));
         // Controls.ALIGN_TO_POINT.whenPressed(new RotateToPoint(drivetrain, new Pose2d(1, 1, new Rotation2d(0))));
         // Controls.ALIGN_TO_POINT.whenPressed(new AutoCommand(drivetrain, intake, magazine, shooter));
         // Back button zeros the gyroscope

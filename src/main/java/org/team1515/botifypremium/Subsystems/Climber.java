@@ -3,6 +3,7 @@ package org.team1515.botifypremium.Subsystems;
 import org.team1515.botifypremium.RobotMap;
 import org.team1515.botifypremium.Utils.StringPot;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import com.revrobotics.CANSparkMax;
@@ -27,7 +28,7 @@ public class Climber extends SubsystemBase {
     private final double c_speed = 0.25;
     public double kP, kI, kD, kIz, kFF, kMaxOutput, kMinOutput, allowedErr;
     private double setPoint = 0;
-    private double processVariable;
+    private double processVariable = 0;
 
     public Climber(int climberID, int stringPotID, int direction) {
         this.climberID = climberID;
@@ -39,19 +40,20 @@ public class Climber extends SubsystemBase {
         m_climber.setIdleMode(IdleMode.kBrake);
 
         m_encoder = m_climber.getEncoder();
+        m_pidController = m_climber.getPIDController();
    
         // stringPot = new StringPot(stringPotID);
         // reset();
 
         m_encoder.setPosition(0);
 
-        kP = 0.06; 
-        kI = 0.0003;
-        kD = 0; 
-        kIz = 0; 
-        kFF = 0; 
-        kMaxOutput = 1; 
-        kMinOutput = -1;
+        this.kP = 0.06; 
+        this.kI = 0.0003;
+        this.kD = 0; 
+        this.kIz = 0; 
+        this.kFF = 0; 
+        this.kMaxOutput = 1; 
+        this.kMinOutput = -1;
 
         setPID();
     }
@@ -63,31 +65,25 @@ public class Climber extends SubsystemBase {
     }
 
     public void expand() {
-        setPoint += 0.05;
-        processVariable = m_encoder.getPosition();    
+        setPoint += 0.2;
     }
 
     public void retract() {
-        setPoint -= 0.05;
-        processVariable = m_encoder.getPosition();    
+        setPoint -= 0.2;
     }
 
     public void climberPeriodic() {
-        m_pidController.setReference(setPoint, CANSparkMax.ControlType.kPosition);
+        m_pidController.setReference(setPoint * direction, CANSparkMax.ControlType.kPosition);
         processVariable = m_encoder.getPosition(); 
     }
 
-    public void end() {
-        m_climber.set(0);
-    }
-
     public void setPID() {
-        m_pidController.setP(kP);
-        m_pidController.setI(kI);
-        m_pidController.setD(kD);
-        m_pidController.setIZone(kIz);
-        m_pidController.setFF(kFF);
-        m_pidController.setOutputRange(kMinOutput, kMaxOutput);
+        m_pidController.setP(this.kP);
+        m_pidController.setI(this.kI);
+        m_pidController.setD(this.kD);
+        m_pidController.setIZone(this.kIz);
+        m_pidController.setFF(this.kFF);
+        m_pidController.setOutputRange(this.kMinOutput, this.kMaxOutput);
     }
 
     public double getPosition() {
