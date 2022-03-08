@@ -37,9 +37,9 @@ public class DefaultDriveCommand extends CommandBase {
         if(m_isRobotOriented.getAsBoolean()) {
             m_drivetrainSubsystem.drive(
                 new ChassisSpeeds(
-                    m_translationXSupplier.getAsDouble(),
-                     m_translationXSupplier.getAsDouble(), 
-                     m_rotationSupplier.getAsDouble()
+                    -m_translationXSupplier.getAsDouble(),
+                    -m_translationYSupplier.getAsDouble(), 
+                    m_rotationSupplier.getAsDouble()
                 )
             );
         } else {
