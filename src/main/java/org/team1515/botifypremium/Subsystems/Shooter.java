@@ -47,7 +47,10 @@ public class Shooter extends SubsystemBase {
         //12ft : 10600
         //10ft : 
         //8ft : 
-        m_shoot.set(ControlMode.Velocity, 10600);
+        // m_shoot.set(ControlMode.Velocity, 10600);
+
+        double speed = SmartDashboard.getNumber("shooter speed", 10600);
+        m_shoot.set(ControlMode.Velocity, speed);
     }
 
     /**

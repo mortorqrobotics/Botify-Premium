@@ -50,7 +50,7 @@ public class Robot extends TimedRobot {
     PDH.clearStickyFaults();
     
     oi = new OI();
-    SmartDashboard.putNumber("shooter speed", 0.55);
+    SmartDashboard.putNumber("shooter speed", 10600);
     camera = CameraServer.startAutomaticCapture();
   }
 
