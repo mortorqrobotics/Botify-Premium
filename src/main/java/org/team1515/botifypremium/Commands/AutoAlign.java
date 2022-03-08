@@ -19,7 +19,7 @@ public class AutoAlign extends CommandBase {
         this.m_drivetrainSubsystem = drivetrainSubsystem;
         this.m_limelight = limelight;
 
-        angleController = new PIDController(3, 5, 0);
+        angleController = new PIDController(5, 8, 0);
         angleController.setTolerance(0.05);
         angleController.enableContinuousInput(-Math.PI, Math.PI);
         angleController.setSetpoint(0.0);
@@ -30,6 +30,7 @@ public class AutoAlign extends CommandBase {
     @Override
     public void execute() {
         double error = Math.toRadians(Robot.limelight.getTX());
+        // System.out.println(error);
         if (error == 0)
             this.end(true);
         double speed = MathUtil.clamp(angleController.calculate(error, 0.0), -maxSpeed, maxSpeed);
@@ -40,6 +41,11 @@ public class AutoAlign extends CommandBase {
 
     @Override
     public boolean isFinished() {
-        return angleController.atSetpoint();
+        if(angleController.atSetpoint()) {
+            System.out.println(angleController.getPositionError());
+            return true;
+        }
+        return false;
+        // return angleControler.atSetpoint();
     }
 }

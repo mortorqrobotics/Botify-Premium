@@ -12,9 +12,9 @@ public class RobotMap {
 
     // Climber
     public final static int RIGHT_VERTICAL_CLIMBER_ID = 31;
-    public final static int RIGHT_DIAGONAL_CLIMBER_ID = 32;
+    // public final static int RIGHT_DIAGONAL_CLIMBER_ID = 32;
     public final static int LEFT_VERTICAL_CLIMBER_ID = 33;
-    public final static int LEFT_DIAGONAL_CLIMBER_ID = 34;
+    // public final static int LEFT_DIAGONAL_CLIMBER_ID = 34;
 
     public final static int STRING_RV = 0;
     public final static int STRING_LV = 1;

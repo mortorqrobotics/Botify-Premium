@@ -29,11 +29,17 @@ public class AutoShoot extends CommandBase {
 
     @Override
     public void execute() { 
-        if(timer.hasElapsed(5)) {
+        if(timer.hasElapsed(2)) {
             m_magazine.goUp();
         }
 
         m_shooter.shoot();
+    }
+
+    @Override
+    public void end(boolean interrupted) {
+        m_shooter.end();
+        m_magazine.end();
     }
 
     @Override

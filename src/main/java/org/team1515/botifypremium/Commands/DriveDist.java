@@ -6,6 +6,7 @@ import org.team1515.botifypremium.Subsystems.Drivetrain;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class DriveDist extends CommandBase {
@@ -22,6 +23,7 @@ public class DriveDist extends CommandBase {
         this.targetDist = targetDist;
         this.angle = Math.toRadians(angle);
 
+        SmartDashboard.putNumber("target dist", targetDist);
         addRequirements(drivetrainSubsystem);
     }
 
@@ -43,11 +45,16 @@ public class DriveDist extends CommandBase {
         //         0.0,
         //         OI.gyro.getGyroscopeRotation());
         ChassisSpeeds speeds = new ChassisSpeeds(
-                -maxSpeed,
+                maxSpeed,
                 0.0,
                 0.0
         );
         m_drivetrainSubsystem.drive(speeds);
+    }
+
+    @Override
+    public void end(boolean interrupted) {
+        m_drivetrainSubsystem.drive(new ChassisSpeeds(0.0, 0.0, 0.0));
     }
 
     /**
@@ -62,6 +69,7 @@ public class DriveDist extends CommandBase {
 
     @Override
     public boolean isFinished() {
+        System.out.println(distTraveled);
         return distTraveled >= targetDist;
     }
 }

@@ -6,9 +6,12 @@ package org.team1515.botifypremium;
 
 import org.team1515.botifypremium.Utils.Limelight;
 import org.team1515.botifypremium.Utils.UltraSensor;
+import org.team1515.botifypremium.Utils.Utilities;
 import org.team1515.botifypremium.Subsystems.Climber;
 import org.team1515.botifypremium.Subsystems.Shooter;
 
+import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.PowerDistribution;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.PowerDistribution.ModuleType;
@@ -32,6 +35,7 @@ public class Robot extends TimedRobot {
   public static Limelight limelight;
   public static OI oi;
   public static PowerDistribution PDH;
+  public static UsbCamera camera;
 
   private UltraSensor ultraSensor;
 
@@ -47,12 +51,14 @@ public class Robot extends TimedRobot {
     
     oi = new OI();
     SmartDashboard.putNumber("shooter speed", 0.55);
+    camera = CameraServer.startAutomaticCapture();
   }
 
   @Override
   public void robotPeriodic() {
     CommandScheduler.getInstance().run();
-    SmartDashboard.putNumber("distance to target in in", limelight.getDistance());
+    SmartDashboard.putNumber("distance to target (in)", limelight.getDistance());
+    SmartDashboard.putBoolean("Is at shooting distance?", Utilities.deadband(144 - limelight.getDistance(), 5) == 0);
 
     // if (ultraSensor.itemDetected()){
     //   oi.magazine.end();

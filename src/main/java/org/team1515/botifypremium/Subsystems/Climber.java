@@ -58,11 +58,11 @@ public class Climber extends SubsystemBase {
         setPID();
     }
 
-    public void reset(){
-        while (stringPot.getDist() > minDist){
-            m_climber.set(-c_speed * direction);
-        }
-    }
+    // public void reset(){
+    //     while (stringPot.getDist() > minDist){
+    //         m_climber.set(-c_speed * direction);
+    //     }
+    // }
 
     public void expand() {
         setPoint += 0.2;
