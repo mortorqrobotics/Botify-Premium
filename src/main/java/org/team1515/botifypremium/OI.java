@@ -62,7 +62,8 @@ public class OI {
             drivetrain,
             () -> -modifyAxis(mainStick.getLeftY() * .7) * Drivetrain.MAX_VELOCITY_METERS_PER_SECOND,
             () -> -modifyAxis(mainStick.getLeftX() * .7) * Drivetrain.MAX_VELOCITY_METERS_PER_SECOND,
-            () -> -modifyAxis(mainStick.getRightX() * .7) * Drivetrain.MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND
+            () -> -modifyAxis(mainStick.getRightX() * .7) * Drivetrain.MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND,
+            Controls.DRIVE_ROBOT_ORIENTED
         ));
 
         configureButtons();
@@ -89,7 +90,6 @@ public class OI {
         // Controls.ALIGN_TO_POINT.whenPressed(new AutoCommand(drivetrain, intake, magazine, shooter));
         // Back button zeros the gyroscope
         Controls.RESETGYRO.whenPressed(drivetrain::zeroGyroscope); // No requirements because we don't need to interrupt anything
-            
     }
 
     private static double modifyAxis(double value) {

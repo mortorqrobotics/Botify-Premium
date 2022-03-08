@@ -20,7 +20,7 @@ public class AutoAlign extends CommandBase {
         this.m_limelight = limelight;
 
         angleController = new PIDController(5, 8, 0);
-        angleController.setTolerance(0.05);
+        angleController.setTolerance(0.01);
         angleController.enableContinuousInput(-Math.PI, Math.PI);
         angleController.setSetpoint(0.0);
 
@@ -41,13 +41,6 @@ public class AutoAlign extends CommandBase {
 
     @Override
     public boolean isFinished() {
-        // if(angleController.atSetpoint()) {
-        //    System.out.println(angleController.getPositionError());
-        //    return true;
-        // }
-        
-        return MathUtil.applyDeadband(Robot.limelight.getTX(), 0.05) == 0;
-        //return false;
-        // return angleControler.atSetpoint();
+        return angleController.atSetpoint();
     }
 }

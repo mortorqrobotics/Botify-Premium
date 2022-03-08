@@ -69,7 +69,6 @@ public class DriveDist extends CommandBase {
 
     @Override
     public boolean isFinished() {
-        System.out.println(distTraveled);
         return distTraveled >= targetDist;
     }
 }
