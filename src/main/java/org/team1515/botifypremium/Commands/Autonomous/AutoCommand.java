@@ -15,7 +15,7 @@ public class AutoCommand extends SequentialCommandGroup {
     public AutoCommand(Drivetrain drivetrain, Intaker intake, Magazine magazine, Shooter shooter) {
         addCommands(
             new DriveDist(drivetrain, (12.25 * 12 * RobotMap.INCHES_TO_METERS) - 1.25),
-            new AutoAlign(drivetrain, Robot.limelight),
+            // new AutoAlign(drivetrain, Robot.limelight),
             new AutoShoot(shooter, magazine, 5)
         );
     }
