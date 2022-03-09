@@ -2,6 +2,7 @@ package org.team1515.botifypremium.Commands;
 
 import org.team1515.botifypremium.OI;
 import org.team1515.botifypremium.Subsystems.Drivetrain;
+import org.team1515.botifypremium.Utils.Utilities;
 
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
@@ -17,6 +18,7 @@ public class DriveDist extends CommandBase {
 
     private double distTraveled = 0.0;
     private double maxSpeed = 0.15 * Drivetrain.MAX_VELOCITY_METERS_PER_SECOND;
+    private Rotation2d startGyroAngle;
 
     public DriveDist(Drivetrain drivetrainSubsystem, double targetDist/*, double angle*/) {
         this.m_drivetrainSubsystem = drivetrainSubsystem;
@@ -31,6 +33,7 @@ public class DriveDist extends CommandBase {
     public void initialize() {
         this.lastTime = System.currentTimeMillis();
         this.distTraveled = 0.0;
+        this.startGyroAngle = OI.gyro.getGyroscopeRotation();
     }
 
     @Override
@@ -47,7 +50,7 @@ public class DriveDist extends CommandBase {
         ChassisSpeeds speeds = new ChassisSpeeds(
                 maxSpeed,
                 0.0,
-                0.0
+                Utilities.deadband(startGyroAngle.minus(OI.gyro.getGyroscopeRotation()).getRadians(), 0.01)
         );
         m_drivetrainSubsystem.drive(speeds);
     }

@@ -19,8 +19,8 @@ public class AutoAlign extends CommandBase {
         this.m_drivetrainSubsystem = drivetrainSubsystem;
         this.m_limelight = limelight;
 
-        angleController = new PIDController(5, 8, 0);
-        angleController.setTolerance(0.01);
+        angleController = new PIDController(5, 6.5, 0);
+        angleController.setTolerance(0.025);
         angleController.enableContinuousInput(-Math.PI, Math.PI);
         angleController.setSetpoint(0.0);
 
