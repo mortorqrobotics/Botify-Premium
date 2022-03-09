@@ -75,10 +75,13 @@ public class Robot extends TimedRobot {
   }
 
   @Override
-  public void autonomousPeriodic() {}
+  public void autonomousPeriodic() {
+    OI.intake.startIntake();
+  }
 
   @Override
   public void teleopInit() {
+    OI.intake.end();
     if (autoCommand != null) {
       autoCommand.cancel();
     }

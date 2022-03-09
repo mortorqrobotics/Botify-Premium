@@ -55,7 +55,7 @@ public class Limelight {
      */
     public double getDistance() {
         double deltaHeight = RobotMap.HEIGHT_OF_TARGET - RobotMap.HEIGHT_OF_LIMELIGHT;
-        return deltaHeight / Math.tan(Math.toRadians(getTY() + RobotMap.ANGLE_OF_LIMELIGHT));
+        return (deltaHeight / Math.tan(Math.toRadians(getTY() + RobotMap.ANGLE_OF_LIMELIGHT))) + RobotMap.DISTANCE_OFFSET;
     }
 
     public void setPipeline(int pipeline) {

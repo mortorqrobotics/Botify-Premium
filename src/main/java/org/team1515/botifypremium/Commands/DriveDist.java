@@ -16,9 +16,9 @@ public class DriveDist extends CommandBase {
     private double lastTime;
 
     private double distTraveled = 0.0;
-    private double maxSpeed = 0.2 * Drivetrain.MAX_VELOCITY_METERS_PER_SECOND;
+    private double maxSpeed = 0.15 * Drivetrain.MAX_VELOCITY_METERS_PER_SECOND;
 
-    public DriveDist(Drivetrain drivetrainSubsystem, double targetDist, double angle) {
+    public DriveDist(Drivetrain drivetrainSubsystem, double targetDist/*, double angle*/) {
         this.m_drivetrainSubsystem = drivetrainSubsystem;
         this.targetDist = targetDist;
         this.angle = Math.toRadians(angle);
@@ -35,8 +35,8 @@ public class DriveDist extends CommandBase {
 
     @Override
     public void execute() {
-        double ySpeed = Math.sin(angle) * maxSpeed;
-        double xSpeed = Math.cos(angle) * maxSpeed;
+        // double ySpeed = Math.sin(angle) * maxSpeed;
+        // double xSpeed = Math.cos(angle) * maxSpeed;
 
         distanceTraveled();
         // ChassisSpeeds speeds = ChassisSpeeds.fromFieldRelativeSpeeds(
