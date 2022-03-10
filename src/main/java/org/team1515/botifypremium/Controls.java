@@ -19,6 +19,10 @@ public class Controls {
     public static final Button ROBOT_ALIGN = new Button(OI.mainStick::getStartButton);
     public static final Button EXPAND_VERTICAL = new Button(OI.mainStick::getRightBumper);
     public static final Button RETRACT_VERTICAL = new Button(Controls::getRightTrigger);
+    public static final Button EXPAND_VERTICAL_L = new Button(OI.mainStick::getXButton);
+    public static final Button RETRACT_VERTICAL_L = new Button(OI.mainStick::getAButton);
+    public static final Button EXPAND_VERTICAL_R = new Button(OI.mainStick::getBButton);
+    public static final Button RETRACT_VERTICAL_R = new Button(OI.mainStick::getYButton);
     // public static final Button EXPAND_DIAGONAL = new Button(OI.mainStick::getLeftBumper);
     // public static final Button RETRACT_DIAGONAL = new Button(Controls::getLeftTrigger);
     public static final Button DRIVE_DIST = new Button(OI.mainStick::getAButton);
