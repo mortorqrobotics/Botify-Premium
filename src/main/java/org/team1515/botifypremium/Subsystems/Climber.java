@@ -65,11 +65,11 @@ public class Climber extends SubsystemBase {
     // }
 
     public void expand() {
-        setPoint += 1.2;
+        setPoint += 1.6;
     }
 
     public void retract() {
-        setPoint -= 1.2;
+        setPoint -= 1.6;
     }
 
     public void climberPeriodic() {
