@@ -59,6 +59,8 @@ public class Robot extends TimedRobot {
     CommandScheduler.getInstance().run();
     SmartDashboard.putNumber("distance to target (in)", limelight.getDistance());
     SmartDashboard.putBoolean("Is at shooting distance?", Utilities.deadband(144 - limelight.getDistance(), 5) == 0);
+    //SmartDashboard.putBoolean("Shooting distance", limelight.getDistance() < 144);
+
 
     // if (ultraSensor.itemDetected()){
     //   oi.magazine.end();

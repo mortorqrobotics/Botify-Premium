@@ -62,9 +62,9 @@ public class OI {
         drivetrain = new Drivetrain();
         drivetrain.setDefaultCommand(new DefaultDriveCommand(
             drivetrain,
-            () -> -modifyAxis(mainStick.getLeftY() * .7) * Drivetrain.MAX_VELOCITY_METERS_PER_SECOND,
-            () -> -modifyAxis(mainStick.getLeftX() * .7) * Drivetrain.MAX_VELOCITY_METERS_PER_SECOND,
-            () -> -modifyAxis(mainStick.getRightX() * .7) * Drivetrain.MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND,
+            () -> -modifyAxis(mainStick.getLeftY() * .75) * Drivetrain.MAX_VELOCITY_METERS_PER_SECOND,
+            () -> -modifyAxis(mainStick.getLeftX() * .75) * Drivetrain.MAX_VELOCITY_METERS_PER_SECOND,
+            () -> -modifyAxis(mainStick.getRightX() * .75) * Drivetrain.MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND,
             Controls.DRIVE_ROBOT_ORIENTED
         ));
 
@@ -80,8 +80,8 @@ public class OI {
         Controls.EXPAND_VERTICAL.whileHeld(new Expand(climberRV, climberLV));
         Controls.RETRACT_VERTICAL.whileHeld(new Retract(climberRV, climberLV));
         Controls.EXPAND_VERTICAL_L.whileHeld(new Thing(climberLV, 1));
-        Controls.EXPAND_VERTICAL_R.whileHeld(new Thing(climberLV, -1));
-        Controls.RETRACT_VERTICAL_L.whileHeld(new Thing(climberRV, 1));
+        Controls.EXPAND_VERTICAL_R.whileHeld(new Thing(climberRV, 1));
+        Controls.RETRACT_VERTICAL_L.whileHeld(new Thing(climberLV, -1));
         Controls.RETRACT_VERTICAL_R.whileHeld(new Thing(climberRV, -1));
 
         // Controls.EXPAND_DIAGONAL.whileHeld(new Expand(climberLD, climberRD));
