@@ -72,7 +72,7 @@ public class OI {
     }
 
     public static double getRobotSpeed() {
-        return Controls.getLeftTrigger() ? 0.4 : 0.725;
+        return Controls.getLeftTrigger() ? 0.45 : 0.7;
     } 
 
     public Command getAutoCommand() {
