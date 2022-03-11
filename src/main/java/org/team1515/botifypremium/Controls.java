@@ -31,10 +31,10 @@ public class Controls {
     public static final BooleanSupplier DRIVE_ROBOT_ORIENTED = () -> OI.mainStick.getLeftBumper();
 
     public static boolean getRightTrigger() {
-        return OI.mainStick.getRightTriggerAxis() >= 0.50;
+        return OI.mainStick.getRightTriggerAxis() >= 0.250;
     }
 
     public static boolean getLeftTrigger() {
-        return OI.mainStick.getLeftTriggerAxis() >= 0.50;
+        return OI.mainStick.getLeftTriggerAxis() >= 0.250;
     }
 }

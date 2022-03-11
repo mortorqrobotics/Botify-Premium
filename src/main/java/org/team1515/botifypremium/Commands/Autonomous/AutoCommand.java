@@ -14,9 +14,9 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 public class AutoCommand extends SequentialCommandGroup {
     public AutoCommand(Drivetrain drivetrain, Intaker intake, Magazine magazine, Shooter shooter) {
         addCommands(
-            new DriveDist(drivetrain, (10.0 * 12.0 * RobotMap.INCHES_TO_METERS) - 1.25),
+            new DriveDist(drivetrain, (5.0 * 12.0 * RobotMap.INCHES_TO_METERS) - 1.25),
             new AutoAlign(drivetrain, Robot.limelight),
-            new AutoShoot(shooter, magazine, 5)
+            new AutoShoot(shooter, magazine, 7)
         );
     }
 }
