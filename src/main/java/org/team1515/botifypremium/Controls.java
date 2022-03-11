@@ -38,4 +38,3 @@ public class Controls {
         return OI.mainStick.getLeftTriggerAxis() >= 0.50;
     }
 }
-,

@@ -62,14 +62,18 @@ public class OI {
         drivetrain = new Drivetrain();
         drivetrain.setDefaultCommand(new DefaultDriveCommand(
             drivetrain,
-            () -> -modifyAxis(mainStick.getLeftY() * .725) * Drivetrain.MAX_VELOCITY_METERS_PER_SECOND,
-            () -> -modifyAxis(mainStick.getLeftX() * .725) * Drivetrain.MAX_VELOCITY_METERS_PER_SECOND,
-            () -> -modifyAxis(mainStick.getRightX() * .725) * Drivetrain.MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND,
+            () -> -modifyAxis(mainStick.getLeftY() * getRobotSpeed()) * Drivetrain.MAX_VELOCITY_METERS_PER_SECOND,
+            () -> -modifyAxis(mainStick.getLeftX() * getRobotSpeed()) * Drivetrain.MAX_VELOCITY_METERS_PER_SECOND,
+            () -> -modifyAxis(mainStick.getRightX() * getRobotSpeed()) * Drivetrain.MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND,
             Controls.DRIVE_ROBOT_ORIENTED
         ));
 
         configureButtons();
     }
+
+    public static double getRobotSpeed() {
+        return Controls.getLeftTrigger() ? 0.6 : 0.725;
+    } 
 
     public Command getAutoCommand() {
         return new AutoCommand(drivetrain, intake, magazine, shooter);
