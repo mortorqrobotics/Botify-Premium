@@ -4,11 +4,11 @@ import org.team1515.botifypremium.Subsystems.Climber;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
-public class Thing extends CommandBase {
+public class ManualClimb extends CommandBase {
     Climber climber1;
     int expand;
 
-    public Thing(Climber climber1, int expand) {
+    public ManualClimb(Climber climber1, int expand) {
         this.climber1 = climber1;
         this.expand = expand;
 

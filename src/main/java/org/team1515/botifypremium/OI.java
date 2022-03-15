@@ -10,7 +10,7 @@ import org.team1515.botifypremium.Commands.Shoot;
 import org.team1515.botifypremium.Commands.Autonomous.AutoCommand;
 import org.team1515.botifypremium.Commands.Climber.Expand;
 import org.team1515.botifypremium.Commands.Climber.Retract;
-import org.team1515.botifypremium.Commands.Climber.Thing;
+import org.team1515.botifypremium.Commands.Climber.ManualClimb;
 import org.team1515.botifypremium.Subsystems.Climber;
 import org.team1515.botifypremium.Subsystems.Intaker;
 import org.team1515.botifypremium.Subsystems.Magazine;
@@ -83,10 +83,10 @@ public class OI {
         Controls.SHOOT.whileHeld(new Shoot(shooter));
         Controls.EXPAND_VERTICAL.whileHeld(new Expand(climberRV, climberLV));
         Controls.RETRACT_VERTICAL.whileHeld(new Retract(climberRV, climberLV));
-        Controls.EXPAND_VERTICAL_L.whileHeld(new Thing(climberLV, 1));
-        Controls.EXPAND_VERTICAL_R.whileHeld(new Thing(climberRV, 1));
-        Controls.RETRACT_VERTICAL_L.whileHeld(new Thing(climberLV, -1));
-        Controls.RETRACT_VERTICAL_R.whileHeld(new Thing(climberRV, -1));
+        Controls.EXPAND_VERTICAL_L.whileHeld(new ManualClimb(climberLV, 1));
+        Controls.EXPAND_VERTICAL_R.whileHeld(new ManualClimb(climberRV, 1));
+        Controls.RETRACT_VERTICAL_L.whileHeld(new ManualClimb(climberLV, -1));
+        Controls.RETRACT_VERTICAL_R.whileHeld(new ManualClimb(climberRV, -1));
 
         // Controls.EXPAND_DIAGONAL.whileHeld(new Expand(climberLD, climberRD));
         // Controls.RETRACT_DIAGONAL.whileHeld(new Retract(climberLD, climberRD));
