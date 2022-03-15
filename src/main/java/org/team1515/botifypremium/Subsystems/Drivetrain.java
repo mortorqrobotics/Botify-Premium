@@ -6,6 +6,7 @@
 package org.team1515.botifypremium.Subsystems;
 
 
+import com.swervedrivespecialties.swervelib.Mk4ModuleConfiguration;
 import com.swervedrivespecialties.swervelib.Mk4SwerveModuleHelper;
 import com.swervedrivespecialties.swervelib.SdsModuleConfigurations;
 import com.swervedrivespecialties.swervelib.SwerveModule;
@@ -82,11 +83,15 @@ public class Drivetrain extends SubsystemBase {
     // By default we will use Falcon 500s in standard configuration. But if you use a different configuration or motors
     // you MUST change it. If you do not, your code will crash on startup.
 
+    Mk4ModuleConfiguration currentLimit = new Mk4ModuleConfiguration();
+    currentLimit.setDriveCurrentLimit(80); // TODO update this value
+
     m_frontLeftModule = Mk4SwerveModuleHelper.createFalcon500(
             // This parameter is optional, but will allow you to see the current state of the module on the dashboard.
             tab.getLayout("Front Left Module", BuiltInLayouts.kList)
                     .withSize(2, 4)
                     .withPosition(0, 0),
+            currentLimit,
             // This can either be STANDARD or FAST depending on your gear configuration
             Mk4SwerveModuleHelper.GearRatio.L2,
             // This is the ID of the drive motor
@@ -104,6 +109,7 @@ public class Drivetrain extends SubsystemBase {
             tab.getLayout("Front Right Module", BuiltInLayouts.kList)
                     .withSize(2, 4)
                     .withPosition(2, 0),
+            currentLimit,
             Mk4SwerveModuleHelper.GearRatio.L2,
             RobotMap.FRONT_RIGHT_MODULE_DRIVE_MOTOR,
             RobotMap.FRONT_RIGHT_MODULE_STEER_MOTOR,
@@ -111,10 +117,13 @@ public class Drivetrain extends SubsystemBase {
             RobotMap.FRONT_RIGHT_MODULE_STEER_OFFSET
     );
 
+    
+
     m_backLeftModule = Mk4SwerveModuleHelper.createFalcon500(
             tab.getLayout("Back Left Module", BuiltInLayouts.kList)
                     .withSize(2, 4)
                     .withPosition(4, 0),
+            currentLimit,
             Mk4SwerveModuleHelper.GearRatio.L2,
             RobotMap.BACK_LEFT_MODULE_DRIVE_MOTOR,
             RobotMap.BACK_LEFT_MODULE_STEER_MOTOR,
@@ -126,6 +135,7 @@ public class Drivetrain extends SubsystemBase {
             tab.getLayout("Back Right Module", BuiltInLayouts.kList)
                     .withSize(2, 4)
                     .withPosition(6, 0),
+            currentLimit,
             Mk4SwerveModuleHelper.GearRatio.L2,
             RobotMap.BACK_RIGHT_MODULE_DRIVE_MOTOR,
             RobotMap.BACK_RIGHT_MODULE_STEER_MOTOR,
