@@ -11,8 +11,6 @@ public class Controls {
     public static final Button MAGUP = new Button(OI.secondStick::getAButton);
     public static final Button MAGDOWN = new Button(OI.secondStick::getBButton);
 
-    public static final Button CLIMBR = new Button(OI.mainStick::getRightBumper);
-    public static final Button CLIMBL = new Button(OI.mainStick::getLeftBumper);
     public static final Button ROBOT_ALIGN = new Button(OI.mainStick::getStartButton);
     public static final Button EXPAND_VERTICAL = new Button(OI.mainStick::getRightBumper);
     public static final Button RETRACT_VERTICAL = new Button(Controls::getRightTrigger);
