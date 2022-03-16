@@ -16,8 +16,8 @@
 | ------------- | ------------- |
 | Drive | Left stick |
 | Turn | Right stick |
-| Left Climb | LB |
-| Right Climb | RB |
+| Climb Up | RB |
+| Climb Down | RT |
 | Left Vertical Climb Up | Y |
 | Right Vertical Climb Up | X |
 | Left Vertical Climb Down | B |
