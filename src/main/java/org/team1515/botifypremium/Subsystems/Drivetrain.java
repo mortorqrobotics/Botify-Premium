@@ -84,7 +84,7 @@ public class Drivetrain extends SubsystemBase {
     // you MUST change it. If you do not, your code will crash on startup.
 
     Mk4ModuleConfiguration currentLimit = new Mk4ModuleConfiguration();
-    currentLimit.setDriveCurrentLimit(80); // TODO update this value
+    currentLimit.setDriveCurrentLimit(56); // 56 = 70% power (80 defualt / max)
 
     m_frontLeftModule = Mk4SwerveModuleHelper.createFalcon500(
             // This parameter is optional, but will allow you to see the current state of the module on the dashboard.

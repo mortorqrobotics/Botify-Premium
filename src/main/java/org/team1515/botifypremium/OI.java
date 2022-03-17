@@ -62,8 +62,8 @@ public class OI {
         drivetrain = new Drivetrain();
         drivetrain.setDefaultCommand(new DefaultDriveCommand(
             drivetrain,
-            () -> -modifyAxis(mainStick.getLeftY() * getRobotSpeed()) * Drivetrain.MAX_VELOCITY_METERS_PER_SECOND,
-            () -> -modifyAxis(mainStick.getLeftX() * getRobotSpeed()) * Drivetrain.MAX_VELOCITY_METERS_PER_SECOND,
+            () -> -modifyAxis(-mainStick.getLeftY() * getRobotSpeed()) * Drivetrain.MAX_VELOCITY_METERS_PER_SECOND,
+            () -> -modifyAxis(-mainStick.getLeftX() * getRobotSpeed()) * Drivetrain.MAX_VELOCITY_METERS_PER_SECOND,
             () -> -modifyAxis(mainStick.getRightX() * getRobotSpeed()) * Drivetrain.MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND,
             Controls.DRIVE_ROBOT_ORIENTED
         ));
