@@ -5,6 +5,7 @@ import org.team1515.botifypremium.Commands.Intake;
 import org.team1515.botifypremium.Commands.MagDown;
 import org.team1515.botifypremium.Commands.MagUp;
 import org.team1515.botifypremium.Commands.Outtake;
+import org.team1515.botifypremium.Commands.RotateToAngle;
 import org.team1515.botifypremium.Commands.RotateToPoint;
 import org.team1515.botifypremium.Commands.Shoot;
 import org.team1515.botifypremium.Commands.Autonomous.AutoCommand;
@@ -16,6 +17,8 @@ import org.team1515.botifypremium.Subsystems.Intaker;
 import org.team1515.botifypremium.Subsystems.Magazine;
 
 import java.util.function.BooleanSupplier;
+
+import com.ctre.phoenix.motorcontrol.ControlMode;
 
 import org.team1515.botifypremium.Commands.AutoAlign;
 import org.team1515.botifypremium.Commands.DefaultDriveCommand;
@@ -44,6 +47,7 @@ public class OI {
     public static Magazine magazine;
     public static Gyroscope gyro;
     private final Drivetrain drivetrain;
+    public static double targetAngle = 0;
 
     public OI() {
         mainStick = new XboxController(0);
@@ -96,6 +100,7 @@ public class OI {
         Controls.MAGDOWN.whileHeld(new MagDown(magazine));
 
         Controls.ROBOT_ALIGN.whenPressed(new AutoAlign(drivetrain, Robot.limelight));
+        Controls.ALIGN_TO_ANGLE.whenPressed(new RotateToAngle(drivetrain, targetAngle));
         // Controls.DRIVE_DIST.whenPressed(new DriveDist(drivetrain, 2.0, 0));
         // Controls.ALIGN_TO_POINT.whenPressed(new RotateToPoint(drivetrain, new Pose2d(1, 1, new Rotation2d(0))));
         // Controls.ALIGN_TO_POINT.whenPressed(new AutoCommand(drivetrain, intake, magazine, shooter));

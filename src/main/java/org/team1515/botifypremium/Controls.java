@@ -10,6 +10,7 @@ public class Controls {
     public static final Button INTAKE = new Button(OI.secondStick::getRightBumper);
     public static final Button MAGUP = new Button(OI.secondStick::getAButton);
     public static final Button MAGDOWN = new Button(OI.secondStick::getBButton);
+    public static final Button ALIGN_TO_ANGLE = new Button(OI.secondStick::getYButton);
 
     public static final Button ROBOT_ALIGN = new Button(OI.mainStick::getStartButton);
     public static final Button EXPAND_VERTICAL = new Button(OI.mainStick::getRightBumper);

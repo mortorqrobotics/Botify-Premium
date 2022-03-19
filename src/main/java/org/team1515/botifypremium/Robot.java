@@ -7,6 +7,7 @@ package org.team1515.botifypremium;
 import org.team1515.botifypremium.Utils.Limelight;
 import org.team1515.botifypremium.Utils.UltraSensor;
 import org.team1515.botifypremium.Utils.Utilities;
+import org.team1515.botifypremium.Commands.RotateToAngle;
 import org.team1515.botifypremium.Subsystems.Climber;
 import org.team1515.botifypremium.Subsystems.Shooter;
 
@@ -57,6 +58,8 @@ public class Robot extends TimedRobot {
   @Override
   public void robotPeriodic() {
     CommandScheduler.getInstance().run();
+    SmartDashboard.putNumber("Robot angle", OI.gyro.getGyroscopeRotation().getDegrees());
+    OI.targetAngle = SmartDashboard.getNumber("Robot angle", 0);
     SmartDashboard.putNumber("distance to target (in)", limelight.getDistance());
     SmartDashboard.putBoolean("Is at shooting distance?", Utilities.deadband(144 - limelight.getDistance(), 5) == 0);
     SmartDashboard.putBoolean("Orange : Too close\nWhite: Too far", limelight.getDistance() < 144);
