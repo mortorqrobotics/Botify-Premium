@@ -23,6 +23,10 @@ public class UltraSensor {
     //     }
     //     return false;
     // }
+
+    // public int getDist(){
+    //     return ultraSensor.getValue();
+    // }
     
 }
 
