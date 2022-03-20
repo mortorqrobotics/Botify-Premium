@@ -4,6 +4,7 @@
 
 package org.team1515.botifypremium;
 
+import org.team1515.botifypremium.Utils.BallVision;
 import org.team1515.botifypremium.Utils.Limelight;
 import org.team1515.botifypremium.Utils.UltraSensor;
 import org.team1515.botifypremium.Utils.Utilities;
@@ -32,6 +33,7 @@ public class Robot extends TimedRobot {
 
   public static Climber climber;
   public static Limelight limelight;
+  public static BallVision ballCam;
   public static OI oi;
   public static PowerDistribution PDH;
   public static UsbCamera camera;
@@ -43,6 +45,7 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     Robot.limelight = new Limelight();
+    Robot.ballCam = new BallVision();
     ultraSensor = new UltraSensor();
     PDH = new PowerDistribution(1, ModuleType.kRev);
 
