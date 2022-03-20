@@ -3,12 +3,10 @@ package org.team1515.botifypremium.Commands.Autonomous;
 import org.team1515.botifypremium.Robot;
 import org.team1515.botifypremium.Commands.AutoAlign;
 import org.team1515.botifypremium.Commands.DriveDist;
-import org.team1515.botifypremium.Commands.RotateToPoint;
 import org.team1515.botifypremium.Subsystems.Drivetrain;
 import org.team1515.botifypremium.Subsystems.Intaker;
 import org.team1515.botifypremium.Subsystems.Magazine;
 import org.team1515.botifypremium.Subsystems.Shooter;
-import org.team1515.botifypremium.Utils.Field;
 
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.util.Units;

@@ -2,8 +2,6 @@ package org.team1515.botifypremium.Commands.Autonomous;
 
 import org.team1515.botifypremium.OI;
 import org.team1515.botifypremium.Subsystems.Drivetrain;
-import org.team1515.botifypremium.Subsystems.Odometry;
-import org.team1515.botifypremium.Utils.Utilities;
 
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.controller.PIDController;

@@ -19,7 +19,6 @@ import java.util.function.BooleanSupplier;
 
 import org.team1515.botifypremium.Commands.AutoAlign;
 import org.team1515.botifypremium.Commands.DefaultDriveCommand;
-import org.team1515.botifypremium.Commands.DriveDist;
 import org.team1515.botifypremium.Commands.DriveToPoint;
 import org.team1515.botifypremium.Subsystems.Drivetrain;
 import org.team1515.botifypremium.Subsystems.Shooter;
