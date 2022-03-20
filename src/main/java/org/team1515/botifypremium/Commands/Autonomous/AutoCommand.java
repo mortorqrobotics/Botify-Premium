@@ -17,15 +17,15 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 public class AutoCommand extends SequentialCommandGroup {
     public AutoCommand(Drivetrain drivetrain, Intaker intake, Magazine magazine, Shooter shooter) {
         addCommands(
-            new DriveDist(drivetrain, Units.feetToMeters(6)),
-            new DriveDist(drivetrain, Units.feetToMeters(1), -1),
-            new AutoAlign(drivetrain, Robot.limelight),
-            new AutoShoot(shooter, magazine, 4),
-            new RotateToAngle(drivetrain, Rotation2d.fromDegrees(57 + 180)),
-            new DriveDist(drivetrain, Units.feetToMeters(9.85)),
-            new RotateToAngle(drivetrain, Rotation2d.fromDegrees(55 + 180)),
-            new AutoAlign(drivetrain, Robot.limelight),
-            new AutoShoot(shooter, magazine, 6)
+            new DriveDist(drivetrain, Units.feetToMeters(6)), // Drive back into ball and hit wall
+            new DriveDist(drivetrain, Units.feetToMeters(1), -1), // Drive forward to get off the wall
+            new AutoAlign(drivetrain, Robot.limelight), // Align with the target
+            new AutoShoot(shooter, magazine, 4), // Shoot the ball
+            new RotateToAngle(drivetrain, Rotation2d.fromDegrees(57 + 180)), // Rotate to the next ball (intake forward)
+            new DriveDist(drivetrain, Units.feetToMeters(9.85)), // Drive towards the next ball
+            new RotateToAngle(drivetrain, Rotation2d.fromDegrees(55)), // Rotate to the hub (shooter forward)
+            new AutoAlign(drivetrain, Robot.limelight), // Align with the target
+            new AutoShoot(shooter, magazine, 6) // Shoot the final ball
         );
     }
 }
