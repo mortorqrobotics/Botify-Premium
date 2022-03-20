@@ -31,6 +31,7 @@ import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.button.Button;
 
 public class OI {
     public static XboxController mainStick;
@@ -83,10 +84,10 @@ public class OI {
         Controls.SHOOT.whileHeld(new Shoot(shooter));
         Controls.EXPAND_VERTICAL.whileHeld(new Expand(climberRV, climberLV));
         Controls.RETRACT_VERTICAL.whileHeld(new Retract(climberRV, climberLV));
-        Controls.EXPAND_VERTICAL_L.whileHeld(new ManualClimb(climberLV, 1));
-        Controls.EXPAND_VERTICAL_R.whileHeld(new ManualClimb(climberRV, 1));
-        Controls.RETRACT_VERTICAL_L.whileHeld(new ManualClimb(climberLV, -1));
-        Controls.RETRACT_VERTICAL_R.whileHeld(new ManualClimb(climberRV, -1));
+        // Controls.EXPAND_VERTICAL_L.whileHeld(new ManualClimb(climberLV, 1));
+        // Controls.EXPAND_VERTICAL_R.whileHeld(new ManualClimb(climberRV, 1));
+        // Controls.RETRACT_VERTICAL_L.whileHeld(new ManualClimb(climberLV, -1));
+        // Controls.RETRACT_VERTICAL_R.whileHeld(new ManualClimb(climberRV, -1));
 
         // Controls.EXPAND_DIAGONAL.whileHeld(new Expand(climberLD, climberRD));
         // Controls.RETRACT_DIAGONAL.whileHeld(new Retract(climberLD, climberRD));
@@ -100,6 +101,8 @@ public class OI {
         // Controls.ALIGN_TO_POINT.whenPressed(new RotateToPoint(drivetrain, new Pose2d(1, 1, new Rotation2d(0))));
         // Controls.ALIGN_TO_POINT.whenPressed(new AutoCommand(drivetrain, intake, magazine, shooter));
         // Back button zeros the gyroscope
+
+        new Button(mainStick::getAButton).whenPressed(new RotateToPoint(drivetrain, new Pose2d(1, 1, new Rotation2d())));
         Controls.RESETGYRO.whenPressed(drivetrain::zeroGyroscope); // No requirements because we don't need to interrupt anything
     }
 

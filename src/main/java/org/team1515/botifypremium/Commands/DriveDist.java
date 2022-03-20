@@ -13,17 +13,26 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 public class DriveDist extends CommandBase {
     private Drivetrain m_drivetrainSubsystem;
     private double targetDist;
-    private double angle;
+    private double direction;
     private double lastTime;
 
     private double distTraveled = 0.0;
     private double maxSpeed = 0.15 * Drivetrain.MAX_VELOCITY_METERS_PER_SECOND;
     private Rotation2d startGyroAngle;
 
-    public DriveDist(Drivetrain drivetrainSubsystem, double targetDist/*, double angle*/) {
+    public DriveDist(Drivetrain drivetrainSubsystem, double targetDist) {
         this.m_drivetrainSubsystem = drivetrainSubsystem;
         this.targetDist = targetDist;
-        this.angle = Math.toRadians(angle);
+        this.direction = 1;
+
+        SmartDashboard.putNumber("target dist", targetDist);
+        addRequirements(drivetrainSubsystem);
+    }
+
+    public DriveDist(Drivetrain drivetrainSubsystem, double targetDist, double direction) {
+        this.m_drivetrainSubsystem = drivetrainSubsystem;
+        this.targetDist = targetDist;
+        this.direction = direction;
 
         SmartDashboard.putNumber("target dist", targetDist);
         addRequirements(drivetrainSubsystem);
@@ -48,7 +57,7 @@ public class DriveDist extends CommandBase {
         //         0.0,
         //         OI.gyro.getGyroscopeRotation());
         ChassisSpeeds speeds = new ChassisSpeeds(
-                maxSpeed,
+                maxSpeed * direction,
                 0.0,
                 Utilities.deadband(startGyroAngle.minus(OI.gyro.getGyroscopeRotation()).getRadians(), 0.01)
         );

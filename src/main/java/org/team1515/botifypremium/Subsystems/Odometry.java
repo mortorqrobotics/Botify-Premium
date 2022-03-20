@@ -1,6 +1,7 @@
 package org.team1515.botifypremium.Subsystems;
 
 import org.team1515.botifypremium.OI;
+import org.team1515.botifypremium.Utils.Field;
 
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
@@ -19,7 +20,7 @@ public class Odometry {
     public static Rotation2d initalRot = new Rotation2d(Math.PI / 2);
 
     public Odometry(SwerveDriveKinematics kinematics) {
-        m_odometry = new SwerveDriveOdometry(kinematics, OI.gyro.getGyroscopeRotation(), new Pose2d(initalX, initalY, initalRot));
+        m_odometry = new SwerveDriveOdometry(kinematics, OI.gyro.getGyroscopeRotation(), Field.STARTING_POSE);
         SmartDashboard.putData("Field", m_field);
     }
 
