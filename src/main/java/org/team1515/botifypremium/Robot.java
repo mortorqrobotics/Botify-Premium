@@ -11,7 +11,10 @@ import org.team1515.botifypremium.Utils.Utilities;
 import org.team1515.botifypremium.Subsystems.Climber;
 
 import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.cscore.HttpCamera;
+import edu.wpi.first.cscore.MjpegServer;
 import edu.wpi.first.cscore.UsbCamera;
+import edu.wpi.first.cscore.VideoSource;
 import edu.wpi.first.wpilibj.PowerDistribution;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.PowerDistribution.ModuleType;
@@ -36,7 +39,7 @@ public class Robot extends TimedRobot {
   public static BallVision ballCam;
   public static OI oi;
   public static PowerDistribution PDH;
-  public static UsbCamera camera;
+  public static MjpegServer camera;
 
   private UltraSensor ultraSensor;
 
@@ -53,7 +56,7 @@ public class Robot extends TimedRobot {
     
     oi = new OI();
     SmartDashboard.putNumber("shooter speed", 10600);
-    camera = CameraServer.startAutomaticCapture();
+    
   }
 
   @Override
@@ -86,6 +89,11 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
+    ballCam.enableTeleop();
+
+    VideoSource cameraFeed = new HttpCamera("intake cam", RobotMap.RASPBERRY_PI_IP + "/video_feed");
+    camera = CameraServer.startAutomaticCapture(cameraFeed);
+
     OI.intake.end();
     if (autoCommand != null) {
       autoCommand.cancel();

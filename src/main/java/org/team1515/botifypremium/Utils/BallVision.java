@@ -37,4 +37,8 @@ public class BallVision {
     public void setTeam() {
         setTeam(DriverStation.getAlliance());
     }
+
+    public void enableTeleop() {
+        table.getEntry("isAutonomous").setBoolean(false);
+    }
 }

@@ -20,7 +20,6 @@ public class RobotMap {
     public final static int STRING_LD = 2;
     public final static int STRING_RD = 3;
 
-
     // Intake
     public final static int INTAKE_ID = 25;
     
@@ -33,6 +32,9 @@ public class RobotMap {
     public final static double ANGLE_OF_LIMELIGHT = 40;
     public final static double HEIGHT_OF_TARGET = 104;// * INCHES_TO_METERS;
     public final static double DISTANCE_OFFSET = -9; // IN INCHES
+
+    // Raspberry pi
+    public final static String RASPBERRY_PI_IP = "http://127.0.0.1:5000";
 
     //Drivetrain
 
