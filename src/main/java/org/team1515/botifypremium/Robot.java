@@ -60,7 +60,7 @@ public class Robot extends TimedRobot {
     SmartDashboard.putBoolean("Is at shooting distance?", Utilities.deadband(144 - limelight.getDistance(), 5) == 0);
     SmartDashboard.putBoolean("Orange : Too close\nWhite: Too far", limelight.getDistance() < 144);
 
-    SmartDashboard.putNumber("current angle", OI.gyro.getGyroscopeRotation().getDegrees())
+    SmartDashboard.putNumber("current angle", OI.gyro.getGyroscopeRotation().getDegrees());
 
     // if (ultraSensor.itemDetected()){
     //   oi.magazine.end();
