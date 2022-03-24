@@ -18,7 +18,7 @@ public class AlignWithBall extends CommandBase {
 
     private double maxSpeed = 0.25 * Drivetrain.MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND;
 
-    public AlignWithBall(Drivetrain drivetrain, Rotation2d targetAngle) {
+    public AlignWithBall(Drivetrain drivetrain) {
         this.drivetrain = drivetrain;
 
         angleController = new PIDController(0.25, 0.8, 0);

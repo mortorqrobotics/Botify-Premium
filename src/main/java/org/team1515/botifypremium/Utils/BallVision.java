@@ -9,6 +9,8 @@ public class BallVision {
 
     public BallVision(){
         table = NetworkTableInstance.getDefault().getTable("FRCMap");
+
+        setTeam(DriverStation.Alliance.Blue);
     }
 
     /**
