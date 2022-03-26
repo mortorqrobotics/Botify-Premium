@@ -26,6 +26,7 @@ import org.team1515.botifypremium.Commands.DriveDist;
 import org.team1515.botifypremium.Commands.DriveToPoint;
 import org.team1515.botifypremium.Subsystems.Drivetrain;
 import org.team1515.botifypremium.Subsystems.Shooter;
+import org.team1515.botifypremium.Utils.ClimberStates;
 import org.team1515.botifypremium.Utils.Gyroscope;
 import org.team1515.botifypremium.Utils.Utilities;
 
@@ -48,6 +49,8 @@ public class OI {
     public static Gyroscope gyro;
     private final Drivetrain drivetrain;
     public static double targetAngle = 0;
+
+    public static ClimberStates climberState = ClimberStates.VERTICAL;
 
     public OI() {
         mainStick = new XboxController(0);
@@ -88,10 +91,10 @@ public class OI {
         Controls.SHOOT.whileHeld(new Shoot(shooter));
         Controls.EXPAND_VERTICAL.whileHeld(new Expand(climberRV, climberLV));
         Controls.RETRACT_VERTICAL.whileHeld(new Retract(climberRV, climberLV));
-        Controls.EXPAND_VERTICAL_L.whileHeld(new ManualClimb(climberLV, 1));
-        Controls.EXPAND_VERTICAL_R.whileHeld(new ManualClimb(climberRV, 1));
-        Controls.RETRACT_VERTICAL_L.whileHeld(new ManualClimb(climberLV, -1));
-        Controls.RETRACT_VERTICAL_R.whileHeld(new ManualClimb(climberRV, -1));
+        Controls.EXPAND_VERTICAL_L.whileHeld(new ManualClimb(climberLV, climberLD, 1));
+        Controls.EXPAND_VERTICAL_R.whileHeld(new ManualClimb(climberRV, climberRD, 1));
+        Controls.RETRACT_VERTICAL_L.whileHeld(new ManualClimb(climberLV, climberLD, -1));
+        Controls.RETRACT_VERTICAL_R.whileHeld(new ManualClimb(climberRV, climberRD, -1));
 
         Controls.EXPAND_DIAGONAL.whileHeld(new Expand(climberLD, climberRD));
         Controls.RETRACT_DIAGONAL.whileHeld(new Retract(climberLD, climberRD));
@@ -107,6 +110,8 @@ public class OI {
         // Controls.ALIGN_TO_POINT.whenPressed(new AutoCommand(drivetrain, intake, magazine, shooter));
         // Back button zeros the gyroscope
         Controls.RESETGYRO.whenPressed(drivetrain::zeroGyroscope); // No requirements because we don't need to interrupt anything
+        Controls.LEFT_DPAD.whenPressed(new InstantCommand(() -> climberState = ClimberStates.VERTICAL));
+        Controls.RIGHT_DPAD.whenPressed(new InstantCommand(() -> climberState = ClimberStates.DIAGONAL));
     }
 
     private static double modifyAxis(double value) {
@@ -119,3 +124,4 @@ public class OI {
     }
 
 }
+ 

@@ -1,32 +1,45 @@
 package org.team1515.botifypremium.Commands.Climber;
 
+import org.team1515.botifypremium.OI;
 import org.team1515.botifypremium.Subsystems.Climber;
+import org.team1515.botifypremium.Utils.ClimberStates;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class ManualClimb extends CommandBase {
-    Climber climber1;
+    Climber verticalClimber;
+    Climber diagonalClimber;
     int expand;
 
-    public ManualClimb(Climber climber1, int expand) {
-        this.climber1 = climber1;
+    public ManualClimb(Climber verticalClimber, Climber diagonalClimber, int expand) {
+        this.verticalClimber = verticalClimber;
+        this.diagonalClimber = diagonalClimber;
         this.expand = expand;
 
-        addRequirements(climber1);
+        addRequirements(verticalClimber);
+        addRequirements(diagonalClimber);
     }
 
     @Override
     public void execute() {
         if(expand == 1){
-            climber1.expand();}
+            if(OI.climberState == ClimberStates.VERTICAL)
+                verticalClimber.expand();
+            else
+                diagonalClimber.expand(); 
+        }
         if(expand == -1){
-            climber1.retract();
+            if(OI.climberState == ClimberStates.VERTICAL)
+                verticalClimber.expand();
+            else
+                diagonalClimber.expand(); 
         }
     }
 
     @Override
     public void end(boolean interrupted) {
-        climber1.end();
+        verticalClimber.end();
+        diagonalClimber.end();
     }
 
     @Override

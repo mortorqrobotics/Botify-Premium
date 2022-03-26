@@ -19,12 +19,16 @@ public class Controls {
     public static final Button RETRACT_VERTICAL_L = new Button(OI.mainStick::getBButton);
     public static final Button EXPAND_VERTICAL_R = new Button(OI.mainStick::getXButton);
     public static final Button RETRACT_VERTICAL_R = new Button(OI.mainStick::getAButton);
-    
+
     public static final Button EXPAND_DIAGONAL = new Button(OI.mainStick::getLeftBumper);
     public static final Button RETRACT_DIAGONAL = new Button(Controls::getLeftTrigger);
     // public static final Button DRIVE_DIST = new Button(OI.mainStick::getAButton);
     // public static final Button ALIGN_TO_POINT = new Button(OI.mainStick::getBButton);
     // public static final Button GET_ANGLE = new Button(OI.mainStick::getXButton);
+
+    public static final Button LEFT_DPAD = new Button(Controls::getLeftDPad);
+    public static final Button RIGHT_DPAD = new Button(Controls::getRightDPad);
+
     public static final Button RESETGYRO = new Button(OI.mainStick::getBackButton);
     // public static final BooleanSupplier DRIVE_ROBOT_ORIENTED = () -> OI.mainStick.getLeftBumper();
     public static final BooleanSupplier DRIVE_ROBOT_ORIENTED = () -> false;
@@ -35,5 +39,13 @@ public class Controls {
 
     public static boolean getLeftTrigger() {
         return OI.mainStick.getLeftTriggerAxis() >= 0.250;
+    }
+
+    public static boolean getLeftDPad() {
+        return OI.mainStick.getPOV() == 270; 
+    }
+
+    public static boolean getRightDPad() {
+        return OI.mainStick.getPOV() == 90; 
     }
 }
