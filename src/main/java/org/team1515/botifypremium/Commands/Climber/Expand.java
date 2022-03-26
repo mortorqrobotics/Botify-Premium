@@ -23,6 +23,12 @@ public class Expand extends CommandBase {
     }
 
     @Override
+    public void end(boolean interrupted) {
+        climber1.end();
+        climber2.end();
+    }
+
+    @Override
     public boolean isFinished() {
         // Stops when the climber reaches the maximum distance
         // if(climber1.stringPot.getDist() >= climber1.maxDist) {

@@ -25,6 +25,11 @@ public class ManualClimb extends CommandBase {
     }
 
     @Override
+    public void end(boolean interrupted) {
+        climber1.end();
+    }
+
+    @Override
     public boolean isFinished() {
         return false;
     }

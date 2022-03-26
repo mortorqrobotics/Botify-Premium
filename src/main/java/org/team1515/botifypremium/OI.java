@@ -54,8 +54,8 @@ public class OI {
         secondStick = new XboxController(1);
         shooter = new Shooter();
 
-        climberRV = new Climber(RobotMap.RIGHT_VERTICAL_CLIMBER_ID, RobotMap.STRING_RV, 1);
-        climberLV = new Climber(RobotMap.LEFT_VERTICAL_CLIMBER_ID, RobotMap.STRING_LV, -1);
+        climberRV = new Climber(RobotMap.RIGHT_VERTICAL_CLIMBER_ID, RobotMap.STRING_RV, -1);
+        climberLV = new Climber(RobotMap.LEFT_VERTICAL_CLIMBER_ID, RobotMap.STRING_LV, 1);
         // climberRD = new Climber(RobotMap.RIGHT_DIAGONAL_CLIMBER_ID, RobotMap.STRING_RD, 1);
         // climberLD = new Climber(RobotMap.LEFT_DIAGONAL_CLIMBER_ID, RobotMap.STRING_LD, -1);
 
@@ -76,7 +76,8 @@ public class OI {
     }
 
     public static double getRobotSpeed() {
-        return Controls.getLeftTrigger() ? 0.45 : 0.7;
+        // return Controls.getLeftTrigger() ? 0.45 : 0.7;
+        return 0.7;
     } 
 
     public Command getAutoCommand() {
@@ -94,10 +95,10 @@ public class OI {
 
         // Controls.EXPAND_DIAGONAL.whileHeld(new Expand(climberLD, climberRD));
         // Controls.RETRACT_DIAGONAL.whileHeld(new Retract(climberLD, climberRD));
-        Controls.INTAKE.whileHeld(new Intake(intake));
-        Controls.OUTAKE.whileHeld(new Outtake(intake));
-        Controls.MAGUP.whileHeld(new MagUp(magazine));
-        Controls.MAGDOWN.whileHeld(new MagDown(magazine));
+        // Controls.INTAKE.whileHeld(new Intake(intake));
+        // Controls.OUTAKE.whileHeld(new Outtake(intake));
+        // Controls.MAGUP.whileHeld(new MagUp(magazine));
+        // Controls.MAGDOWN.whileHeld(new MagDown(magazine));
 
         Controls.ROBOT_ALIGN.whenPressed(new AutoAlign(drivetrain, Robot.limelight));
         Controls.ALIGN_TO_ANGLE.whenPressed(new RotateToAngle(drivetrain, targetAngle));
