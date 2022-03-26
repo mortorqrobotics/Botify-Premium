@@ -18,7 +18,7 @@ public class ManualClimb extends CommandBase {
     @Override
     public void execute() {
         if(expand == 1){
-        climber1.expand();}
+            climber1.expand();}
         if(expand == -1){
             climber1.retract();
         }
