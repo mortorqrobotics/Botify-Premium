@@ -25,14 +25,17 @@ public class ManualClimb extends CommandBase {
         if(expand == 1){
             if(OI.climberState == ClimberStates.VERTICAL)
                 verticalClimber.expand();
-            else
+            else {
                 diagonalClimber.expand(); 
+            }
         }
         if(expand == -1){
-            if(OI.climberState == ClimberStates.VERTICAL)
-                verticalClimber.expand();
-            else
-                diagonalClimber.expand(); 
+            if(OI.climberState == ClimberStates.VERTICAL) {
+                verticalClimber.retract();
+            }
+            else {
+                diagonalClimber.retract(); 
+            }
         }
     }
 

@@ -59,8 +59,8 @@ public class OI {
 
         climberRV = new Climber(RobotMap.RIGHT_VERTICAL_CLIMBER_ID, RobotMap.STRING_RV, -1);
         climberLV = new Climber(RobotMap.LEFT_VERTICAL_CLIMBER_ID, RobotMap.STRING_LV, 1);
-        climberRD = new Climber(RobotMap.RIGHT_DIAGONAL_CLIMBER_ID, RobotMap.STRING_RD, 1);
-        climberLD = new Climber(RobotMap.LEFT_DIAGONAL_CLIMBER_ID, RobotMap.STRING_LD, -1);
+        climberRD = new Climber(RobotMap.RIGHT_DIAGONAL_CLIMBER_ID, RobotMap.STRING_RD, -1);
+        climberLD = new Climber(RobotMap.LEFT_DIAGONAL_CLIMBER_ID, RobotMap.STRING_LD, 1);
 
 
         intake = new Intaker();
