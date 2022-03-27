@@ -11,6 +11,8 @@ public class ManualClimb extends CommandBase {
     Climber diagonalClimber;
     int expand;
 
+    public static ClimberStates climberState = ClimberStates.VERTICAL;
+
     public ManualClimb(Climber verticalClimber, Climber diagonalClimber, int expand) {
         this.verticalClimber = verticalClimber;
         this.diagonalClimber = diagonalClimber;
@@ -23,14 +25,14 @@ public class ManualClimb extends CommandBase {
     @Override
     public void execute() {
         if(expand == 1){
-            if(OI.climberState == ClimberStates.VERTICAL)
+            if(climberState == ClimberStates.VERTICAL)
                 verticalClimber.expand();
             else {
                 diagonalClimber.expand(); 
             }
         }
         if(expand == -1){
-            if(OI.climberState == ClimberStates.VERTICAL) {
+            if(climberState == ClimberStates.VERTICAL) {
                 verticalClimber.retract();
             }
             else {

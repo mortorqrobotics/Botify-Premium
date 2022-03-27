@@ -50,8 +50,6 @@ public class OI {
     private final Drivetrain drivetrain;
     public static double targetAngle = 0;
 
-    public static ClimberStates climberState = ClimberStates.VERTICAL;
-
     public OI() {
         mainStick = new XboxController(0);
         secondStick = new XboxController(1);
@@ -61,7 +59,6 @@ public class OI {
         climberLV = new Climber(RobotMap.LEFT_VERTICAL_CLIMBER_ID, RobotMap.STRING_LV, 1);
         climberRD = new Climber(RobotMap.RIGHT_DIAGONAL_CLIMBER_ID, RobotMap.STRING_RD, -1);
         climberLD = new Climber(RobotMap.LEFT_DIAGONAL_CLIMBER_ID, RobotMap.STRING_LD, 1);
-
 
         intake = new Intaker();
         magazine = new Magazine();
@@ -89,29 +86,31 @@ public class OI {
 
     private void configureButtons() {
         Controls.SHOOT.whileHeld(new Shoot(shooter));
+
+        // Climber expand and retract together
         Controls.EXPAND_VERTICAL.whileHeld(new Expand(climberRV, climberLV));
         Controls.RETRACT_VERTICAL.whileHeld(new Retract(climberRV, climberLV));
-        Controls.EXPAND_VERTICAL_L.whileHeld(new ManualClimb(climberLV, climberLD, 1));
-        Controls.EXPAND_VERTICAL_R.whileHeld(new ManualClimb(climberRV, climberRD, 1));
-        Controls.RETRACT_VERTICAL_L.whileHeld(new ManualClimb(climberLV, climberLD, -1));
-        Controls.RETRACT_VERTICAL_R.whileHeld(new ManualClimb(climberRV, climberRD, -1));
-
         Controls.EXPAND_DIAGONAL.whileHeld(new Expand(climberLD, climberRD));
         Controls.RETRACT_DIAGONAL.whileHeld(new Retract(climberLD, climberRD));
-        // Controls.INTAKE.whileHeld(new Intake(intake));
-        // Controls.OUTAKE.whileHeld(new Outtake(intake));
-        // Controls.MAGUP.whileHeld(new MagUp(magazine));
-        // Controls.MAGDOWN.whileHeld(new MagDown(magazine));
+
+        // Climber manual override to align
+        Controls.EXPAND_CLIMBER_L.whileHeld(new ManualClimb(climberLV, climberLD, 1));
+        Controls.EXPAND_CLIMBER_R.whileHeld(new ManualClimb(climberRV, climberRD, 1));
+        Controls.RETRACT_CLIMBER_L.whileHeld(new ManualClimb(climberLV, climberLD, -1));
+        Controls.RETRACT_CLIMBER_R.whileHeld(new ManualClimb(climberRV, climberRD, -1));
+
+        Controls.INTAKE.whileHeld(new Intake(intake));
+        Controls.OUTAKE.whileHeld(new Outtake(intake));
+        Controls.MAGUP.whileHeld(new MagUp(magazine));
+        Controls.MAGDOWN.whileHeld(new MagDown(magazine));
 
         Controls.ROBOT_ALIGN.whenPressed(new AutoAlign(drivetrain, Robot.limelight));
-        Controls.ALIGN_TO_ANGLE.whenPressed(new RotateToAngle(drivetrain, targetAngle));
-        // Controls.DRIVE_DIST.whenPressed(new DriveDist(drivetrain, 2.0, 0));
-        // Controls.ALIGN_TO_POINT.whenPressed(new RotateToPoint(drivetrain, new Pose2d(1, 1, new Rotation2d(0))));
-        // Controls.ALIGN_TO_POINT.whenPressed(new AutoCommand(drivetrain, intake, magazine, shooter));
+
         // Back button zeros the gyroscope
         Controls.RESETGYRO.whenPressed(drivetrain::zeroGyroscope); // No requirements because we don't need to interrupt anything
-        Controls.LEFT_DPAD.whenPressed(new InstantCommand(() -> climberState = ClimberStates.VERTICAL));
-        Controls.RIGHT_DPAD.whenPressed(new InstantCommand(() -> climberState = ClimberStates.DIAGONAL));
+
+        Controls.LEFT_DPAD.whenPressed(new InstantCommand(() -> ManualClimb.climberState = ClimberStates.VERTICAL));
+        Controls.RIGHT_DPAD.whenPressed(new InstantCommand(() -> ManualClimb.climberState = ClimberStates.DIAGONAL));
     }
 
     private static double modifyAxis(double value) {
