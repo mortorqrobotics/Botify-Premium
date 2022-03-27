@@ -14,6 +14,7 @@ import org.team1515.botifypremium.Subsystems.Shooter;
 
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.cscore.UsbCamera;
+import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.PowerDistribution;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.PowerDistribution.ModuleType;
@@ -62,9 +63,9 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("Robot angle", OI.gyro.getGyroscopeRotation().getDegrees());
     OI.targetAngle = SmartDashboard.getNumber("Robot angle", 0);
     SmartDashboard.putNumber("distance to target (in)", limelight.getDistance());
-    SmartDashboard.putBoolean("Is at shooting distance?", Utilities.deadband(144 - limelight.getDistance(), 5) == 0);
-    SmartDashboard.putBoolean("Orange : Too close\nWhite: Too far", limelight.getDistance() < 144);
 
+    SmartDashboard.putBoolean("Is at shooting distance?", Utilities.deadband(RobotMap.SHOOTING_RANGE - limelight.getDistance(), 5) == 0);
+    SmartDashboard.putBoolean("Orange : Too close\nWhite: Too far", limelight.getDistance() < RobotMap.SHOOTING_RANGE);
 
     // if (ultraSensor.itemDetected()){
     //   oi.magazine.end();
@@ -104,5 +105,14 @@ public class Robot extends TimedRobot {
     OI.climberRV.climberPeriodic();
     // OI.climberLD.climberPeriodic();
     // OI.climberRD.climberPeriodic();
+
+    // Rumble if within range
+    if(Utilities.deadband(RobotMap.SHOOTING_RANGE - limelight.getDistance(), 5) == 0) {
+      OI.mainStick.setRumble(GenericHID.RumbleType.kLeftRumble, 0.25);
+      OI.mainStick.setRumble(GenericHID.RumbleType.kRightRumble, 0.25);
+    } else {
+      OI.mainStick.setRumble(GenericHID.RumbleType.kLeftRumble, 0);
+      OI.mainStick.setRumble(GenericHID.RumbleType.kRightRumble, 0);
+    }
   }
 }

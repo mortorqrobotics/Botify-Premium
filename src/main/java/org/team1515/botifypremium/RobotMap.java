@@ -34,6 +34,7 @@ public class RobotMap {
     public final static double ANGLE_OF_LIMELIGHT = 40;
     public final static double HEIGHT_OF_TARGET = 104;
     public final static double DISTANCE_OFFSET = -9; // IN INCHES
+    public final static double SHOOTING_RANGE = 144;
 
     //Drivetrain
 
