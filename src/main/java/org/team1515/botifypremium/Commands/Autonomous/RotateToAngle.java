@@ -23,7 +23,7 @@ public class RotateToAngle extends CommandBase {
         this.drivetrain = drivetrain;
         this.targetAngle = targetAngle;
 
-        angleController = new PIDController(0.25, 0.8, 0);
+        angleController = new PIDController(1, 2, 0);
         angleController.setTolerance(deadband);
         // angleController.enableContinuousInput(0, 2*Math.PI);
         angleController.setSetpoint(setpoint);

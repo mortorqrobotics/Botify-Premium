@@ -31,7 +31,7 @@ public class AutoAlign extends CommandBase {
     public void execute() {
         double error = Math.toRadians(Robot.limelight.getTX());
         // System.out.println(error);
-        if (error == 0)
+        if (error == 0) // Stop auto align if limelight has no target in view
             this.end(true);
         double speed = MathUtil.clamp(angleController.calculate(error, 0.0), -maxSpeed, maxSpeed);
 
