@@ -28,8 +28,4 @@ public class AutoCommand extends SequentialCommandGroup {
             new AutoShoot(shooter, magazine, 6) // Shoot the final ball
         );
     }
-
-    public static void main(String[] args) {
-        System.out.println(Rotation2d.fromDegrees(57 + 180));
-    }
 }
