@@ -17,7 +17,7 @@ public class AutoCommand extends SequentialCommandGroup {
     public AutoCommand(Drivetrain drivetrain, Intaker intake, Magazine magazine, Shooter shooter) {
         addCommands(
             new DriveDist(drivetrain, Units.feetToMeters(6)), // Drive back into ball and hit wall
-            new WaitCommand(0.25),
+            new WaitCommand(0.25), // Wait to prevent tipping over
             new DriveDist(drivetrain, Units.feetToMeters(1), -1), // Drive forward to get off the wall
             new AutoAlign(drivetrain, Robot.limelight), // Align with the target
             new AutoShoot(shooter, magazine, 5), // Shoot the ball
