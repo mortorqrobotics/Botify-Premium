@@ -26,6 +26,7 @@ import org.team1515.botifypremium.Commands.DriveDist;
 import org.team1515.botifypremium.Commands.DriveToPoint;
 import org.team1515.botifypremium.Subsystems.Drivetrain;
 import org.team1515.botifypremium.Subsystems.Shooter;
+import org.team1515.botifypremium.Utils.ClimberDirection;
 import org.team1515.botifypremium.Utils.ClimberStates;
 import org.team1515.botifypremium.Utils.Gyroscope;
 import org.team1515.botifypremium.Utils.Utilities;
@@ -76,8 +77,8 @@ public class OI {
     }
 
     public static double getRobotSpeed() {
-        // return Controls.getLeftTrigger() ? 0.45 : 0.7;
-        return 0.7;
+        return Controls.getLeftTrigger() ? 0.45 : 0.7;
+        // return 0.7;
     } 
 
     public Command getAutoCommand() {
@@ -94,10 +95,8 @@ public class OI {
         Controls.RETRACT_DIAGONAL.whileHeld(new Retract(climberLD, climberRD));
 
         // Climber manual override to align
-        Controls.EXPAND_CLIMBER_L.whileHeld(new ManualClimb(climberLV, climberLD, 1));
-        Controls.EXPAND_CLIMBER_R.whileHeld(new ManualClimb(climberRV, climberRD, 1));
-        Controls.RETRACT_CLIMBER_L.whileHeld(new ManualClimb(climberLV, climberLD, -1));
-        Controls.RETRACT_CLIMBER_R.whileHeld(new ManualClimb(climberRV, climberRD, -1));
+        Controls.MANUAL_CLIMBER_L.whileHeld(new ManualClimb(climberLV, climberLD));
+        Controls.MANUAL_CLIMBER_R.whileHeld(new ManualClimb(climberRV, climberRD));
 
         Controls.INTAKE.whileHeld(new Intake(intake));
         Controls.OUTAKE.whileHeld(new Outtake(intake));
@@ -111,6 +110,9 @@ public class OI {
 
         Controls.LEFT_DPAD.whenPressed(new InstantCommand(() -> ManualClimb.climberState = ClimberStates.VERTICAL));
         Controls.RIGHT_DPAD.whenPressed(new InstantCommand(() -> ManualClimb.climberState = ClimberStates.DIAGONAL));
+        Controls.UP_DPAD.whenPressed(new InstantCommand(() -> ManualClimb.climberDirection = ClimberDirection.EXTEND));
+        Controls.DOWN_DPAD.whenPressed(new InstantCommand(() -> ManualClimb.climberDirection = ClimberDirection.RETRACT));
+
     }
 
     private static double modifyAxis(double value) {

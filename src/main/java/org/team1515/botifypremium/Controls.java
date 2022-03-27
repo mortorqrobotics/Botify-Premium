@@ -12,22 +12,27 @@ public class Controls {
     public static final Button MAGDOWN = new Button(OI.secondStick::getBButton);
 
     public static final Button ROBOT_ALIGN = new Button(OI.mainStick::getStartButton);
+
+    // Climber Buttons
     public static final Button EXPAND_VERTICAL = new Button(OI.mainStick::getRightBumper);
     public static final Button RETRACT_VERTICAL = new Button(Controls::getRightTrigger);
-    public static final Button EXPAND_CLIMBER_L = new Button(OI.mainStick::getYButton);
-    public static final Button RETRACT_CLIMBER_L = new Button(OI.mainStick::getBButton);
-    public static final Button EXPAND_CLIMBER_R = new Button(OI.mainStick::getXButton);
-    public static final Button RETRACT_CLIMBER_R = new Button(OI.mainStick::getAButton);
+    // public static final Button EXPAND_DIAGONAL = new Button(OI.mainStick::getLeftBumper);
+    // public static final Button RETRACT_DIAGONAL = new Button(Controls::getLeftTrigger);
+    public static final Button EXPAND_DIAGONAL = new Button(OI.mainStick::getYButton);
+    public static final Button RETRACT_DIAGONAL = new Button(OI.mainStick::getXButton);
 
-    public static final Button EXPAND_DIAGONAL = new Button(OI.mainStick::getLeftBumper);
-    public static final Button RETRACT_DIAGONAL = new Button(Controls::getLeftTrigger);
+    public static final Button MANUAL_CLIMBER_L = new Button(OI.mainStick::getAButton);
+    public static final Button MANUAL_CLIMBER_R = new Button(OI.mainStick::getBButton);
+
 
     public static final Button LEFT_DPAD = new Button(DPadButton.LEFT::getDPadButton);
     public static final Button RIGHT_DPAD = new Button(DPadButton.RIGHT::getDPadButton);
+    public static final Button UP_DPAD = new Button(DPadButton.UP::getDPadButton);
+    public static final Button DOWN_DPAD = new Button(DPadButton.DOWN::getDPadButton);
 
     public static final Button RESETGYRO = new Button(OI.mainStick::getBackButton);
-    // public static final BooleanSupplier DRIVE_ROBOT_ORIENTED = () -> OI.mainStick.getLeftBumper();
-    public static final BooleanSupplier DRIVE_ROBOT_ORIENTED = () -> false;
+    public static final BooleanSupplier DRIVE_ROBOT_ORIENTED = () -> OI.mainStick.getLeftBumper();
+    // public static final BooleanSupplier DRIVE_ROBOT_ORIENTED = () -> false;
 
     public static boolean getRightTrigger() {
         return OI.mainStick.getRightTriggerAxis() >= 0.250;

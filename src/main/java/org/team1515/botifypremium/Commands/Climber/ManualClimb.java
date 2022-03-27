@@ -2,6 +2,7 @@ package org.team1515.botifypremium.Commands.Climber;
 
 import org.team1515.botifypremium.OI;
 import org.team1515.botifypremium.Subsystems.Climber;
+import org.team1515.botifypremium.Utils.ClimberDirection;
 import org.team1515.botifypremium.Utils.ClimberStates;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
@@ -12,11 +13,11 @@ public class ManualClimb extends CommandBase {
     int expand;
 
     public static ClimberStates climberState = ClimberStates.VERTICAL;
+    public static ClimberDirection climberDirection = ClimberDirection.EXTEND;
 
-    public ManualClimb(Climber verticalClimber, Climber diagonalClimber, int expand) {
+    public ManualClimb(Climber verticalClimber, Climber diagonalClimber) {
         this.verticalClimber = verticalClimber;
         this.diagonalClimber = diagonalClimber;
-        this.expand = expand;
 
         addRequirements(verticalClimber);
         addRequirements(diagonalClimber);
@@ -24,14 +25,14 @@ public class ManualClimb extends CommandBase {
 
     @Override
     public void execute() {
-        if(expand == 1){
+        if(climberDirection == ClimberDirection.EXTEND){
             if(climberState == ClimberStates.VERTICAL)
                 verticalClimber.expand();
             else {
                 diagonalClimber.expand(); 
             }
         }
-        if(expand == -1){
+        if(climberDirection == ClimberDirection.RETRACT){
             if(climberState == ClimberStates.VERTICAL) {
                 verticalClimber.retract();
             }
