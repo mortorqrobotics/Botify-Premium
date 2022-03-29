@@ -16,7 +16,7 @@ public class DriveDist extends CommandBase {
     private double lastTime;
 
     private double distTraveled = 0.0;
-    private double maxSpeed = 0.15 * Drivetrain.MAX_VELOCITY_METERS_PER_SECOND;
+    private double maxSpeed = 0.25 * Drivetrain.MAX_VELOCITY_METERS_PER_SECOND;
     private Rotation2d startGyroAngle;
 
     public DriveDist(Drivetrain drivetrainSubsystem, double targetDist) {

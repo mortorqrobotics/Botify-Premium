@@ -13,7 +13,7 @@ import com.ctre.phoenix.motorcontrol.TalonFXFeedbackDevice;
 
 public class Shooter extends SubsystemBase {
     private TalonFX m_shoot;
-    public static double speed = 0.55;
+    public static double speed = 9600;
 
     public Shooter() {
         m_shoot = new TalonFX(RobotMap.SHOOTER_ID);
@@ -49,7 +49,7 @@ public class Shooter extends SubsystemBase {
         //8ft : 
         // m_shoot.set(ControlMode.Velocity, 10600);
 
-        double speed = SmartDashboard.getNumber("shooter speed", 10600);
+        double speed = SmartDashboard.getNumber("shooter speed", Shooter.speed);
         m_shoot.set(ControlMode.Velocity, speed);
     }
 
