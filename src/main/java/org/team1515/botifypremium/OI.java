@@ -105,7 +105,7 @@ public class OI {
 
         // new Button(mainStick::getAButton).whenPressed(new RotateToPoint(drivetrain, new Pose2d(1, 1, new Rotation2d())));
         
-        SmartDashboard.putData("Rotate to Angle", new RotateToAngle(drivetrain, Rotation2d.fromDegrees(57 + 180)));
+        SmartDashboard.putData("Rotate to Angle", new RotateToAngle(drivetrain, Rotation2d.fromDegrees(225)));
         Controls.RESETGYRO.whenPressed(drivetrain::zeroGyroscope); // No requirements because we don't need to interrupt anything
     }
 

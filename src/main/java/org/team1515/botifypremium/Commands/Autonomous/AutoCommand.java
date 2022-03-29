@@ -21,9 +21,9 @@ public class AutoCommand extends SequentialCommandGroup {
             new DriveDist(drivetrain, Units.feetToMeters(1), -1), // Drive forward to get off the wall
             new AutoAlign(drivetrain, Robot.limelight), // Align with the target
             new AutoShoot(shooter, magazine, 5), // Shoot the ball
-            new RotateToAngle(drivetrain, Rotation2d.fromDegrees(57 + 180)), // Rotate to the next ball (intake forward)
+            new RotateToAngle(drivetrain, Rotation2d.fromDegrees(225)), // Rotate to the next ball (intake forward)
             new DriveDist(drivetrain, Units.feetToMeters(9.85)), // Drive towards the next ball
-            new RotateToAngle(drivetrain, Rotation2d.fromDegrees(55)), // Rotate to the hub (shooter forward)
+            new RotateToAngle(drivetrain, Rotation2d.fromDegrees(306)), // Rotate to the hub (shooter forward)
             new AutoAlign(drivetrain, Robot.limelight), // Align with the target
             new AutoShoot(shooter, magazine, 6) // Shoot the final ball
         );
