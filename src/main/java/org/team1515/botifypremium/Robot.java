@@ -108,11 +108,11 @@ public class Robot extends TimedRobot {
 
     // Rumble if within range
     if(Utilities.deadband(RobotMap.SHOOTING_RANGE - limelight.getDistance(), 5) == 0) {
-      OI.mainStick.setRumble(GenericHID.RumbleType.kLeftRumble, 0.25);
-      OI.mainStick.setRumble(GenericHID.RumbleType.kRightRumble, 0.25);
+      // OI.mainStick.setRumble(GenericHID.RumbleType.kLeftRumble, 0.25);
+      // OI.mainStick.setRumble(GenericHID.RumbleType.kRightRumble, 0.25);
     } else {
-      OI.mainStick.setRumble(GenericHID.RumbleType.kLeftRumble, 0);
-      OI.mainStick.setRumble(GenericHID.RumbleType.kRightRumble, 0);
+      // OI.mainStick.setRumble(GenericHID.RumbleType.kLeftRumble, 0);
+      // OI.mainStick.setRumble(GenericHID.RumbleType.kRightRumble, 0);
     }
   }
 }
