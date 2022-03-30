@@ -8,6 +8,7 @@ import org.team1515.botifypremium.Utils.Limelight;
 import org.team1515.botifypremium.Utils.UltraSensor;
 import org.team1515.botifypremium.Utils.Utilities;
 import org.team1515.botifypremium.Subsystems.Climber;
+import org.team1515.botifypremium.Subsystems.Shooter;
 
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.cscore.UsbCamera;
@@ -49,7 +50,7 @@ public class Robot extends TimedRobot {
     PDH.clearStickyFaults();
     
     oi = new OI();
-    SmartDashboard.putNumber("shooter speed", 10600);
+    SmartDashboard.putNumber("shooter speed", Shooter.speed);
     camera = CameraServer.startAutomaticCapture();
   }
 
@@ -86,7 +87,6 @@ public class Robot extends TimedRobot {
     if (autoCommand != null) {
       autoCommand.cancel();
     }
-
   }
 
   @Override

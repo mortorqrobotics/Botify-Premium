@@ -10,6 +10,7 @@ public class AutoShoot extends CommandBase {
     private Shooter m_shooter;
     private Magazine m_magazine;
     private double runTime;
+    private double speedUpTime;
     private Timer timer;
     
     public AutoShoot(Shooter shooter, Magazine magazine, double runTime) {
@@ -17,6 +18,17 @@ public class AutoShoot extends CommandBase {
         this.m_magazine = magazine;
         this.runTime = runTime;
         this.timer = new Timer();;
+        this.speedUpTime = 1;
+
+        addRequirements(m_shooter);
+    }
+
+    public AutoShoot(Shooter shooter, Magazine magazine, double runTime, double speedUpTime) {
+        this.m_shooter = shooter;
+        this.m_magazine = magazine;
+        this.runTime = runTime;
+        this.timer = new Timer();;
+        this.speedUpTime = speedUpTime;
 
         addRequirements(m_shooter);
     }
@@ -29,7 +41,7 @@ public class AutoShoot extends CommandBase {
 
     @Override
     public void execute() { 
-        if(timer.hasElapsed(2)) {
+        if(timer.hasElapsed(0.5)) {
             m_magazine.goUp();
         }
 

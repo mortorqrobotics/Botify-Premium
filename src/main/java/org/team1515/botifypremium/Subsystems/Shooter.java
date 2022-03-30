@@ -2,6 +2,7 @@ package org.team1515.botifypremium.Subsystems;
 
 import org.team1515.botifypremium.Robot;
 import org.team1515.botifypremium.RobotMap;
+import org.team1515.botifypremium.Utils.ShooterDist;
 
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;

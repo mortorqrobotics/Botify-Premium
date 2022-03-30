@@ -7,6 +7,7 @@ import org.team1515.botifypremium.Commands.Outtake;
 import org.team1515.botifypremium.Commands.RotateToPoint;
 import org.team1515.botifypremium.Commands.Shoot;
 import org.team1515.botifypremium.Commands.Autonomous.AutoCommand;
+import org.team1515.botifypremium.Commands.Autonomous.DriveAtAngle;
 import org.team1515.botifypremium.Commands.Autonomous.RotateToAngle;
 import org.team1515.botifypremium.Commands.Climber.Expand;
 import org.team1515.botifypremium.Commands.Climber.Retract;
@@ -27,6 +28,7 @@ import org.team1515.botifypremium.Utils.Utilities;
 
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -105,7 +107,8 @@ public class OI {
 
         // new Button(mainStick::getAButton).whenPressed(new RotateToPoint(drivetrain, new Pose2d(1, 1, new Rotation2d())));
         
-        SmartDashboard.putData("Rotate to Angle", new RotateToAngle(drivetrain, Rotation2d.fromDegrees(57 + 180)));
+        SmartDashboard.putData("Rotate to Angle", new RotateToAngle(drivetrain, Rotation2d.fromDegrees(225)));
+        SmartDashboard.putData("Rotate to Angle", new DriveAtAngle(drivetrain, Units.feetToMeters(2), Math.toRadians(99)));
         Controls.RESETGYRO.whenPressed(drivetrain::zeroGyroscope); // No requirements because we don't need to interrupt anything
     }
 
