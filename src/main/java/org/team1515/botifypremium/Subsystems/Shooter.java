@@ -18,6 +18,8 @@ import com.ctre.phoenix.motorcontrol.TalonFXFeedbackDevice;
 public class Shooter extends SubsystemBase {
     private TalonFX m_shoot;
 
+    public double speed = 9600;
+
     public static DoubleFunction<Double> firstEquation = (distance) -> -11.1*distance + 10333; // [93, 111) in inches
     public static DoubleFunction<Double> secondEquation = (distance) -> 13.6*distance + 7586; // [111, 177] in inches
 
@@ -40,6 +42,11 @@ public class Shooter extends SubsystemBase {
         m_shoot.config_kD(PIDMap.kPIDLoopIdx, PIDMap.kD, PIDMap.kTimeoutMs);
     }
 
+    public void updateSpeed() {
+        double distance = Robot.limelight.getDistance();
+        speed = calcSpeed(distance);
+    }
+
     public void shoot() {
         double distance = Robot.limelight.getDistance();
         // double speed = calcSpeed(distance);
@@ -49,7 +56,7 @@ public class Shooter extends SubsystemBase {
         // m_shoot.set(ControlMode.Velocity, u_speed);
         SmartDashboard.putNumber("shooter velocity", m_shoot.getSelectedSensorVelocity());
 
-        double speed = calcSpeed(distance);
+        // double speed = calcSpeed(distance);
         m_shoot.set(ControlMode.Velocity, speed);
     }
 

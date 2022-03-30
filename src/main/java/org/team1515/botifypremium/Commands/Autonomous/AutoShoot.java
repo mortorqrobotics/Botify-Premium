@@ -37,6 +37,8 @@ public class AutoShoot extends CommandBase {
     public void initialize() {
         this.timer.reset();
         this.timer.start();
+
+        m_shooter.updateSpeed();
     }
 
     @Override

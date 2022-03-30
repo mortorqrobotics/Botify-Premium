@@ -18,6 +18,11 @@ public class Shoot extends CommandBase {
     }
 
     @Override
+    public void initialize() {
+        shooter.updateSpeed();
+    }
+
+    @Override
     public void end(boolean interrupted) {
         shooter.end();
     }

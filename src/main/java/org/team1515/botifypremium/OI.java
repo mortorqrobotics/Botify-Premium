@@ -98,6 +98,7 @@ public class OI {
         Controls.OUTAKE.whileHeld(new Outtake(intake));
         Controls.MAGUP.whileHeld(new MagUp(magazine));
         Controls.MAGDOWN.whileHeld(new MagDown(magazine));
+        Controls.RESET_SPEED.whenPressed(new InstantCommand(() -> shooter.updateSpeed()));
 
         Controls.ROBOT_ALIGN.whenPressed(new AutoAlign(drivetrain, Robot.limelight));
         // Controls.DRIVE_DIST.whenPressed(new DriveDist(drivetrain, 2.0, 0));
