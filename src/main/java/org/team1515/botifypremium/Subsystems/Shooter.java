@@ -2,18 +2,23 @@ package org.team1515.botifypremium.Subsystems;
 
 import org.team1515.botifypremium.Robot;
 import org.team1515.botifypremium.RobotMap;
-import org.team1515.botifypremium.Utils.ShooterDist;
 
+import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
+
+import java.util.function.DoubleFunction;
+
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.TalonFXFeedbackDevice;
 
 public class Shooter extends SubsystemBase {
     private TalonFX m_shoot;
-    public static double speed = 0.55;
+
+    public static DoubleFunction<Double> firstEquation = (distance) -> -11.1*distance + 10333; // [93, 111) in inches
+    public static DoubleFunction<Double> secondEquation = (distance) -> 13.6*distance + 7586; // [111, 177] in inches
 
     public Shooter() {
         m_shoot = new TalonFX(RobotMap.SHOOTER_ID);
@@ -35,21 +40,15 @@ public class Shooter extends SubsystemBase {
     }
 
     public void shoot() {
-        // double distance = Robot.limelight.getDistance();
+        double distance = Robot.limelight.getDistance();
         // double speed = calcSpeed(distance);
 
         // // u_speed converts from RPM to raw falcon sensor units
         // double u_speed = speed * (RobotMap.FALCON_SENSOR_UNITS / 600.0);
         // m_shoot.set(ControlMode.Velocity, u_speed);
         SmartDashboard.putNumber("shooter velocity", m_shoot.getSelectedSensorVelocity());
-        // m_shoot.set(ControlMode.PercentOutput, speed);
 
-        //12ft : 10600
-        //10ft : 
-        //8ft : 
-        // m_shoot.set(ControlMode.Velocity, 10600);
-
-        double speed = SmartDashboard.getNumber("shooter speed", 10600);
+        double speed = calcSpeed(distance);
         m_shoot.set(ControlMode.Velocity, speed);
     }
 
@@ -58,12 +57,16 @@ public class Shooter extends SubsystemBase {
      * @return double Gives approximate ideal distance based on the distance from the target
      */
     private double calcSpeed(double distance) {
-        if (distance < 0 || distance > 12) {
-            return 0.0;
-        } else {
-            // Distance between values
-            return ShooterDist.map.floorEntry((int) Math.round(distance)).getValue();
+        double speed = 0;
+        if(distance < 111) {
+            speed = firstEquation.apply(distance);
         }
+        else {
+            speed = secondEquation.apply(distance);
+        }
+
+        speed = MathUtil.clamp(speed, 9000, 10000);
+        return speed;
     }
 
     public void end() {

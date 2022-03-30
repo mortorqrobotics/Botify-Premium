@@ -51,7 +51,7 @@ public class Limelight {
     }
 
     /**
-     * @return double Get distance in meters
+     * @return double Get distance in inches
      */
     public double getDistance() {
         double deltaHeight = RobotMap.HEIGHT_OF_TARGET - RobotMap.HEIGHT_OF_LIMELIGHT;
