@@ -1,27 +1,51 @@
 package org.team1515.botifypremium.Commands.Climber;
 
+import org.team1515.botifypremium.OI;
 import org.team1515.botifypremium.Subsystems.Climber;
+import org.team1515.botifypremium.Utils.ClimberDirection;
+import org.team1515.botifypremium.Utils.ClimberStates;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class ManualClimb extends CommandBase {
-    Climber climber1;
+    Climber verticalClimber;
+    Climber diagonalClimber;
     int expand;
 
-    public ManualClimb(Climber climber1, int expand) {
-        this.climber1 = climber1;
-        this.expand = expand;
+    public static ClimberStates climberState = ClimberStates.VERTICAL;
+    public static ClimberDirection climberDirection = ClimberDirection.EXTEND;
 
-        addRequirements(climber1);
+    public ManualClimb(Climber verticalClimber, Climber diagonalClimber) {
+        this.verticalClimber = verticalClimber;
+        this.diagonalClimber = diagonalClimber;
+
+        addRequirements(verticalClimber);
+        addRequirements(diagonalClimber);
     }
 
     @Override
     public void execute() {
-        if(expand == 1){
-        climber1.expand();}
-        if(expand == -1){
-            climber1.retract();
+        if(climberDirection == ClimberDirection.EXTEND){
+            if(climberState == ClimberStates.VERTICAL)
+                verticalClimber.expand();
+            else {
+                diagonalClimber.expand(); 
+            }
         }
+        if(climberDirection == ClimberDirection.RETRACT){
+            if(climberState == ClimberStates.VERTICAL) {
+                verticalClimber.retract();
+            }
+            else {
+                diagonalClimber.retract(); 
+            }
+        }
+    }
+
+    @Override
+    public void end(boolean interrupted) {
+        verticalClimber.end();
+        diagonalClimber.end();
     }
 
     @Override

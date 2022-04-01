@@ -11,9 +11,9 @@ public class RobotMap {
 
     // Climber
     public final static int RIGHT_VERTICAL_CLIMBER_ID = 31;
-    // public final static int RIGHT_DIAGONAL_CLIMBER_ID = 32;
+    public final static int RIGHT_DIAGONAL_CLIMBER_ID = 32;
     public final static int LEFT_VERTICAL_CLIMBER_ID = 33;
-    // public final static int LEFT_DIAGONAL_CLIMBER_ID = 34;
+    public final static int LEFT_DIAGONAL_CLIMBER_ID = 34;
 
     public final static int STRING_RV = 0;
     public final static int STRING_LV = 1;
@@ -29,10 +29,11 @@ public class RobotMap {
     //public final static int ULTRA_ID = 0;
 
     // Limelight
-    public final static double HEIGHT_OF_LIMELIGHT = 26;// * INCHES_TO_METERS;
+    public final static double HEIGHT_OF_LIMELIGHT = 26;
     public final static double ANGLE_OF_LIMELIGHT = 40;
-    public final static double HEIGHT_OF_TARGET = 104;// * INCHES_TO_METERS;
+    public final static double HEIGHT_OF_TARGET = 104;
     public final static double DISTANCE_OFFSET = -9; // IN INCHES
+    public final static double SHOOTING_RANGE = 144;
 
     //Drivetrain
 
