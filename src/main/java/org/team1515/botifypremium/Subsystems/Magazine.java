@@ -10,7 +10,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
  
 public class Magazine extends SubsystemBase{
     private CANSparkMax m_mag;
-    private final double speed = 0.5; // TODO increase this speed
+    private final double speed = 0.6;
  
     public Magazine() {
         m_mag = new CANSparkMax(RobotMap.MAG_ID, MotorType.kBrushless);

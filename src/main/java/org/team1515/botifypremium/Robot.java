@@ -53,7 +53,7 @@ public class Robot extends TimedRobot {
     PDH.clearStickyFaults();
     
     oi = new OI();
-    SmartDashboard.putNumber("shooter speed", 10600);
+    // SmartDashboard.putNumber("shooter speed", Shooter.speed);
     camera = CameraServer.startAutomaticCapture();
   }
 
@@ -63,10 +63,10 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("Robot angle", OI.gyro.getGyroscopeRotation().getDegrees());
     OI.targetAngle = SmartDashboard.getNumber("Robot angle", 0);
     SmartDashboard.putNumber("distance to target (in)", limelight.getDistance());
+    SmartDashboard.putBoolean("Is at shooting distance?", Utilities.deadband(144 - limelight.getDistance(), 24) == 0);
+    SmartDashboard.putBoolean("Orange : Too close\nWhite: Too far", limelight.getDistance() < 144);
 
-    SmartDashboard.putBoolean("Is at shooting distance?", Utilities.deadband(RobotMap.SHOOTING_RANGE - limelight.getDistance(), 5) == 0);
-    SmartDashboard.putBoolean("Orange : Too close\nWhite: Too far", limelight.getDistance() < RobotMap.SHOOTING_RANGE);
-
+    SmartDashboard.putNumber("current angle", OI.gyro.getGyroscopeRotation().getDegrees());
     // if (ultraSensor.itemDetected()){
     //   oi.magazine.end();
     // }
@@ -101,8 +101,8 @@ public class Robot extends TimedRobot {
     // SmartDashboard.putNumber("RD Climber Position", OI.climberRD.getPosition());
     // SmartDashboard.putNumber("RL Climber Position", OI.climberLD.getPosition());
 
-    OI.climberLV.climberPeriodic();
-    OI.climberRV.climberPeriodic();
+    // OI.climberLV.climberPeriodic();
+    // OI.climberRV.climberPeriodic();
     // OI.climberLD.climberPeriodic();
     // OI.climberRD.climberPeriodic();
 

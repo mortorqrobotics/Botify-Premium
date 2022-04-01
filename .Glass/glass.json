@@ -8,6 +8,11 @@
     },
     "types": {
       "/FMSInfo": "FMSInfo",
+<<<<<<< HEAD
+      "/LiveWindow/Climber": "Subsystem",
+      "/LiveWindow/Ungrouped/PIDController[1]": "PIDController",
+      "/LiveWindow/Ungrouped/PIDController[2]": "PIDController",
+=======
 <<<<<<< Updated upstream
 =======
       "/LiveWindow/Climber": "Subsystem",
@@ -15,6 +20,7 @@
       "/LiveWindow/Ungrouped/PIDController[1]": "PIDController",
       "/LiveWindow/Ungrouped/PIDController[2]": "PIDController",
 >>>>>>> Stashed changes
+>>>>>>> master
       "/LiveWindow/Ungrouped/Scheduler": "Scheduler",
       "/LiveWindow/Ungrouped/navX-Sensor[4]": "Gyro",
       "/SmartDashboard/Field": "Field2d",
@@ -29,6 +35,7 @@
     }
   },
   "NetworkTables Settings": {
-    "mode": "Client"
+    "mode": "Client",
+    "serverTeam": "1515"
   }
 }

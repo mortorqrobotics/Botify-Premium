@@ -10,6 +10,7 @@ public class Controls {
     public static final Button INTAKE = new Button(OI.secondStick::getRightBumper);
     public static final Button MAGUP = new Button(OI.secondStick::getAButton);
     public static final Button MAGDOWN = new Button(OI.secondStick::getBButton);
+    public static final Button RESET_SPEED = new Button(Controls::secondRightStickTrigger);
 
     public static final Button ROBOT_ALIGN = new Button(OI.mainStick::getStartButton);
 
@@ -33,6 +34,10 @@ public class Controls {
     public static final Button RESETGYRO = new Button(OI.mainStick::getBackButton);
     public static final BooleanSupplier DRIVE_ROBOT_ORIENTED = () -> OI.mainStick.getLeftBumper();
     // public static final BooleanSupplier DRIVE_ROBOT_ORIENTED = () -> false;
+
+    public static boolean secondRightStickTrigger() {
+        return OI.secondStick.getRightTriggerAxis() >= 0.250;
+    }
 
     public static boolean getRightTrigger() {
         return OI.mainStick.getRightTriggerAxis() >= 0.250;

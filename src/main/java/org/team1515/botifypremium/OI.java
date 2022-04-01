@@ -1,14 +1,15 @@
 package org.team1515.botifypremium;
 
-
 import org.team1515.botifypremium.Commands.Intake;
 import org.team1515.botifypremium.Commands.MagDown;
 import org.team1515.botifypremium.Commands.MagUp;
 import org.team1515.botifypremium.Commands.Outtake;
-import org.team1515.botifypremium.Commands.RotateToAngle;
 import org.team1515.botifypremium.Commands.RotateToPoint;
 import org.team1515.botifypremium.Commands.Shoot;
 import org.team1515.botifypremium.Commands.Autonomous.AutoCommand;
+import org.team1515.botifypremium.Commands.Autonomous.DriveAtAngle;
+import org.team1515.botifypremium.Commands.Autonomous.RotateToAngle;
+import org.team1515.botifypremium.Commands.Autonomous.TwoBallAuto;
 import org.team1515.botifypremium.Commands.Climber.Expand;
 import org.team1515.botifypremium.Commands.Climber.Retract;
 import org.team1515.botifypremium.Commands.Climber.ManualClimb;
@@ -22,7 +23,6 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 
 import org.team1515.botifypremium.Commands.AutoAlign;
 import org.team1515.botifypremium.Commands.DefaultDriveCommand;
-import org.team1515.botifypremium.Commands.DriveDist;
 import org.team1515.botifypremium.Commands.DriveToPoint;
 import org.team1515.botifypremium.Subsystems.Drivetrain;
 import org.team1515.botifypremium.Subsystems.Shooter;
@@ -33,9 +33,13 @@ import org.team1515.botifypremium.Utils.Utilities;
 
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.util.Units;
+import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.button.Button;
 
 public class OI {
     public static XboxController mainStick;
@@ -82,7 +86,8 @@ public class OI {
     } 
 
     public Command getAutoCommand() {
-        return new AutoCommand(drivetrain, intake, magazine, shooter);
+        return new AutoCommand(drivetrain, intake, magazine, shooter); // 3 ball auto
+        // return new TwoBallAuto(drivetrain, intake, magazine, shooter); // 2 Ball auto
     }
 
     private void configureButtons() {
@@ -102,10 +107,14 @@ public class OI {
         Controls.OUTAKE.whileHeld(new Outtake(intake));
         Controls.MAGUP.whileHeld(new MagUp(magazine));
         Controls.MAGDOWN.whileHeld(new MagDown(magazine));
+        Controls.RESET_SPEED.whenPressed(new InstantCommand(() -> shooter.updateSpeed()));
 
         Controls.ROBOT_ALIGN.whenPressed(new AutoAlign(drivetrain, Robot.limelight));
 
         // Back button zeros the gyroscope
+
+        // new Button(mainStick::getAButton).whenPressed(new RotateToPoint(drivetrain, new Pose2d(1, 1, new Rotation2d())));
+        
         Controls.RESETGYRO.whenPressed(drivetrain::zeroGyroscope); // No requirements because we don't need to interrupt anything
 
         Controls.LEFT_DPAD.whenPressed(new InstantCommand(() -> ManualClimb.climberState = ClimberStates.VERTICAL));

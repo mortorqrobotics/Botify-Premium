@@ -31,7 +31,6 @@ public class Drivetrain extends SubsystemBase {
    * This can be reduced to cap the robot's maximum speed. Typically, this is useful during initial testing of the robot.
    */
   public static final double MAX_VOLTAGE = 12.0;
-  // FIXME Measure the drivetrain's maximum velocity or calculate the theoretical.
   //  The formula for calculating the theoretical maximum velocity is:
   //   <Motor free speed RPM> / 60 * <Drive reduction> * <Wheel diameter meters> * pi
   //  By default this value is setup for a Mk3 standard module using Falcon500s to drive.
@@ -84,7 +83,7 @@ public class Drivetrain extends SubsystemBase {
     // you MUST change it. If you do not, your code will crash on startup.
 
     Mk4ModuleConfiguration currentLimit = new Mk4ModuleConfiguration();
-    currentLimit.setDriveCurrentLimit(56); // 56 = 70% power (80 defualt / max)
+    currentLimit.setDriveCurrentLimit(54); // TODO update this value
 
     m_frontLeftModule = Mk4SwerveModuleHelper.createFalcon500(
             // This parameter is optional, but will allow you to see the current state of the module on the dashboard.

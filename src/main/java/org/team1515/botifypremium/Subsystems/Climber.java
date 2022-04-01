@@ -1,9 +1,7 @@
 package org.team1515.botifypremium.Subsystems;
 
-import org.team1515.botifypremium.RobotMap;
 import org.team1515.botifypremium.Utils.StringPot;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;

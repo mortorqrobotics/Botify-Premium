@@ -4,7 +4,6 @@ public class RobotMap {
 
     // Conversion factors
     public final static double INCHES_TO_METERS = 0.0254;
-    public final static double METERS_TO_INCHES = 1.0/0.0254;
     public final static double FALCON_SENSOR_UNITS = 4096.0;
     
     // Shooter
@@ -53,21 +52,27 @@ public class RobotMap {
     public static final int FRONT_LEFT_MODULE_DRIVE_MOTOR = 15; 
     public static final int FRONT_LEFT_MODULE_STEER_MOTOR = 16; 
     public static final int FRONT_LEFT_MODULE_STEER_ENCODER = 21; 
-    public static final double FRONT_LEFT_MODULE_STEER_OFFSET = -Math.toRadians(107.7); 
+    public static final double FRONT_LEFT_MODULE_STEER_OFFSET = -Math.toRadians(107.5); 
+    // public static final double FRONT_LEFT_MODULE_STEER_OFFSET = -Math.toRadians(0.0); 
+
 
     public static final int FRONT_RIGHT_MODULE_DRIVE_MOTOR = 17; 
     public static final int FRONT_RIGHT_MODULE_STEER_MOTOR = 18; 
     public static final int FRONT_RIGHT_MODULE_STEER_ENCODER = 22; 
-    public static final double FRONT_RIGHT_MODULE_STEER_OFFSET = -Math.toRadians(117.3);
+    public static final double FRONT_RIGHT_MODULE_STEER_OFFSET = -Math.toRadians(117.5);
+    // public static final double FRONT_RIGHT_MODULE_STEER_OFFSET = -Math.toRadians(0.0);
+
 
     public static final int BACK_LEFT_MODULE_DRIVE_MOTOR = 13;
     public static final int BACK_LEFT_MODULE_STEER_MOTOR = 14; 
     public static final int BACK_LEFT_MODULE_STEER_ENCODER = 20; 
-    public static final double BACK_LEFT_MODULE_STEER_OFFSET = -Math.toRadians(232.5);
+    public static final double BACK_LEFT_MODULE_STEER_OFFSET = -Math.toRadians(233.0);
+    // public static final double BACK_LEFT_MODULE_STEER_OFFSET = -Math.toRadians(0.0);
 
     public static final int BACK_RIGHT_MODULE_DRIVE_MOTOR = 11;
     public static final int BACK_RIGHT_MODULE_STEER_MOTOR = 12; 
     public static final int BACK_RIGHT_MODULE_STEER_ENCODER = 19;
-    public static final double BACK_RIGHT_MODULE_STEER_OFFSET = -Math.toRadians(346.4);   
+    public static final double BACK_RIGHT_MODULE_STEER_OFFSET = -Math.toRadians(343.5);   
+    // public static final double BACK_RIGHT_MODULE_STEER_OFFSET = -Math.toRadians(0.0);   
 }
 

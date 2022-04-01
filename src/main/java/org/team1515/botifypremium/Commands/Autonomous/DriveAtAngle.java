@@ -1,4 +1,4 @@
-package org.team1515.botifypremium.Commands;
+package org.team1515.botifypremium.Commands.Autonomous;
 
 import org.team1515.botifypremium.OI;
 import org.team1515.botifypremium.Subsystems.Drivetrain;
@@ -6,34 +6,23 @@ import org.team1515.botifypremium.Utils.Utilities;
 
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
-public class DriveDist extends CommandBase {
+public class DriveAtAngle extends CommandBase {
     private Drivetrain m_drivetrainSubsystem;
     private double targetDist;
-    private double direction;
+    private double angle;
     private double lastTime;
 
     private double distTraveled = 0.0;
     private double maxSpeed = 0.25 * Drivetrain.MAX_VELOCITY_METERS_PER_SECOND;
     private Rotation2d startGyroAngle;
 
-    public DriveDist(Drivetrain drivetrainSubsystem, double targetDist) {
+    public DriveAtAngle(Drivetrain drivetrainSubsystem, double targetDist, double angle) {
         this.m_drivetrainSubsystem = drivetrainSubsystem;
         this.targetDist = targetDist;
-        this.direction = 1;
+        this.angle = angle;
 
-        SmartDashboard.putNumber("target dist", targetDist);
-        addRequirements(drivetrainSubsystem);
-    }
-
-    public DriveDist(Drivetrain drivetrainSubsystem, double targetDist, double direction) {
-        this.m_drivetrainSubsystem = drivetrainSubsystem;
-        this.targetDist = targetDist;
-        this.direction = direction;
-
-        SmartDashboard.putNumber("target dist", targetDist);
         addRequirements(drivetrainSubsystem);
     }
 
@@ -46,23 +35,19 @@ public class DriveDist extends CommandBase {
 
     @Override
     public void execute() {
-        // double ySpeed = Math.sin(angle) * maxSpeed;
-        // double xSpeed = Math.cos(angle) * maxSpeed;
+        double ySpeed = Math.sin(angle) * maxSpeed;
+        double xSpeed = Math.cos(angle) * maxSpeed;
 
         distanceTraveled();
-        // ChassisSpeeds speeds = ChassisSpeeds.fromFieldRelativeSpeeds(
-        //         ySpeed,
-        //         xSpeed,
-        //         0.0,
-        //         OI.gyro.getGyroscopeRotation());
-        ChassisSpeeds speeds = new ChassisSpeeds(
-                maxSpeed * direction,
-                0.0,
-                Utilities.deadband(startGyroAngle.minus(OI.gyro.getGyroscopeRotation()).getRadians(), 0.01)
+        ChassisSpeeds speeds = ChassisSpeeds.fromFieldRelativeSpeeds(
+            ySpeed,
+            xSpeed,
+            Utilities.deadband(startGyroAngle.minus(OI.gyro.getGyroscopeRotation()).getRadians(), 0.01),
+            OI.gyro.getGyroscopeRotation()
         );
         m_drivetrainSubsystem.drive(speeds);
     }
-
+    
     @Override
     public void end(boolean interrupted) {
         m_drivetrainSubsystem.drive(new ChassisSpeeds(0.0, 0.0, 0.0));
