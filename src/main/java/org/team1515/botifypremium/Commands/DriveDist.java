@@ -16,22 +16,25 @@ public class DriveDist extends CommandBase {
     private double lastTime;
 
     private double distTraveled = 0.0;
-    private double maxSpeed = 0.25 * Drivetrain.MAX_VELOCITY_METERS_PER_SECOND;
+    private double maxSpeed;
     private Rotation2d startGyroAngle;
 
-    public DriveDist(Drivetrain drivetrainSubsystem, double targetDist) {
+    public DriveDist(Drivetrain drivetrainSubsystem, double targetDist, double speed) {
         this.m_drivetrainSubsystem = drivetrainSubsystem;
         this.targetDist = targetDist;
         this.direction = 1;
+        this.maxSpeed = speed * Drivetrain.MAX_VELOCITY_METERS_PER_SECOND;
 
         SmartDashboard.putNumber("target dist", targetDist);
         addRequirements(drivetrainSubsystem);
     }
 
-    public DriveDist(Drivetrain drivetrainSubsystem, double targetDist, double direction) {
+    public DriveDist(Drivetrain drivetrainSubsystem, double targetDist, double direction, double speed) {
         this.m_drivetrainSubsystem = drivetrainSubsystem;
         this.targetDist = targetDist;
         this.direction = direction;
+        this.maxSpeed = speed * Drivetrain.MAX_VELOCITY_METERS_PER_SECOND;
+
 
         SmartDashboard.putNumber("target dist", targetDist);
         addRequirements(drivetrainSubsystem);

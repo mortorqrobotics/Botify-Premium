@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.SPI;
 
 public class Gyroscope {
     public final AHRS m_navx;
+    public double offset = 0;
 
     public Gyroscope() {
         m_navx = new AHRS(SPI.Port.kMXP, (byte) 200);
@@ -19,6 +20,6 @@ public class Gyroscope {
         }
      
          // We have to invert the angle of the NavX so that rotating the robot counter-clockwise makes the angle increase.
-        return Rotation2d.fromDegrees(360.0 - m_navx.getYaw()); // Add 180 to make the shooter the front instead of the intake
+        return Rotation2d.fromDegrees(360.0 - m_navx.getYaw() + offset); // Add 180 to make the shooter the front instead of the intake
     }
 }

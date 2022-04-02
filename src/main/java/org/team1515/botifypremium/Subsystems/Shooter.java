@@ -60,6 +60,10 @@ public class Shooter extends SubsystemBase {
         m_shoot.set(ControlMode.Velocity, speed);
     }
 
+    public void shoot(double speed) {
+        m_shoot.set(ControlMode.Velocity, speed);
+    }
+
     /**
      * @param distance Distance from robot to target
      * @return double Gives approximate ideal distance based on the distance from the target

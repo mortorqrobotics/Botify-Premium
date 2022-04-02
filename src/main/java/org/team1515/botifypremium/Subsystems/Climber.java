@@ -53,13 +53,13 @@ public class Climber extends SubsystemBase {
 
     public void expand() {
         // setPoint += 1.2 * 10;
-        m_climber.set(ControlMode.PercentOutput, 0.5 * direction);
+        m_climber.set(ControlMode.PercentOutput, 0.85 * direction);
 
     }
 
     public void retract() {
         // setPoint -= 1.2 * 10;
-        m_climber.set(ControlMode.PercentOutput, -0.5 * direction);
+        m_climber.set(ControlMode.PercentOutput, -0.85 * direction);
     }
 
     public void climberPeriodic() {

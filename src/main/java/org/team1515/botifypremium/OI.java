@@ -86,8 +86,8 @@ public class OI {
     } 
 
     public Command getAutoCommand() {
-        return new AutoCommand(drivetrain, intake, magazine, shooter); // 3 ball auto
-        // return new TwoBallAuto(drivetrain, intake, magazine, shooter); // 2 Ball auto
+        // return new AutoCommand(drivetrain, intake, magazine, shooter); // 3 ball auto
+        return new TwoBallAuto(drivetrain, intake, magazine, shooter); // 2 Ball auto
     }
 
     private void configureButtons() {
