@@ -5,9 +5,7 @@
 ## Setup
 1. Setup buttons in Control
 2. Configure IDs in RobotMap
-3. Set steering offsets in RobotMap 
-
-<!-- Temporary, fix when first driver configures -->
+3. Set steering offsets in RobotMap (follow instructions below)
 
 ## Driver button lists 
 

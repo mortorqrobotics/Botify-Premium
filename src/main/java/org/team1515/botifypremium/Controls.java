@@ -23,7 +23,6 @@ public class Controls {
     public static final Button MANUAL_CLIMBER_L = new Button(OI.mainStick::getBButton);
     public static final Button MANUAL_CLIMBER_R = new Button(OI.mainStick::getAButton);
 
-
     public static final Button LEFT_DPAD = new Button(DPadButton.LEFT::getDPadButton);
     public static final Button RIGHT_DPAD = new Button(DPadButton.RIGHT::getDPadButton);
     public static final Button UP_DPAD = new Button(DPadButton.UP::getDPadButton);
