@@ -47,9 +47,4 @@ public class ManualClimb extends CommandBase {
         verticalClimber.end();
         diagonalClimber.end();
     }
-
-    @Override
-    public boolean isFinished() {
-        return false;
-    }
 }

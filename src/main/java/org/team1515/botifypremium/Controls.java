@@ -17,8 +17,6 @@ public class Controls {
     // Climber Buttons
     public static final Button EXPAND_VERTICAL = new Button(OI.mainStick::getRightBumper);
     public static final Button RETRACT_VERTICAL = new Button(Controls::getRightTrigger);
-    // public static final Button EXPAND_DIAGONAL = new Button(OI.mainStick::getLeftBumper);
-    // public static final Button RETRACT_DIAGONAL = new Button(Controls::getLeftTrigger);
     public static final Button EXPAND_DIAGONAL = new Button(OI.mainStick::getYButton);
     public static final Button RETRACT_DIAGONAL = new Button(OI.mainStick::getXButton);
 
@@ -46,12 +44,6 @@ public class Controls {
     public static boolean getLeftTrigger() {
         return OI.mainStick.getLeftTriggerAxis() >= 0.250;
     }
-
-    
-
-
-
-
 
     public enum DPadButton {
         UP (0),

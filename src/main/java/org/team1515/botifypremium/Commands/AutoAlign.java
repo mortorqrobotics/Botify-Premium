@@ -15,9 +15,13 @@ public class AutoAlign extends CommandBase {
     private PIDController angleController;
     private double maxSpeed = 0.75 * Drivetrain.MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND;
 
-    public AutoAlign(Drivetrain drivetrainSubsystem, Limelight limelight) {
+    /**
+     * Align robot with the target using the limelight
+     * @param drivetrainSubsystem
+     * @param limelight
+     */
+    public AutoAlign(Drivetrain drivetrainSubsystem) {
         this.m_drivetrainSubsystem = drivetrainSubsystem;
-        this.m_limelight = limelight;
 
         angleController = new PIDController(5, 6.5, 0);
         angleController.setTolerance(0.025);

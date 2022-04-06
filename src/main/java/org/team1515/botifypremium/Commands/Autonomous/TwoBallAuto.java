@@ -15,7 +15,7 @@ public class TwoBallAuto extends SequentialCommandGroup {
     public TwoBallAuto(Drivetrain drivetrain, Intaker intake, Magazine magazine, Shooter shooter) {
         addCommands(
             new DriveDist(drivetrain, ((Units.feetToMeters(10.0)) - 1.25), 0.15),
-            new AutoAlign(drivetrain, Robot.limelight),
+            new AutoAlign(drivetrain),
             new AutoShoot(shooter, magazine, 2.5, 0, 9600)
         );
     }

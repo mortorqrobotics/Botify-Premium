@@ -5,7 +5,6 @@
 package org.team1515.botifypremium;
 
 import org.team1515.botifypremium.Utils.Limelight;
-import org.team1515.botifypremium.Utils.UltraSensor;
 import org.team1515.botifypremium.Utils.Utilities;
 import org.team1515.botifypremium.Subsystems.Climber;
 import org.team1515.botifypremium.Subsystems.Drivetrain;
@@ -39,36 +38,27 @@ public class Robot extends TimedRobot {
   public static PowerDistribution PDH;
   public static UsbCamera camera;
 
-  private UltraSensor ultraSensor;
-
   public Command autoCommand;
 
   @Override
   public void robotInit() {
     Robot.limelight = new Limelight();
-    ultraSensor = new UltraSensor();
     PDH = new PowerDistribution(1, ModuleType.kRev);
-
     PDH.clearStickyFaults();
     
     oi = new OI();
-    // SmartDashboard.putNumber("shooter speed", Shooter.speed);
-    camera = CameraServer.startAutomaticCapture();
+    camera = CameraServer.startAutomaticCapture(); // Put usb camera on shuffleboard
   }
 
   @Override
   public void robotPeriodic() {
     CommandScheduler.getInstance().run();
     SmartDashboard.putNumber("Robot angle", OI.gyro.getGyroscopeRotation().getDegrees());
-    OI.targetAngle = SmartDashboard.getNumber("Robot angle", 0);
     SmartDashboard.putNumber("distance to target (in)", limelight.getDistance());
     SmartDashboard.putBoolean("Is at shooting distance?", Utilities.deadband(144 - limelight.getDistance(), 24) == 0);
     SmartDashboard.putBoolean("Orange : Too close\nWhite: Too far", limelight.getDistance() < 144);
 
     SmartDashboard.putNumber("current angle", OI.gyro.getGyroscopeRotation().getDegrees());
-    // if (ultraSensor.itemDetected()){
-    //   oi.magazine.end();
-    // }
   }
 
   @Override
@@ -82,7 +72,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousPeriodic() {
-    OI.intake.startIntake();
+    OI.intake.startIntake(); // Continously run intake during auto
   }
 
   @Override
@@ -91,28 +81,9 @@ public class Robot extends TimedRobot {
     if (autoCommand != null) {
       autoCommand.cancel();
     }
-    OI.gyro.offset += 0;
+    OI.gyro.offset += 0; // Change front or back of robot without messing up the auto
   }
 
   @Override
-  public void teleopPeriodic() {
-    SmartDashboard.putNumber("RV Climber Position", OI.climberRV.getPosition());
-    SmartDashboard.putNumber("LV Climber Position", OI.climberLV.getPosition());
-    // SmartDashboard.putNumber("RD Climber Position", OI.climberRD.getPosition());
-    // SmartDashboard.putNumber("RL Climber Position", OI.climberLD.getPosition());
-
-    // OI.climberLV.climberPeriodic();
-    // OI.climberRV.climberPeriodic();
-    // OI.climberLD.climberPeriodic();
-    // OI.climberRD.climberPeriodic();
-
-    // Rumble if within range
-    if(Utilities.deadband(RobotMap.SHOOTING_RANGE - limelight.getDistance(), 5) == 0) {
-      // OI.mainStick.setRumble(GenericHID.RumbleType.kLeftRumble, 0.25);
-      // OI.mainStick.setRumble(GenericHID.RumbleType.kRightRumble, 0.25);
-    } else {
-      // OI.mainStick.setRumble(GenericHID.RumbleType.kLeftRumble, 0);
-      // OI.mainStick.setRumble(GenericHID.RumbleType.kRightRumble, 0);
-    }
-  }
+  public void teleopPeriodic() {}
 }

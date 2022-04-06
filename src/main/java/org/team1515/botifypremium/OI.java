@@ -4,7 +4,6 @@ import org.team1515.botifypremium.Commands.Intake;
 import org.team1515.botifypremium.Commands.MagDown;
 import org.team1515.botifypremium.Commands.MagUp;
 import org.team1515.botifypremium.Commands.Outtake;
-import org.team1515.botifypremium.Commands.RotateToPoint;
 import org.team1515.botifypremium.Commands.Shoot;
 import org.team1515.botifypremium.Commands.Autonomous.AutoCommand;
 import org.team1515.botifypremium.Commands.Autonomous.DriveAtAngle;
@@ -23,7 +22,6 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 
 import org.team1515.botifypremium.Commands.AutoAlign;
 import org.team1515.botifypremium.Commands.DefaultDriveCommand;
-import org.team1515.botifypremium.Commands.DriveToPoint;
 import org.team1515.botifypremium.Subsystems.Drivetrain;
 import org.team1515.botifypremium.Subsystems.Shooter;
 import org.team1515.botifypremium.Utils.ClimberDirection;
@@ -53,17 +51,16 @@ public class OI {
     public static Magazine magazine;
     public static Gyroscope gyro;
     private final Drivetrain drivetrain;
-    public static double targetAngle = 0;
 
     public OI() {
         mainStick = new XboxController(0);
         secondStick = new XboxController(1);
         shooter = new Shooter();
 
-        climberRV = new Climber(RobotMap.RIGHT_VERTICAL_CLIMBER_ID, RobotMap.STRING_RV, -1);
-        climberLV = new Climber(RobotMap.LEFT_VERTICAL_CLIMBER_ID, RobotMap.STRING_LV, 1);
-        climberRD = new Climber(RobotMap.RIGHT_DIAGONAL_CLIMBER_ID, RobotMap.STRING_RD, -1);
-        climberLD = new Climber(RobotMap.LEFT_DIAGONAL_CLIMBER_ID, RobotMap.STRING_LD, 1);
+        climberRV = new Climber(RobotMap.RIGHT_VERTICAL_CLIMBER_ID, -1);
+        climberLV = new Climber(RobotMap.LEFT_VERTICAL_CLIMBER_ID, 1);
+        climberRD = new Climber(RobotMap.RIGHT_DIAGONAL_CLIMBER_ID, -1);
+        climberLD = new Climber(RobotMap.LEFT_DIAGONAL_CLIMBER_ID, 1);
 
         intake = new Intaker();
         magazine = new Magazine();
@@ -80,6 +77,10 @@ public class OI {
         configureButtons();
     }
 
+    /**
+     * Slow robot down if the trigger is held
+     * @return robot speed (percentage)
+     */
     public static double getRobotSpeed() {
         return Controls.getLeftTrigger() ? 0.45 : 0.7;
         // return 0.7;
@@ -109,19 +110,16 @@ public class OI {
         Controls.MAGDOWN.whileHeld(new MagDown(magazine));
         Controls.RESET_SPEED.whenPressed(new InstantCommand(() -> shooter.updateSpeed()));
 
-        Controls.ROBOT_ALIGN.whenPressed(new AutoAlign(drivetrain, Robot.limelight));
+        Controls.ROBOT_ALIGN.whenPressed(new AutoAlign(drivetrain));
 
-        // Back button zeros the gyroscope
-
-        // new Button(mainStick::getAButton).whenPressed(new RotateToPoint(drivetrain, new Pose2d(1, 1, new Rotation2d())));
-        
+        // Back button zeros the gyroscope        
         Controls.RESETGYRO.whenPressed(drivetrain::zeroGyroscope); // No requirements because we don't need to interrupt anything
 
+        // Set the mode for the manual climb (using this because there aren't enough buttons)
         Controls.LEFT_DPAD.whenPressed(new InstantCommand(() -> ManualClimb.climberState = ClimberStates.VERTICAL));
         Controls.RIGHT_DPAD.whenPressed(new InstantCommand(() -> ManualClimb.climberState = ClimberStates.DIAGONAL));
         Controls.UP_DPAD.whenPressed(new InstantCommand(() -> ManualClimb.climberDirection = ClimberDirection.EXTEND));
         Controls.DOWN_DPAD.whenPressed(new InstantCommand(() -> ManualClimb.climberDirection = ClimberDirection.RETRACT));
-
     }
 
     private static double modifyAxis(double value) {

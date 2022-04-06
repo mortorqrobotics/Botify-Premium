@@ -25,7 +25,6 @@ public class RotateToAngle extends CommandBase {
 
         angleController = new PIDController(1, 2, 0);
         angleController.setTolerance(deadband);
-        // angleController.enableContinuousInput(0, 2*Math.PI);
         angleController.setSetpoint(setpoint);
 
         addRequirements(drivetrain);
@@ -35,7 +34,6 @@ public class RotateToAngle extends CommandBase {
     public void execute() {
         double angleOffset = OI.gyro.getGyroscopeRotation().minus(targetAngle).getRadians();
         double speed = MathUtil.clamp(angleController.calculate(angleOffset, setpoint), -maxSpeed, maxSpeed);
-        SmartDashboard.putNumber("angle offset", Math.toDegrees(angleOffset));
 
         ChassisSpeeds speeds = new ChassisSpeeds(0.0, 0.0, speed);
         drivetrain.drive(speeds);

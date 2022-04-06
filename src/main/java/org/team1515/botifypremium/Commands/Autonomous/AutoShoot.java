@@ -10,7 +10,6 @@ public class AutoShoot extends CommandBase {
     private Shooter m_shooter;
     private Magazine m_magazine;
     private double runTime;
-    private double speedUpTime;
     private double shooterSpeed = 0;
     private Timer timer;
     
@@ -18,18 +17,7 @@ public class AutoShoot extends CommandBase {
         this.m_shooter = shooter;
         this.m_magazine = magazine;
         this.runTime = runTime;
-        this.timer = new Timer();;
-        this.speedUpTime = 1;
-
-        addRequirements(m_shooter);
-    }
-
-    public AutoShoot(Shooter shooter, Magazine magazine, double runTime, double speedUpTime) {
-        this.m_shooter = shooter;
-        this.m_magazine = magazine;
-        this.runTime = runTime;
-        this.timer = new Timer();;
-        this.speedUpTime = speedUpTime;
+        this.timer = new Timer();
 
         addRequirements(m_shooter);
     }
@@ -38,8 +26,7 @@ public class AutoShoot extends CommandBase {
         this.m_shooter = shooter;
         this.m_magazine = magazine;
         this.runTime = runTime;
-        this.timer = new Timer();;
-        this.speedUpTime = speedUpTime;
+        this.timer = new Timer();
         this.shooterSpeed = shooterSpeed;
 
         addRequirements(m_shooter);

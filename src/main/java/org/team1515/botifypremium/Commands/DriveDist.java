@@ -49,19 +49,11 @@ public class DriveDist extends CommandBase {
 
     @Override
     public void execute() {
-        // double ySpeed = Math.sin(angle) * maxSpeed;
-        // double xSpeed = Math.cos(angle) * maxSpeed;
-
         distanceTraveled();
-        // ChassisSpeeds speeds = ChassisSpeeds.fromFieldRelativeSpeeds(
-        //         ySpeed,
-        //         xSpeed,
-        //         0.0,
-        //         OI.gyro.getGyroscopeRotation());
         ChassisSpeeds speeds = new ChassisSpeeds(
                 maxSpeed * direction,
                 0.0,
-                Utilities.deadband(startGyroAngle.minus(OI.gyro.getGyroscopeRotation()).getRadians(), 0.01)
+                Utilities.deadband(startGyroAngle.minus(OI.gyro.getGyroscopeRotation()).getRadians(), 0.01) // Use gyro to prevent robot from turning (doesn't really work)
         );
         m_drivetrainSubsystem.drive(speeds);
     }

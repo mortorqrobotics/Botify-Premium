@@ -16,20 +16,28 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 
 public class AutoCommand extends SequentialCommandGroup {
+
+    /**
+     * Runs auto one command after another (finished when the isFinished method returns true)
+     * @param drivetrain
+     * @param intake
+     * @param magazine
+     * @param shooter
+     */
     public AutoCommand(Drivetrain drivetrain, Intaker intake, Magazine magazine, Shooter shooter) {
         addCommands(
             new InstantCommand(() -> OI.gyro.m_navx.zeroYaw()),
             new DriveDist(drivetrain, Units.feetToMeters(6), 0.25), // Drive back into ball and hit wall
             new WaitCommand(0.25), // Wait to prevent tipping over
             new DriveDist(drivetrain, Units.feetToMeters(0.75), -0.5), // Drive forward to get off the wall
-            new AutoAlign(drivetrain, Robot.limelight), // Align with the target
+            new AutoAlign(drivetrain), // Align with the target
             new AutoShoot(shooter, magazine, 2.5, 0, 9500), // Shoot the ball
             new RotateToAngle(drivetrain, Rotation2d.fromDegrees(225)), // Rotate to the next ball (intake forward)
             new DriveDist(drivetrain, Units.feetToMeters(10.05), 0.25), // Drive towards the next ball
             new RotateToAngle(drivetrain, Rotation2d.fromDegrees(306)), // Rotate to the hub (shooter forward)
-            new AutoAlign(drivetrain, Robot.limelight), // Align with the target
+            new AutoAlign(drivetrain), // Align with the target
             new AutoShoot(shooter, magazine, 2.5, 0, 9600), // Shoot the final ball
-            new DriveAtAngle(drivetrain, Units.feetToMeters(11), Math.toRadians(180 - 9)) // Drive to final
+            new DriveAtAngle(drivetrain, Units.feetToMeters(11), Math.toRadians(180 - 9)) // Drive to human player station
         );
     }
 }

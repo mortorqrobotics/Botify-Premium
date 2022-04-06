@@ -16,6 +16,10 @@ public class Limelight {
 
     private NetworkTableEntry xcorners, ycorners;
 
+
+    /**
+     * Offset in degrees for the camera (use if the camera isn't perfectly centered on the robot)
+     */
     private double txOffset = 0;
 
     public Limelight() {
@@ -58,6 +62,10 @@ public class Limelight {
         return (deltaHeight / Math.tan(Math.toRadians(getTY() + RobotMap.ANGLE_OF_LIMELIGHT))) + RobotMap.DISTANCE_OFFSET;
     }
 
+    /**
+     * Set the limelight's vision tracking pipeline
+     * @param pipeline pipeline number
+     */
     public void setPipeline(int pipeline) {
         this.pipeline.setNumber(pipeline);
     }

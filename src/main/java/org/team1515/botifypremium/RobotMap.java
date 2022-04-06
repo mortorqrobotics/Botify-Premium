@@ -15,18 +15,12 @@ public class RobotMap {
     public final static int LEFT_VERTICAL_CLIMBER_ID = 33;
     public final static int LEFT_DIAGONAL_CLIMBER_ID = 34;
 
-    public final static int STRING_RV = 0;
-    public final static int STRING_LV = 1;
-    public final static int STRING_LD = 2;
-    public final static int STRING_RD = 3;
-
 
     // Intake
     public final static int INTAKE_ID = 25;
     
     // Magazine
     public final static int MAG_ID = 26;
-    //public final static int ULTRA_ID = 0;
 
     // Limelight
     public final static double HEIGHT_OF_LIMELIGHT = 26;

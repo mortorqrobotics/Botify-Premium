@@ -2,7 +2,6 @@ package org.team1515.botifypremium.Subsystems;
 
 import org.team1515.botifypremium.Robot;
 import org.team1515.botifypremium.RobotMap;
-import org.team1515.botifypremium.Utils.ShooterDist;
 
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -42,21 +41,18 @@ public class Shooter extends SubsystemBase {
         m_shoot.config_kD(PIDMap.kPIDLoopIdx, PIDMap.kD, PIDMap.kTimeoutMs);
     }
 
+
+    /**
+     * Update shooter speed based on distance from target
+     */
     public void updateSpeed() {
         double distance = Robot.limelight.getDistance();
         speed = calcSpeed(distance);
     }
 
     public void shoot() {
-        double distance = Robot.limelight.getDistance();
-        // double speed = calcSpeed(distance);
-
-        // // u_speed converts from RPM to raw falcon sensor units
-        // double u_speed = speed * (RobotMap.FALCON_SENSOR_UNITS / 600.0);
-        // m_shoot.set(ControlMode.Velocity, u_speed);
         SmartDashboard.putNumber("shooter velocity", m_shoot.getSelectedSensorVelocity());
 
-        // double speed = calcSpeed(distance);
         m_shoot.set(ControlMode.Velocity, speed);
     }
 
@@ -66,7 +62,7 @@ public class Shooter extends SubsystemBase {
 
     /**
      * @param distance Distance from robot to target
-     * @return double Gives approximate ideal distance based on the distance from the target
+     * @return double Gives approximate ideal shooting speed based on the distance from the target
      */
     private double calcSpeed(double distance) {
         double speed = 0;

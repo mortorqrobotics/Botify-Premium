@@ -35,6 +35,7 @@ public class DriveAtAngle extends CommandBase {
 
     @Override
     public void execute() {
+        // Convert angle to slope
         double ySpeed = Math.sin(angle) * maxSpeed;
         double xSpeed = Math.cos(angle) * maxSpeed;
 

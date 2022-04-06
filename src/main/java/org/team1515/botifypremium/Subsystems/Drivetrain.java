@@ -25,12 +25,14 @@ import org.team1515.botifypremium.OI;
 import org.team1515.botifypremium.RobotMap;
 
 public class Drivetrain extends SubsystemBase {
+
   /**
    * The maximum voltage that will be delivered to the drive motors.
    * <p>
    * This can be reduced to cap the robot's maximum speed. Typically, this is useful during initial testing of the robot.
    */
   public static final double MAX_VOLTAGE = 12.0;
+
   //  The formula for calculating the theoretical maximum velocity is:
   //   <Motor free speed RPM> / 60 * <Drive reduction> * <Wheel diameter meters> * pi
   //  By default this value is setup for a Mk3 standard module using Falcon500s to drive.
@@ -72,16 +74,11 @@ public class Drivetrain extends SubsystemBase {
 
   private ChassisSpeeds m_chassisSpeeds = new ChassisSpeeds(0.0, 0.0, 0.0);
 
-  public Odometry m_odometry;
-
   public Drivetrain() {
     ShuffleboardTab tab = Shuffleboard.getTab("Drivetrain");
 
-    // Similar helpers also exist for Mk4 modules using the Mk4SwerveModuleHelper class.
-
-    // By default we will use Falcon 500s in standard configuration. But if you use a different configuration or motors
-    // you MUST change it. If you do not, your code will crash on startup.
-
+    // Set a current limit to limit the robot's acceleration
+    // Helps prevent tipping over
     Mk4ModuleConfiguration currentLimit = new Mk4ModuleConfiguration();
     currentLimit.setDriveCurrentLimit(48); // TODO update this value
 
@@ -116,8 +113,6 @@ public class Drivetrain extends SubsystemBase {
             RobotMap.FRONT_RIGHT_MODULE_STEER_OFFSET
     );
 
-    
-
     m_backLeftModule = Mk4SwerveModuleHelper.createFalcon500(
             tab.getLayout("Back Left Module", BuiltInLayouts.kList)
                     .withSize(2, 4)
@@ -142,7 +137,6 @@ public class Drivetrain extends SubsystemBase {
             RobotMap.BACK_RIGHT_MODULE_STEER_OFFSET
     );
 
-    m_odometry = new Odometry(m_kinematics);
   }
 
   /**
@@ -151,7 +145,6 @@ public class Drivetrain extends SubsystemBase {
    */
   public void zeroGyroscope() {
     OI.gyro.m_navx.zeroYaw();
-    m_odometry.resetPosition(m_odometry.getPose(), OI.gyro.getGyroscopeRotation());
   }
 
   public void drive(ChassisSpeeds chassisSpeeds) {
@@ -160,12 +153,6 @@ public class Drivetrain extends SubsystemBase {
 
   public SwerveModuleState getState(SwerveModule module) {
     return new SwerveModuleState(module.getDriveVelocity(), new Rotation2d(module.getSteerAngle()));
-  }
-
-  public void configureOdometry() {
-    if(m_odometry != null) {
-        m_odometry.update(OI.gyro.getGyroscopeRotation(), getState(m_frontLeftModule), getState(m_frontRightModule), getState(m_backLeftModule), getState(m_backRightModule));
-    }
   }
 
   @Override
@@ -177,7 +164,5 @@ public class Drivetrain extends SubsystemBase {
     m_frontRightModule.set(states[1].speedMetersPerSecond / MAX_VELOCITY_METERS_PER_SECOND * MAX_VOLTAGE, states[1].angle.getRadians());
     m_backLeftModule.set(states[2].speedMetersPerSecond / MAX_VELOCITY_METERS_PER_SECOND * MAX_VOLTAGE, states[2].angle.getRadians());
     m_backRightModule.set(states[3].speedMetersPerSecond / MAX_VELOCITY_METERS_PER_SECOND * MAX_VOLTAGE, states[3].angle.getRadians());
-
-    configureOdometry();
   }
 }
