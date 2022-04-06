@@ -16,16 +16,20 @@
 | ------------- | ------------- |
 | Drive | Left stick |
 | Turn | Right stick |
-| Climb Up | RB |
-| Climb Down | RT |
-| Left Vertical Climb Up | Y |
-| Right Vertical Climb Up | X |
-| Left Vertical Climb Down | B |
-| Right Vertical Climb Down | A |
+| Vertical Climber Up | RB |
+| Vertical Climber Down | RT |
+| Diagonal Climber Up | Y |
+| Diagonal Climber Down | X |
+| Manual Left Climber | B |
+| Manual Right Climber | A |
+| Manual Control Vertical | Left DPAD |
+| Manual Control Diagonal | Right DPAD |
+| Manual Control Expand | Up DPAD |
+| Manual Control Retract | Down DPAD |
 | Drive robot oriented | LB |
 | Slow robot down | LT |
 | Reset gyro | Back |
-| Align robot | Start |
+| Align robot with target | Start |
 
 ### Second Driver Buttons
 | Action| Button |
@@ -35,6 +39,7 @@
 | Outtake | LB |
 | Mag up | A |
 | Mag down | B |
+| Reset shooter speed | RT | 
 
 ## Setting up module offsets
 
