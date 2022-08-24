@@ -5,6 +5,7 @@ import org.team1515.botifypremium.Commands.MagDown;
 import org.team1515.botifypremium.Commands.MagUp;
 import org.team1515.botifypremium.Commands.Outtake;
 import org.team1515.botifypremium.Commands.Shoot;
+import org.team1515.botifypremium.Commands.Sing;
 import org.team1515.botifypremium.Commands.Autonomous.AutoCommand;
 import org.team1515.botifypremium.Commands.Autonomous.DriveAtAngle;
 import org.team1515.botifypremium.Commands.Autonomous.RotateToAngle;
@@ -12,10 +13,10 @@ import org.team1515.botifypremium.Commands.Autonomous.TwoBallAuto;
 import org.team1515.botifypremium.Commands.Climber.Expand;
 import org.team1515.botifypremium.Commands.Climber.Retract;
 import org.team1515.botifypremium.Commands.Climber.ManualClimb;
+import org.team1515.botifypremium.Commands.Sing;
 import org.team1515.botifypremium.Subsystems.Climber;
 import org.team1515.botifypremium.Subsystems.Intaker;
 import org.team1515.botifypremium.Subsystems.Magazine;
-
 import java.util.function.BooleanSupplier;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
@@ -24,6 +25,7 @@ import org.team1515.botifypremium.Commands.AutoAlign;
 import org.team1515.botifypremium.Commands.DefaultDriveCommand;
 import org.team1515.botifypremium.Subsystems.Drivetrain;
 import org.team1515.botifypremium.Subsystems.Shooter;
+import org.team1515.botifypremium.Subsystems.Singer;
 import org.team1515.botifypremium.Utils.ClimberDirection;
 import org.team1515.botifypremium.Utils.ClimberStates;
 import org.team1515.botifypremium.Utils.Gyroscope;
@@ -51,6 +53,7 @@ public class OI {
     public static Magazine magazine;
     public static Gyroscope gyro;
     private final Drivetrain drivetrain;
+    private final Singer singer;
 
     public OI() {
         mainStick = new XboxController(0);
@@ -61,6 +64,8 @@ public class OI {
         climberLV = new Climber(RobotMap.LEFT_VERTICAL_CLIMBER_ID, 1);
         climberRD = new Climber(RobotMap.RIGHT_DIAGONAL_CLIMBER_ID, -1);
         climberLD = new Climber(RobotMap.LEFT_DIAGONAL_CLIMBER_ID, 1);
+
+        singer = new Singer();
 
         intake = new Intaker();
         magazine = new Magazine();
@@ -120,6 +125,8 @@ public class OI {
         Controls.RIGHT_DPAD.whenPressed(new InstantCommand(() -> ManualClimb.climberState = ClimberStates.DIAGONAL));
         Controls.UP_DPAD.whenPressed(new InstantCommand(() -> ManualClimb.climberDirection = ClimberDirection.EXTEND));
         Controls.DOWN_DPAD.whenPressed(new InstantCommand(() -> ManualClimb.climberDirection = ClimberDirection.RETRACT));
+    
+        Controls.Sing.whenPressed(new Sing(singer));
     }
 
     private static double modifyAxis(double value) {

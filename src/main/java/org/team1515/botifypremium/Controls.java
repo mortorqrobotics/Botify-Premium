@@ -28,6 +28,8 @@ public class Controls {
     public static final Button UP_DPAD = new Button(DPadButton.UP::getDPadButton);
     public static final Button DOWN_DPAD = new Button(DPadButton.DOWN::getDPadButton);
 
+    public static final Button Sing = new Button(OI.secondStick::getYButton);
+
     public static final Button RESETGYRO = new Button(OI.mainStick::getBackButton);
     public static final BooleanSupplier DRIVE_ROBOT_ORIENTED = () -> OI.mainStick.getLeftBumper();
     // public static final BooleanSupplier DRIVE_ROBOT_ORIENTED = () -> false;
